@@ -1,23 +1,19 @@
-VscGithub;
-VscGithubInverted;
-VscGithubAlt;
-DiGithubFull;
-FiGithub;
-
-FaGithub;
 
 
-AiFillInstagram;
-AiOutlineInstagram;
-BsInstagram;
-SiInstagram;
-CgInstagram;
+
+AiFillInstagram
+AiOutlineInstagram
+BsInstagram
+SiInstagram
+CgInstagram
 
 
-AiFillTwitterCircle;
+AiFillTwitterCircle
+AiFillTwitterSquare
+FaTwitterSquare
 
-AiFillTwitterSquare;
-FaTwitterSquare;
+
+BsPersonCircle
 
 
-BsPersonCircle;
+ImTwitter
