@@ -1,9 +1,15 @@
 import styles from "./Navbar.module.css";
+import { BsPersonCircle } from "react-icons/bs";
 
 function Navbar() {
   return (
     <div className={`${styles.Navbar_container}`}>
-      <h1>Biblioteca Navbar</h1>
+      <div>
+        <h1>Biblioteca.</h1>
+      </div>
+      <div>
+        <h1>Login <BsPersonCircle/></h1>
+      </div>
     </div>
   );
 }
