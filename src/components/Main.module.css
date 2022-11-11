@@ -11,14 +11,41 @@
     /* color: rgba(0, 0, 0, 0.5); */
 }
 
+.form{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
 .input_busca {
-    height: 40px;
+    height: 50px;
     padding-left: 40px;
     padding-right: 40px;
     border-radius: 30px;
-    border: none;
-    background: rgba(0, 0, 0, 0.4);
+    border: white solid;
+    background: rgba(0, 0, 0, 0);
     color: white;
     font-size: 1.5em;
     text-align: center;
+}
+
+.btn_busca {
+    height: 40px;
+    padding-left: 20px;
+    padding-right: 20px;
+    border-radius: 30px;
+    border: none;
+    background: rgba(0, 0, 0, 0);
+    color: white;
+    margin-left: 20px;
+    font-size: 40px;
+    text-align: center;
+    transform: scale(-1, 1);
+    cursor: pointer;
+    transition: 0.5s;
+}
+.btn_busca:hover {
+    transform: scale(-1.2, 1.2);
+
 }
