@@ -14,7 +14,8 @@ function Main() {
   let [resultadosLivros, setResultadosLivros] = useState();
 
 
-  function BuscarLivros(pesquisa) {
+  function BuscarLivros() {
+    console.log(`a pesquisa é: ${ pesquisa }`);
     fetch(
       `https://www.googleapis.com/books/v1/volumes?q=${pesquisa}&maxResults=40`,
       {
@@ -30,26 +31,44 @@ function Main() {
       .catch((err) => console.log(err));
   }
 
+  function ApagarResultadosLivros() {
+    setResultadosLivros(false)
+  }
+
   console.log(resultadosLivros)
 
 
 
   return (
     <div className={`${styles.Main_container}`}>
-      <h1 className={`${styles.title}`}>{pesquisa || "Biblioteca"}.</h1>
-      <div className={`${styles.form}`}>
-        <input
-          className={`${styles.input_busca}`}
-          type="text"
-          name="input_busca"
-          placeholder="Digite o nome do livro"
-          onChange={(e) => setPesquisa(e.target.value)}
-        />
-        <button className={`${styles.btn_busca}`} onClick={BuscarLivros}>
-          <BsSearch />
-        </button>
-      </div>
-      <Livros livros={resultadosLivros} />
+      {!resultadosLivros ? (
+        <div>
+          <h1 className={`${styles.title}`}>{pesquisa || "Biblioteca"}.</h1>
+          <div className={`${styles.form}`}>
+            <input
+              className={`${styles.input_busca}`}
+              type="text"
+              name="input_busca"
+              placeholder="Digite o nome do livro"
+              onChange={(e) => setPesquisa(e.target.value)}
+            />
+            <button className={`${styles.btn_busca}`} onClick={BuscarLivros}>
+              <BsSearch />
+            </button>
+          </div>
+        </div>
+      ) : (
+        <div className={`${styles.Main_container}`}>
+          <Livros livros={resultadosLivros} />
+          <button
+            className={`${styles.btn_voltar}`}
+            onClick={ApagarResultadosLivros}
+          >
+            <p>Voltar</p>
+            </button>
+            <p>{pesquisa}</p>
+        </div>
+      )}
     </div>
   );
 }

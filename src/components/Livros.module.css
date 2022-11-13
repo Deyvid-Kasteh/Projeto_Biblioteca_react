@@ -1,0 +1,23 @@
+.livros {
+    display: flex;
+    width: 90%;
+    height: 100%;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    overflow-y: scroll;
+}
+
+.livro {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    margin: 20px;
+    border: 1px solid black;
+}
+
+.capa {
+    height: 100px;
+}

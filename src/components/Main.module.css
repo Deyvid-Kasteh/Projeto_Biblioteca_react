@@ -47,5 +47,16 @@
 }
 .btn_busca:hover {
     transform: scale(-1.2, 1.2);
+}
 
+.btn_voltar p {
+    height: 40px;
+    padding: 5px 20px;
+    border: none;
+    border-radius: 30px;
+    color: black;
+    font-size: 2em;
+    text-align: center;
+    justify-content: center;
+    cursor: pointer;
 }
