@@ -12,7 +12,7 @@
 
 .livro {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     justify-content: center;
     align-items: center;
     padding: 20px;
@@ -20,10 +20,31 @@
     border: 1px solid black;
     background: rgba(0, 0, 0, 0.5);
     border-radius: 30px;
+    height: auto;
+}
+
+.livro button {
+    border: none;
+    height: 300px;
 }
 
 .capa {
     height: 300px;
     width: 210px;
     cursor: pointer;
+}
+
+.bg_salmon {
+    background-color:#ddd;
+    position: fixed;
+    padding: 2em;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.livroDetalhe {
+    display: none;
+    height: 500px;
+    width: 500px;
 }

@@ -15,7 +15,7 @@ function Main() {
   const [pesquisa, setPesquisa] = useState('Biblioteca')
 
   
-  let [resultadosLivros, setResultadosLivros] = useState();
+  const [resultadosLivros, setResultadosLivros] = useState();
 
 
   function BuscarLivros() {
@@ -64,13 +64,13 @@ function Main() {
       ) : (
         <div className={`${styles.Main_container}`}>
           <Livros livros={resultadosLivros} />
+          <div>oi</div>
           <button
             className={`${styles.btn_voltar}`}
             onClick={ApagarResultadosLivros}
           >
-            <ArrowBackIcon color="success" />
+            <ArrowBackIcon />
           </button>
-          {/* <p>{pesquisa}</p> */}
         </div>
       )}
     </div>
