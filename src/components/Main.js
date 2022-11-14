@@ -3,6 +3,9 @@ import { BsSearch } from "react-icons/bs";
 import {useState} from 'react'
 import Livros from "./Livros";
 
+import SvgIcon from "@mui/material/SvgIcon";
+import ArrowBackIcon from "@mui/icons-material/ArrowBack";
+
 
 function Main() {
 
@@ -65,9 +68,9 @@ function Main() {
             className={`${styles.btn_voltar}`}
             onClick={ApagarResultadosLivros}
           >
-            <h1>Voltar</h1>
-            </button>
-            {/* <p>{pesquisa}</p> */}
+            <ArrowBackIcon color="success" />
+          </button>
+          {/* <p>{pesquisa}</p> */}
         </div>
       )}
     </div>

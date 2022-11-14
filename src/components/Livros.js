@@ -7,6 +7,9 @@ import { yellow } from "@mui/material/colors";
 
 function Livros( {livros} ) {
 
+  function handleBook(x) {
+    console.log(x)
+  };
 
   console.log(livros)
   
@@ -32,20 +35,22 @@ function Livros( {livros} ) {
         <>
           {livro.volumeInfo.imageLinks && (
             <div className={`${styles.livro}`} key={livro.id}>
-              {/* <p key={livro.id}>{livro.volumeInfo.title}</p> */}
               <BootstrapTooltip
                 title={livro.volumeInfo.title}
                 arrow
                 TransitionComponent={Fade}
                 TransitionProps={{ timeout: 1000 }}
               >
-                <img
-                  className={`${styles.capa}`}
-                  src={livro.volumeInfo.imageLinks.smallThumbnail}
-                  // title={livro.volumeInfo.title}
-                  alt={livro.id}
-                  key={livro.id}
-                />
+                <div className={livro.id}>
+                  <button onClick={() => handleBook(livro.id)}>
+                    <img
+                      className={`${styles.capa}`}
+                      src={livro.volumeInfo.imageLinks.smallThumbnail}
+                      alt={livro.id}
+                      key={livro.id}
+                    />
+                  </button>
+                </div>
               </BootstrapTooltip>
             </div>
           )}
