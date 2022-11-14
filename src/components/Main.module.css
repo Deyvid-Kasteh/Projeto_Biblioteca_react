@@ -30,6 +30,8 @@
     text-align: center;
 }
 
+
+
 .btn_busca {
     height: 40px;
     padding-left: 20px;
@@ -49,14 +51,19 @@
     transform: scale(-1.2, 1.2);
 }
 
-.btn_voltar p {
-    height: 40px;
+.btn_voltar {
+    margin-top: 20px;
+    border-radius: 30px;
+    cursor: pointer;
+    border: none;
+
+}
+
+.btn_voltar h1 {
+    
     padding: 5px 20px;
     border: none;
-    border-radius: 30px;
     color: black;
-    font-size: 2em;
     text-align: center;
     justify-content: center;
-    cursor: pointer;
 }

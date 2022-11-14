@@ -3,6 +3,7 @@ import { BsSearch } from "react-icons/bs";
 import {useState} from 'react'
 import Livros from "./Livros";
 
+
 function Main() {
 
   
@@ -64,9 +65,9 @@ function Main() {
             className={`${styles.btn_voltar}`}
             onClick={ApagarResultadosLivros}
           >
-            <p>Voltar</p>
+            <h1>Voltar</h1>
             </button>
-            <p>{pesquisa}</p>
+            {/* <p>{pesquisa}</p> */}
         </div>
       )}
     </div>

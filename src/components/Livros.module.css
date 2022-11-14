@@ -5,6 +5,8 @@
     flex-wrap: wrap;
     justify-content: center;
     align-items: center;
+    background: rgba(0, 0, 0, 0.5);
+    border-radius: 30px;
     overflow-y: scroll;
 }
 
@@ -16,8 +18,12 @@
     padding: 20px;
     margin: 20px;
     border: 1px solid black;
+    background: rgba(0, 0, 0, 0.5);
+    border-radius: 30px;
 }
 
 .capa {
-    height: 100px;
+    height: 300px;
+    width: 210px;
+    cursor: pointer;
 }
