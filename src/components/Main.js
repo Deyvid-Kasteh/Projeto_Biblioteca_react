@@ -64,7 +64,6 @@ function Main() {
       ) : (
         <div className={`${styles.Main_container}`}>
           <Livros livros={resultadosLivros} />
-          <div>oi</div>
           <button
             className={`${styles.btn_voltar}`}
             onClick={ApagarResultadosLivros}

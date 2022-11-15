@@ -35,7 +35,7 @@
 }
 
 .bg_salmon {
-    background-color:#ddd;
+    background-color: black;
     position: fixed;
     padding: 2em;
     left: 50%;
@@ -45,6 +45,29 @@
 
 .livroDetalhe {
     display: none;
+    flex-direction: column;
+    margin-left: 20px;
     height: 500px;
     width: 500px;
+    overflow-y: scroll;
+}
+.livroDetalhe p{
+    margin-bottom: 10px;
+}
+
+.title {
+    font-size: 1.4em;
+}
+
+.images {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+.capaDetails {
+    height: 300px;
+    width: 210px;
+    cursor: pointer;
+    margin: 10px;
 }

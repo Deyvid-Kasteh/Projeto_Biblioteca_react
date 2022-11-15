@@ -7,10 +7,10 @@ import Tooltip, { tooltipClasses } from "@mui/material/Tooltip";
 import Fade from "@mui/material/Fade";
 import { yellow } from "@mui/material/colors";
 
+import noimage from "./img/noimage.png";
+
 
 function Livros({ livros }) {
-
-  
   
 
 
@@ -97,7 +97,70 @@ function Livros({ livros }) {
                   />
                 </button>
               </BootstrapTooltip>
-              <div className={`${styles.livroDetalhe}`}></div>
+              {/* className={`${styles.}`} */}
+              <div className={`${styles.livroDetalhe}`}>
+                <p className={`${styles.title}`}>
+                  Titulo: <strong>{livro.volumeInfo.title}</strong>
+                </p>
+                <a href={livro.selfLink}>{livro.selfLink}</a>
+                
+                <p className={`${styles.authors}`}>
+                  Autor: {livro.volumeInfo.authors ? (livro.volumeInfo.authors[0]) : ("Não identificado")}
+                </p>
+                <p className={`${styles.publisher}`}>
+                  Livraria: {livro.volumeInfo.publisher}
+                </p>
+                <p className={`${styles.language}`}>
+                  Idioma: {livro.volumeInfo.language}
+                </p>
+                <p className={`${styles.pageCount}`}>
+                  Número de páginas: {livro.volumeInfo.pageCount}
+                </p>
+                <p className={`${styles.description}`}>
+                  Descrição: {livro.volumeInfo.description}
+                </p>
+                <p className={`${styles.publishedDate}`}>
+                  Lançamento: {livro.volumeInfo.publishedDate}
+                </p>
+                <div className={`${styles.images}`}>
+                  <img
+                    className={`${styles.capaDetails}`}
+                    src={
+                      livro.volumeInfo.imageLinks.smallThumbnail || { noimage }
+                    }
+                    alt={livro.id}
+                  />
+                  <img
+                    className={`${styles.capaDetails}`}
+                    src={livro.volumeInfo.imageLinks.thumbnail || { noimage }}
+                    alt={livro.id}
+                  />
+                  {/* <img
+                    className={`${styles.capaDetails}`}
+                    src={livro.volumeInfo.imageLinks.small || { noimage }}
+                    alt={livro.id}
+                    key={livro.id}
+                  />
+                  <img
+                    className={`${styles.capaDetails}`}
+                    src={livro.volumeInfo.imageLinks.medium || { noimage }}
+                    alt={livro.id}
+                    key={livro.id}
+                  />
+                  <img
+                    className={`${styles.capaDetails}`}
+                    src={livro.volumeInfo.imageLinks.large || { noimage }}
+                    alt={livro.id}
+                    key={livro.id}
+                  />
+                  <img
+                    className={`${styles.capaDetails}`}
+                    src={livro.volumeInfo.imageLinks.extraLarge || { noimage }}
+                    alt={livro.id}
+                    key={livro.id}
+                  /> */}
+                </div>
+              </div>
             </div>
           )}
         </div>
