@@ -1,3 +1,6 @@
+import { Link } from "react-router-dom";
+
+
 import styles from "./Navbar.module.css";
 import { BsPersonCircle } from "react-icons/bs";
 import Clock from "./Clock";
@@ -6,11 +9,15 @@ function Navbar() {
   return (
     <div className={`${styles.Navbar_container}`}>
       <div>
-        <h1>Biblioteca.</h1>
+        <h1>
+          <Link to="/" reloadDocument >Biblioteca.</Link>
+        </h1>
       </div>
-      <Clock/>
+      <Clock />
       <div>
-        <h1>Login <BsPersonCircle/></h1>
+        <h1>
+          Login <BsPersonCircle />
+        </h1>
       </div>
     </div>
   );

@@ -1,4 +1,4 @@
-import { useRef, useEffect, useState } from "react";
+import { useRef } from "react";
 
 
 import styles from "./Livros.module.css";
@@ -8,7 +8,6 @@ import Fade from "@mui/material/Fade";
 import { yellow } from "@mui/material/colors";
 
 import noimage from "./img/noimage.png";
-
 
 function Livros({ livros }) {
   

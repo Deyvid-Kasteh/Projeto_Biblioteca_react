@@ -6,9 +6,7 @@
     min-height: 10vh;
 }
 
-.VscGithubInverted,
-.BsInstagram,
-.ImTwitter {
+.icons {
     font-size: 2em;
     cursor: pointer;
     margin: 30px;
