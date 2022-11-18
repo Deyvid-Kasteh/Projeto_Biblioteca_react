@@ -16,6 +16,7 @@ function Main() {
 
   
   const [resultadosLivros, setResultadosLivros] = useState();
+  const french = "&langRestrict=fr";
 
 
   function BuscarLivros() {
@@ -31,7 +32,7 @@ function Main() {
     )
       .then((resp) => resp.json())
       // .then((data) => console.log(data['items']))
-      .then((data) => setResultadosLivros(data["items"]))
+      .then((data) => setResultadosLivros(data.items))
       .catch((err) => console.log(err));
   }
 

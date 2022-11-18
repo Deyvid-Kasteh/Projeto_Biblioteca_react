@@ -1,4 +1,6 @@
 import { useRef } from "react";
+import { Link } from "react-router-dom";
+
 
 
 import styles from "./Livros.module.css";
@@ -49,10 +51,6 @@ function Livros({ livros }) {
   }
 
 
-  function handleBook(x) {
-    console.log(x)
-  };
-
   console.log(livros)
   
   const colorred = yellow[500];
@@ -88,12 +86,14 @@ function Livros({ livros }) {
                 TransitionProps={{ timeout: 1000 }}
               >
                 <button onClick={handler(livro.id)}>
-                  <img
-                    className={`${styles.capa}`}
-                    src={livro.volumeInfo.imageLinks.smallThumbnail}
-                    alt={livro.id}
-                    key={livro.id}
-                  />
+                  <Link to={`/books/${livro.id}`}>
+                    <img
+                      className={`${styles.capa}`}
+                      src={livro.volumeInfo.imageLinks.thumbnail}
+                      alt={livro.id}
+                      key={livro.id}
+                    />
+                  </Link>
                 </button>
               </BootstrapTooltip>
               {/* className={`${styles.}`} */}
@@ -102,9 +102,12 @@ function Livros({ livros }) {
                   Titulo: <strong>{livro.volumeInfo.title}</strong>
                 </p>
                 <a href={livro.selfLink}>{livro.selfLink}</a>
-                
+
                 <p className={`${styles.authors}`}>
-                  Autor: {livro.volumeInfo.authors ? (livro.volumeInfo.authors[0]) : ("Não identificado")}
+                  Autor:
+                  {livro.volumeInfo.authors
+                    ? livro.volumeInfo.authors[0]
+                    : "Não identificado"}
                 </p>
                 <p className={`${styles.publisher}`}>
                   Livraria: {livro.volumeInfo.publisher}
@@ -134,7 +137,7 @@ function Livros({ livros }) {
                     src={livro.volumeInfo.imageLinks.thumbnail || { noimage }}
                     alt={livro.id}
                   />
-                  {/* <img
+                  <img
                     className={`${styles.capaDetails}`}
                     src={livro.volumeInfo.imageLinks.small || { noimage }}
                     alt={livro.id}
@@ -157,7 +160,7 @@ function Livros({ livros }) {
                     src={livro.volumeInfo.imageLinks.extraLarge || { noimage }}
                     alt={livro.id}
                     key={livro.id}
-                  /> */}
+                  />
                 </div>
               </div>
             </div>
