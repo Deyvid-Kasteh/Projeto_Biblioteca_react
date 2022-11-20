@@ -53,7 +53,7 @@ function Livros({ livros }) {
 
   console.log(livros)
   
-  const colorred = yellow[500];
+  const colorYellow = yellow[500];
 
 
 
@@ -61,10 +61,10 @@ function Livros({ livros }) {
     <Tooltip {...props} arrow classes={{ popper: className }} />
   ))(({ theme }) => ({
     [`& .${tooltipClasses.arrow}`]: {
-      color: colorred,
+      color: colorYellow,
     },
     [`& .${tooltipClasses.tooltip}`]: {
-      backgroundColor: colorred,
+      backgroundColor: colorYellow,
       color: "black",
     },
   }));

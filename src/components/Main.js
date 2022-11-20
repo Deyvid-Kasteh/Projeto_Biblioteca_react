@@ -3,7 +3,6 @@ import { BsSearch } from "react-icons/bs";
 import {useState} from 'react'
 import Livros from "./Livros";
 
-import SvgIcon from "@mui/material/SvgIcon";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 
 

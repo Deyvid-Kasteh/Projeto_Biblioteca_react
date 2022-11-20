@@ -10,13 +10,17 @@ function Navbar() {
     <div className={`${styles.Navbar_container}`}>
       <div>
         <h1>
-          <Link to="/" reloadDocument >Biblioteca.</Link>
+          <Link to="/" reloadDocument>
+            Biblioteca.
+          </Link>
         </h1>
       </div>
       <Clock />
       <div>
         <h1>
-          Login <BsPersonCircle />
+          <Link to="/login">
+            <BsPersonCircle /> Login
+          </Link>
         </h1>
       </div>
     </div>
