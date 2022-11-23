@@ -12,8 +12,6 @@ import Footer from "./components/Footer";
 import Book from './components/Book';
 import Login from './components/Login';
 import Books from './components/Books';
-import Index from './components/Index1';
-import Livros from './components/Livros2';
 
 function App() {
   return (
@@ -24,9 +22,8 @@ function App() {
           <Route path="/" element={<Main />} />
           <Route path="/login" element={<Login />} />
           <Route path="/books" element={<Books />} />
-          <Route path="/books/:id" element={<Book />} />
-          <Route path="/index" element={<Index />} />
-          <Route path="/livros/:id" element={<Livros />} />
+          <Route path="/books/:id" element={<Books />} />
+          <Route path="/book/:id" element={<Book />} />
         </Routes>
         <Footer />
       </Router>
