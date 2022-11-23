@@ -1,9 +1,6 @@
-import { useRef } from "react";
-import { Link } from "react-router-dom";
-
-
-
-import styles from "./Livros.module.css";
+import React, { useEffect, useRef, useState } from "react";
+import { Link, useParams } from "react-router-dom";
+import styles from "./Livros2.module.css";
 import { styled } from "@mui/material/styles";
 import Tooltip, { tooltipClasses } from "@mui/material/Tooltip";
 import Fade from "@mui/material/Fade";
@@ -11,49 +8,65 @@ import { yellow } from "@mui/material/colors";
 
 import noimage from "./img/noimage.png";
 
-function Livros({ livros }) {
-  
-  const btnRef = useRef([])
-  // const handler = idx => e => {
-  //   console.log(e)
-    
-  //   const btnRefclicked = btnRef.current[idx]
-  //   if (btnRefclicked) {
+function Livros() {
+  const btnRef = useRef([]);
 
-  //     if (btnRefclicked.children[1].style.display === "flex") {
-  //       console.log("foi 1");
-  //       btnRefclicked.classList.remove(`${styles.bg_salmon}`);
-  //       btnRefclicked.children[1].style.display = "none";
-  //     } else {
-  //       console.log("foi 2");
-  //       console.log(btnRefclicked);
-  //       console.log(btnRefclicked.children);
-  //       btnRefclicked.classList.add(`${styles.bg_salmon}`);
-  //       btnRefclicked.children[1].style.display = "flex";
-  //     }
-  //   } else {
-  //     console.log('algo não deu certo')
-  //   }
-  // }
-  console.log(livros)
-  
-  const colorYellow = yellow[500]
+  const { id } = useParams();
+  const [resultadosLivros, setResultadosLivros] = useState();
+
+  console.log("1");
+
+
+
+  const colorYellow = yellow[500];
+
 
   const BootstrapTooltip = styled(({ className, ...props }) => (
-    <Tooltip {...props} arrow classes={{ popper: className }} />
+  <Tooltip {...props} arrow classes={{ popper: className }} />
   ))(({ theme }) => ({
-    [`& .${tooltipClasses.arrow}`]: {
-      color: colorYellow,
-    },
-    [`& .${tooltipClasses.tooltip}`]: {
-      backgroundColor: colorYellow,
-      color: "black",
-    },
+  [`& .${tooltipClasses.arrow}`]: {
+    color: colorYellow,
+  },
+  [`& .${tooltipClasses.tooltip}`]: {
+    backgroundColor: colorYellow,
+    color: "black",
+  },
   }));
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  useEffect(() => {
+    fetch(
+      `https://www.googleapis.com/books/v1/volumes?q=${id}&maxResults=40`,
+      {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      }
+    )
+      .then((resp) => resp.json())
+      .then((data) => setResultadosLivros(data.items))
+      .then(console.log(resultadosLivros))
+      .catch((err) => console.log(err));
+  }, []);
 
   return (
     <div className={`${styles.livros}`}>
-      {livros.map((livro) => (
+      {resultadosLivros?.map((livro) => (
         <div>
           {livro.volumeInfo.imageLinks && (
             <div

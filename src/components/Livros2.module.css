@@ -1,0 +1,83 @@
+.livros {
+    display: flex;
+    width: 90%;
+    height: 100%;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    background: rgba(0, 0, 0, 0);
+    border-radius: 30px;
+    overflow-y: scroll;
+}
+.livros::-webkit-scrollbar {
+  display: none;
+}
+
+.livro {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    margin: 20px;
+    /* background: rgba(0, 0, 0, 0.5); */
+    border-radius: 30px;
+    height: auto;
+}
+
+.livro button {
+    border: none;
+    height: 300px;
+    background: rgba(0, 0, 0, 0);
+
+}
+
+.capa {
+    height: 300px;
+    width: 210px;
+    cursor: pointer;
+    border-radius: 10px;
+}
+
+.bg_salmon {
+    background-color: black;
+    position: fixed;
+    padding: 2em;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.livroDetalhe {
+    display: none;
+    flex-direction: column;
+    margin-left: 20px;
+    height: 500px;
+    width: 500px;
+    overflow-y: scroll;
+}
+
+.livroDetalhe::-webkit-scrollbar {
+  display: none;
+}
+
+.livroDetalhe p{
+    margin-bottom: 10px;
+}
+
+.title {
+    font-size: 1.4em;
+}
+
+.images {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+.capaDetails {
+    height: 300px;
+    width: 210px;
+    cursor: pointer;
+    margin: 10px;
+}

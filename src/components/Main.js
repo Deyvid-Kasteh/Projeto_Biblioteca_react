@@ -15,7 +15,6 @@ function Main() {
 
   
   const [resultadosLivros, setResultadosLivros] = useState();
-  const french = "&langRestrict=fr";
 
 
   function BuscarLivros() {
