@@ -60,6 +60,9 @@ function Login() {
           <button onClick={handleLogin} type="submit">
             Entrar
           </button>
+          <button onClick={handleLogin} type="submit">
+            Sair
+          </button>
         </div>
       </div>
 

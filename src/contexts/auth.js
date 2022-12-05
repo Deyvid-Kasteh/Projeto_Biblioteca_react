@@ -1,5 +1,5 @@
 import { createContext, useEffect, useState } from "react";
-import { createSession } from "../services/api";
+import { api, createSession } from "../services/api";
 
 export const AuthContext = createContext();
 
@@ -9,9 +9,11 @@ export const AuthProvier = ({ children }) => {
 
   useEffect(() => {
     const user = localStorage.getItem('user');
+    const token = localStorage.getItem('token');
 
-    if (user) {
-          setUser(JSON.parse(user));
+    if (user && token) {
+      setUser(JSON.parse(user));
+      api.defaults.headers.authorization = `Bearer ${token}`;
     }
 
   }, []);
@@ -20,11 +22,18 @@ export const AuthProvier = ({ children }) => {
     const response = await createSession(email, password);
 
     localStorage.setItem('user', JSON.stringify(response.data.user));
+    localStorage.setItem("token", response.data.token);
+
+    api.defaults.headers.authorization = `Bearer ${response.data.token}`;
 
     setUser(response.data.user);
   }
 
   const logout = async () => {
+    localStorage.removeItem('user');
+        localStorage.removeItem("token");
+
+    api.defaults.headers.authorization = null;
     setUser(null);
   }
 
