@@ -1,21 +1,32 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import styles from "./Login.module.css";
 
+// import { createSession } from "../services/api";
+import { AuthContext } from "../contexts/auth";
+
+
 function Login() {
+  const { authenticated , user, login } = useContext(AuthContext)
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
-  const handleLogin = () => {
+  const handleLogin = async () => {
     console.log("Login");
     console.log("email", email);
     console.log("password", password);
+    login(email, password);
+
+    // const response = await createSession(email, password);
+    // console.log("login", response.data);
   }
-
-
-
   return (
     <div className={`${styles.login_container}`}>
-      <div className={`${styles.title}`}><h1>Login</h1></div>
+      <div className={`${styles.title}`}>
+        <h1>Login</h1>
+      </div>
+      <p>Authenticated: {JSON.stringify(authenticated)}</p>
+      <p>TESTE: {JSON.stringify(user)}</p>
+
       <div className="form">
         <div className="fild">
           <label htmlFor="email">Email:</label>

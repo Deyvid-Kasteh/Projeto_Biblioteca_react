@@ -4,6 +4,9 @@ import {
   Route
 } from 'react-router-dom'
 
+import { AuthProvier } from './contexts/auth';
+
+
 
 import './App.css';
 import Navbar from "./components/Navbar";
@@ -16,17 +19,19 @@ import Books from './components/Books';
 function App() {
   return (
     <div className="containerBody">
-      <Router>
+      <AuthProvier>
+        <Router>
         <Navbar />
-        <Routes>
-          <Route path="/" element={<Main />} />
-          <Route path="/login" element={<Login />} />
-          <Route path="/books" element={<Books />} />
-          <Route path="/books/:id" element={<Books />} />
-          <Route path="/book/:id" element={<Book />} />
-        </Routes>
-        <Footer />
-      </Router>
+          <Routes>
+            <Route path="/" element={<Main />} />
+            <Route path="/login" element={<Login />} />
+            <Route path="/books" element={<Books />} />
+            <Route path="/books/:id" element={<Books />} />
+            <Route path="/book/:id" element={<Book />} />
+          </Routes>
+          <Footer />
+        </Router>
+      </AuthProvier>
     </div>
   );
 }
