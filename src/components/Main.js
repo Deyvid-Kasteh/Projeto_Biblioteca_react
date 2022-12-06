@@ -19,6 +19,7 @@ function Main() {
           name="input_busca"
           placeholder="Digite o nome do livro"
           onChange={(e) => setPesquisa(e.target.value)}
+          autoComplete="off"
         />
         <button className={`${styles.btn_busca}`}>
           <Link to={`/books/${pesquisa}`}>

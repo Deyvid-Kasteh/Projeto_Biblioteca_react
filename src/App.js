@@ -21,15 +21,27 @@ function App() {
     <div className="containerBody">
       <AuthProvier>
         <Router>
-        <Navbar />
+          {/* <Navbar /> */}
           <Routes>
-            <Route path="/" element={<Main />} />
-            <Route path="/login" element={<Login />} />
+            <Route
+              path="/"
+              element={
+                <>
+                  <Navbar />
+                  <Main />
+                  <Footer />
+                </>
+              }
+            />
+            <Route
+              path="/login"
+              element={<Login />}
+            />
             <Route path="/books" element={<Books />} />
             <Route path="/books/:id" element={<Books />} />
             <Route path="/book/:id" element={<Book />} />
           </Routes>
-          <Footer />
+          {/* <Footer /> */}
         </Router>
       </AuthProvier>
     </div>
