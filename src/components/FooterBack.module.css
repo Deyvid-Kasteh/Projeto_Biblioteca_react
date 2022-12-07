@@ -1,0 +1,25 @@
+.Footer_container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    min-height: 10vh;
+}
+
+.backbtn{
+     background-color: transparent;
+     border: none;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 3em;
+  border-radius: 12px;
+  /* box-shadow: 0 5px 30px black; */
+  cursor: pointer;
+}
+
+.icons {
+    font-size: 2em;
+    cursor: pointer;
+    margin: 30px;
+}

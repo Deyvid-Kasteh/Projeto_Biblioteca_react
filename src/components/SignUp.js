@@ -2,14 +2,13 @@ import { Link } from "react-router-dom";
 import { useContext, useState } from "react";
 import Navbar from "./Navbar";
 
-
 import styles from "./SignUp.module.css";
 // import { HiOutlineEmojiSad } from "react-icons/hi";
 // import obiblio from "../components/img/obiblio.webp";
 
-
 // import { createSession } from "../services/api";
 import { AuthContext } from "../contexts/auth";
+import FooterBack from "./FooterBack";
 
 function SignUp() {
   const { authenticated, user, login } = useContext(AuthContext);
@@ -90,6 +89,7 @@ function SignUp() {
           </form>
         </div>
       </div>
+      <FooterBack/>
     </div>
   );
 }

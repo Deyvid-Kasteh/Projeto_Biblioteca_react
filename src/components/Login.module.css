@@ -6,14 +6,18 @@
   width: 100%;
   height: 100vh;
   /* background-color: black; */
-  backdrop-filter: blur(17px);
-  background: rgba(0, 0, 0, 0.2);
+  background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
+    url(../components/img/portal.jpg);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
 
   /* ------------------------------ blur ------------------------------ */
 }
 
 .login_container_body {
-  height: 90vh;
+  height: 80vh;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -40,16 +44,17 @@
 .login_form {
   display: flex;
   flex-direction: column;
-  height: 70vh;
+  height: 674px;
   width: 400px;
   /* border: 2px solid white; */
-  background: rgba(255, 255, 255, 0.05);
+  background: rgba(255, 255, 255, 0.13);
   border-radius: 50px;
   padding-left: 30px;
   padding-right: 30px;
   justify-content: start;
   align-items: center;
   box-shadow: 0 5px 30px black;
+  backdrop-filter: blur(6px);
 }
 .login_form_login {
   display: flex;
@@ -107,6 +112,7 @@
 
 .formGroup_key p {
   margin-right: 5px;
+  font-weight: bold;
 }
 
 .icons {
@@ -124,16 +130,25 @@
 
 .formGroup_btn button {
   background-color: transparent;
-  border: 2px solid #4caf50;
+  border: 2px solid goldenrod;
   padding: 15px 80px;
   text-align: center;
   text-decoration: none;
   display: inline-block;
   font-size: 1.5em;
   border-radius: 12px;
-  box-shadow: 0 5px 30px black;
+  /* box-shadow: 0 5px 30px black; */
   cursor: pointer;
 }
+
+.formGroup_btn button:hover {
+  /* background-color: #4caf50; */
+    background-color: goldenrod;
+
+  font-weight: bold;
+}
+
+
 .formGroup_switch {
   width: 100%;
   display: flex;
@@ -163,5 +178,5 @@
   font-size: 1.2em;
   cursor: pointer;
   margin-left: 20px;
-  border-bottom: 1px solid #4caf50;;
+  border-bottom: 2px solid goldenrod;
 }
