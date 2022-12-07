@@ -92,27 +92,6 @@
   border-top-right-radius: 15px;
 }
 
-.formGroup_key {
-  width: 100%;
-  display: flex;
-  flex-direction: row;
-  justify-content: end;
-}
-
-.formGroup_key a {
-  display: flex;
-  flex-direction: row;
-  margin-right: 40px;
-}
-
-.formGroup_key p {
-  margin-right: 5px;
-}
-
-.icons {
-  font-size: 20px;
-  cursor: pointer;
-}
 .formGroup_btn {
   width: 100%;
   display: flex;
@@ -134,16 +113,8 @@
   box-shadow: 0 5px 30px black;
   cursor: pointer;
 }
-.formGroup_switch {
-  width: 100%;
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
-  margin-top: 10px;
-}
 
-.formGroup_inscrever {
+.formGroup_Login {
   width: 100%;
   display: flex;
   flex-direction: row;
@@ -154,7 +125,7 @@
   padding-top: 10px;
 }
 
-.formGroup_inscrever a {
+.formGroup_Login a {
   background-color: transparent;
   border: none;
   text-align: center;

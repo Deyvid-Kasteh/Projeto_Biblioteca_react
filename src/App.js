@@ -14,6 +14,7 @@ import Main from "./components/Main";
 import Footer from "./components/Footer";
 import Book from './components/Book';
 import Login from './components/Login';
+import SignUp from './components/SignUp';
 import Books from './components/Books';
 
 function App() {
@@ -33,10 +34,8 @@ function App() {
                 </>
               }
             />
-            <Route
-              path="/login"
-              element={<Login />}
-            />
+            <Route path="/login" element={<Login />} />
+            <Route path="/SignUp" element={<SignUp />} />
             <Route path="/books" element={<Books />} />
             <Route path="/books/:id" element={<Books />} />
             <Route path="/book/:id" element={<Book />} />
