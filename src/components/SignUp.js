@@ -1,18 +1,20 @@
-import { Link } from "react-router-dom";
-import { useContext, useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import { useState } from "react";
 import { api } from "../services/api";
 import Navbar from "./Navbar";
 
 import styles from "./SignUp.module.css";
-// import { HiOutlineEmojiSad } from "react-icons/hi";
-// import obiblio from "../components/img/obiblio.webp";
 
-// import { createSession } from "../services/api";
-import { AuthContext } from "../contexts/auth";
 import FooterBack from "./FooterBack";
 
+
+
+
+
+
+
 function SignUp() {
-  const { authenticated, user, login } = useContext(AuthContext);
+  const navigate = useNavigate()
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -34,13 +36,18 @@ function SignUp() {
       alert("As senhas precisam ser iguais");
       return;
     }
-     const data = {
-       name,
-       email,
-       password,
-     };
-     const response = await api.post("/users", data);
-     console.log(response.data);
+    const data = {
+      name,
+      email,
+      password,
+    };
+    const response = await api.post("/users", data);
+    console.log(response.data);
+    navigate(-1)
+    alert("Cadastro realizado com sucesso");
+    console.log("passou pelo navigate");
+
+
   };
   return (
     <div className={`${styles.login_container}`}>

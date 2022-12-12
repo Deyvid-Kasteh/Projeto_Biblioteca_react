@@ -1,6 +1,6 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
-import { AuthProvier } from "./contexts/auth";
+import { AuthProvider } from "./contexts/auth";
 
 import "./App.css";
 import Navbar from "./components/Navbar";
@@ -16,7 +16,7 @@ import ProtectedRoutes from "./RotasProtegidas/Rotas_protegidas";
 function App() {
   return (
     <div className="containerBody">
-      <AuthProvier>
+      <AuthProvider>
         <Router>
           <Routes>
             <Route
@@ -29,7 +29,13 @@ function App() {
                 </>
               }
             />
-            <Route
+            <Route path="/login" element={<Login />} />
+            <Route path="/SignUp" element={<SignUp />} />
+            <Route path="/books" element={<Books />} />
+            <Route path="/books/:id" element={<Books />} />
+            <Route path="/book/:id" element={<Book />} />
+
+            {/* <Route
               element={
                 <>
                   <Navbar />
@@ -38,15 +44,13 @@ function App() {
                 </>
               }
             >
-              <Route path="/login" element={<Login />} />
-              <Route path="/SignUp" element={<SignUp />} />
               <Route path="/books" element={<Books />} />
               <Route path="/books/:id" element={<Books />} />
               <Route path="/book/:id" element={<Book />} />
-            </Route>
+            </Route> */}
           </Routes>
         </Router>
-      </AuthProvier>
+      </AuthProvider>
     </div>
   );
 }

@@ -24,16 +24,6 @@
   align-items: center;
 }
 
-.login_pic {
-  display: none;
-}
-
-.obiblio {
-  height: 50vh;
-  transform: rotateY(180deg);
-  /* transform: rotateX(180deg) */
-  border-radius: 50px;
-}
 
 .title h1 {
   font-size: 5em;

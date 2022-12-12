@@ -6,6 +6,16 @@
     min-height: 10vh;
 }
 
-a { 
+a {
     text-decoration: none;
+}
+
+.login_btn {
+  border: none;
+  padding: 10px;
+  padding-left: 20px;
+  margin-bottom: 30px;
+  background-color: transparent;
+  color: white;
+  cursor: pointer;
 }

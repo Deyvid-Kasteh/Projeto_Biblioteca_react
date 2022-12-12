@@ -1,18 +1,17 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useContext, useState } from "react";
 import Navbar from "./Navbar";
 import FooterBack from "./FooterBack";
 
 import Switch from "@mui/material/Switch";
 import styles from "./Login.module.css";
-// import { HiOutlineEmojiSad } from "react-icons/hi";
 import { VscKey } from "react-icons/vsc";
-// import obiblio from "../components/img/obiblio.webp";
 
-// import { createSession } from "../services/api";
+
 import { AuthContext } from "../contexts/auth";
 
 function Login() {
+  const navigate = useNavigate();
   const { authenticated, user, login } = useContext(AuthContext);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -27,10 +26,9 @@ function Login() {
     console.log("Login");
     console.log("email:", email);
     console.log("password:", password);
-    // login(email, password);
+    login(email, password);
+    console.log("passou pelo login");
 
-    // const response = await createSession(email, password);
-    // console.log("login", response.data);
   };
   return (
     <div className={`${styles.login_container}`}>
@@ -39,6 +37,7 @@ function Login() {
         <div className={styles.login_form}>
           <div className={`${styles.title}`}>
             <h1>Login</h1>
+            <p>{String(authenticated)}</p>
           </div>
 
           <form className={styles.login_form_login}>
