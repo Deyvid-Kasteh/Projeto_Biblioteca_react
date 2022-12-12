@@ -10,11 +10,8 @@ import Book from "./components/Book";
 import Login from "./components/Login";
 import SignUp from "./components/SignUp";
 import Books from "./components/Books";
+import ProtectedRoutes from "./RotasProtegidas/Rotas_protegidas";
 
-const Private = ({ Item }) => {
-  const logado = false;
-  return logado = true ? <Item/> : <Login/>
-}
 
 function App() {
   return (
@@ -32,11 +29,21 @@ function App() {
                 </>
               }
             />
-            <Route path="/login" element={<Login />} />
-            <Route path="/SignUp" element={<SignUp />} />
-            <Route path="/books" element={<Books />} />
-            <Route path="/books/:id" element={<Books />} />
-            <Route path="/book/:id" element={<Book />} />
+            <Route
+              element={
+                <>
+                  <Navbar />
+                  <ProtectedRoutes />
+                  <Footer />
+                </>
+              }
+            >
+              <Route path="/login" element={<Login />} />
+              <Route path="/SignUp" element={<SignUp />} />
+              <Route path="/books" element={<Books />} />
+              <Route path="/books/:id" element={<Books />} />
+              <Route path="/book/:id" element={<Book />} />
+            </Route>
           </Routes>
         </Router>
       </AuthProvier>
