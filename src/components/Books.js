@@ -1,5 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import { Link, useParams } from "react-router-dom";
+import Navbar from "./Navbar";
+import FooterBack from "./FooterBack";
 
 import styles from "./Books.module.css";
 import { styled } from "@mui/material/styles";
@@ -43,36 +45,40 @@ function Books() {
   }, []);
 
   return (
-    <div className={`${styles.books_container}`}>
-      {resultadosLivros?.map((livro) => (
-        <div>
-          {livro.volumeInfo.imageLinks && (
-            <div
-              ref={(el) => (btnRef.current[livro.id] = el)}
-              className={`${styles.livro}`}
-              key={livro.id}
-            >
-              <BootstrapTooltip
-                title={livro.volumeInfo.title}
-                arrow
-                TransitionComponent={Fade}
-                TransitionProps={{ timeout: 1000 }}
+    <div className={`${styles.Books_Page}`}>
+      <Navbar />
+      <div className={`${styles.books_container}`}>
+        {resultadosLivros?.map((livro) => (
+          <div>
+            {livro.volumeInfo.imageLinks && (
+              <div
+                ref={(el) => (btnRef.current[livro.id] = el)}
+                className={`${styles.livro}`}
+                key={livro.id}
               >
-                <button>
-                  <Link to={`/book/${livro.id}`}>
-                    <img
-                      className={`${styles.capa}`}
-                      src={livro.volumeInfo.imageLinks.thumbnail}
-                      alt={livro.id}
-                      key={livro.id}
-                    />
-                  </Link>
-                </button>
-              </BootstrapTooltip>
-            </div>
-          )}
-        </div>
-      ))}
+                <BootstrapTooltip
+                  title={livro.volumeInfo.title}
+                  arrow
+                  TransitionComponent={Fade}
+                  TransitionProps={{ timeout: 1000 }}
+                >
+                  <button>
+                    <Link to={`/book/${livro.id}`}>
+                      <img
+                        className={`${styles.capa}`}
+                        src={livro.volumeInfo.imageLinks.thumbnail}
+                        alt={livro.id}
+                        key={livro.id}
+                      />
+                    </Link>
+                  </button>
+                </BootstrapTooltip>
+              </div>
+            )}
+          </div>
+        ))}
+      </div>
+      <FooterBack />
     </div>
   );
 }

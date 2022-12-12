@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import { useContext, useState } from "react";
 import Navbar from "./Navbar";
-import portal from "./img/portal.jpg";
+import FooterBack from "./FooterBack";
 
 import Switch from "@mui/material/Switch";
 import styles from "./Login.module.css";
@@ -11,18 +11,23 @@ import { VscKey } from "react-icons/vsc";
 
 // import { createSession } from "../services/api";
 import { AuthContext } from "../contexts/auth";
-import FooterBack from "./FooterBack";
 
 function Login() {
   const { authenticated, user, login } = useContext(AuthContext);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  const handleLogin = async () => {
+  const handleLogin = async (e) => {
+    e.preventDefault();
+    if (email === "" || password === "") {
+      alert("Por favor, coloque seu email e senha");
+      return;
+    }
+
     console.log("Login");
-    console.log("email", email);
-    console.log("password", password);
-    login(email, password);
+    console.log("email:", email);
+    console.log("password:", password);
+    // login(email, password);
 
     // const response = await createSession(email, password);
     // console.log("login", response.data);
@@ -42,16 +47,20 @@ function Login() {
                 type="email"
                 name="email"
                 id="email"
+                value={email}
                 placeholder="Email.."
                 autoComplete="off"
+                onChange={(e) => setEmail(e.target.value)}
               />
               <div className={styles.formGroup}>
                 <input
                   type="password"
                   name="password"
                   id="password"
+                  value={password}
                   placeholder="Senha..."
                   autoComplete="off"
+                  onChange={(e) => setPassword(e.target.value)}
                 />
               </div>
               <div className={styles.formGroup_key}>
