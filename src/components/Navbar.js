@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { useContext, useState } from "react";
+import { useContext, useRef, useState } from "react";
 
 
 import styles from "./Navbar.module.css";
@@ -11,10 +11,26 @@ import { AuthContext } from "../contexts/auth";
 
 
 function Navbar() {
+  const loginName = useRef('Login');
   const { authenticated, user, logout } = useContext(AuthContext);
-  const [loginName, setLoginName] = useState("Login");
-  // const nome = user.name;
-  // setLoginName(nome);
+  const capitalizeFirst = (str) => {
+    return str.charAt(0).toUpperCase() + str.slice(1);
+  };
+
+
+
+  // const [loginName, setLoginName] = useState("Login");
+
+  if (user) {
+    const nome = user?.name;
+    const nomeCapitalized = capitalizeFirst(nome);
+
+    loginName.current = nomeCapitalized;
+  } else {
+    loginName.current = 'Login';
+ }
+
+
 
   console.log(authenticated);
   // if (user) {
@@ -43,7 +59,7 @@ function Navbar() {
       <div>
         <h1>
           <Link to="/login" onClick={sair}>
-            <BsPersonCircle /> {loginName}
+            <BsPersonCircle /> {loginName.current}
           </Link>
         </h1>
         {/* <button className={styles.login_btn} onClick={sair}>

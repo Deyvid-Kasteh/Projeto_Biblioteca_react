@@ -28,7 +28,7 @@ function Login() {
     console.log("password:", password);
     login(email, password);
     console.log("passou pelo login");
-
+    navigate('/');
   };
   return (
     <div className={`${styles.login_container}`}>
@@ -37,7 +37,6 @@ function Login() {
         <div className={styles.login_form}>
           <div className={`${styles.title}`}>
             <h1>Login</h1>
-            <p>{String(authenticated)}</p>
           </div>
 
           <form className={styles.login_form_login}>
