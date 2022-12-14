@@ -7,7 +7,7 @@ import Navbar from "./components/Navbar";
 import Main from "./components/Main";
 import Footer from "./components/Footer";
 import Book from "./components/Book";
-import Login from "./components/Login";
+import LoginPage from "./components/LoginPage";
 import SignUp from "./components/SignUp";
 import Books from "./components/Books";
 import Perfil from "./components/Perfil";
@@ -31,7 +31,7 @@ function App() {
                 </>
               }
             />
-            <Route path="/login" element={<Login />} />
+            <Route path="/loginPage" element={<LoginPage />} />
             <Route path="/SignUp" element={<SignUp />} />
 
             <Route path="/perfil/:id" element={<Perfil />} />

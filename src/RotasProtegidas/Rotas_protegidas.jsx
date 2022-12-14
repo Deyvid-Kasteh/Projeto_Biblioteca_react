@@ -1,6 +1,6 @@
 import { useContext } from "react"
 import { Outlet } from "react-router-dom"
-import Login from "../components/Login"
+import LoginPage from "../components/LoginPage";
 import Main from "../components/Main"
 import { AuthContext } from "../contexts/auth";
 
@@ -16,7 +16,7 @@ import { AuthContext } from "../contexts/auth";
 
 const ProtectedRoutes = () => {
     const {authenticated} =  useContext(AuthContext);
-    return authenticated ? <Outlet /> : <Login />;
+    return authenticated ? <Outlet /> : <LoginPage />;
 }
 
 export default ProtectedRoutes

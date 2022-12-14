@@ -4,13 +4,13 @@ import Navbar from "./Navbar";
 import FooterBack from "./FooterBack";
 
 import Switch from "@mui/material/Switch";
-import styles from "./Login.module.css";
+import styles from "./LoginPage.module.css";
 import { VscKey } from "react-icons/vsc";
 
 
 import { AuthContext } from "../contexts/auth";
 
-function Login() {
+function LoginPage() {
   const navigate = useNavigate();
   const { authenticated, user, login } = useContext(AuthContext);
   const [email, setEmail] = useState("");
@@ -99,4 +99,4 @@ function Login() {
   );
 }
 
-export default Login;
+export default LoginPage;

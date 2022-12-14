@@ -1,0 +1,23 @@
+.loginNav_container {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.loginNav_item {
+  margin-left: 20px;
+}
+
+a {
+    text-decoration: none;
+}
+
+.login_btn {
+  border: none;
+  padding: 10px;
+  padding-left: 20px;
+  margin-bottom: 30px;
+  background-color: transparent;
+  color: white;
+  cursor: pointer;
+}

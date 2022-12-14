@@ -114,7 +114,7 @@ function SignUp() {
               </div>
               <div className={styles.formGroup_Login}>
                 <p>Já tem conta?</p>
-                <Link to="/Login">
+                <Link to="/loginPage">
                   <p>Login</p>
                 </Link>
               </div>
