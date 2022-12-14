@@ -17,7 +17,6 @@ function Book() {
                   .then((resp) => resp.json())
 
                   .then((bookData) => {
-                          console.log(livro)
                           setLivro(bookData.volumeInfo)
                           console.log(livro)
                   }
@@ -29,7 +28,6 @@ function Book() {
   }, []);
 
 
-        // console.log(livro.imageLinks.thumbnail);
 
 
         return (

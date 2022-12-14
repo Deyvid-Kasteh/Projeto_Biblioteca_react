@@ -17,6 +17,9 @@ function Navbar() {
     return str.charAt(0).toUpperCase() + str.slice(1);
   };
 
+  const idPerfil = user?.id;
+
+
 
 
   // const [loginName, setLoginName] = useState("Login");
@@ -33,6 +36,8 @@ function Navbar() {
 
 
   console.log(authenticated);
+  console.log(user?.id);
+
   // if (user) {
   //   console.log('temos usuário')
   //   console.log(user.name);
@@ -58,13 +63,19 @@ function Navbar() {
       <Clock />
       <div>
         <h1>
+          {authenticated ? (
+            <Link to={`/Perfil/${idPerfil}`}>
+              <BsPersonCircle /> {loginName.current}
+            </Link>
+          ) : (
+            <Link to="/login" onClick={sair}>
+              <BsPersonCircle /> Login
+            </Link>
+          )}
           <Link to="/login" onClick={sair}>
-            <BsPersonCircle /> {loginName.current}
+             Sair
           </Link>
         </h1>
-        {/* <button className={styles.login_btn} onClick={sair}>
-            <h1>----Login----</h1>
-          </button> */}
       </div>
     </div>
   );

@@ -10,6 +10,8 @@ import Book from "./components/Book";
 import Login from "./components/Login";
 import SignUp from "./components/SignUp";
 import Books from "./components/Books";
+import Perfil from "./components/Perfil";
+
 import ProtectedRoutes from "./RotasProtegidas/Rotas_protegidas";
 
 
@@ -31,6 +33,9 @@ function App() {
             />
             <Route path="/login" element={<Login />} />
             <Route path="/SignUp" element={<SignUp />} />
+
+            <Route path="/perfil/:id" element={<Perfil />} />
+
             <Route path="/books" element={<Books />} />
             <Route path="/books/:id" element={<Books />} />
             <Route path="/book/:id" element={<Book />} />

@@ -32,8 +32,6 @@ export const AuthProvider = ({ children }) => {
     console.log(response);
     console.log("veio pro login");
 
-    // navigate("/");
-
   }
 
   const logout = async () => {
