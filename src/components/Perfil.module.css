@@ -31,7 +31,7 @@
   backdrop-filter: blur(6px);
 }
 
-.Perfil_detalhes {
+.Perfil_painel {
   display: flex;
   flex-direction: column;
   height: 674px;
@@ -47,6 +47,24 @@
   backdrop-filter: blur(6px);
 }
 
-.Perfil_foto {
+.Foto {
   height: 200px;
+  margin-top: 30px;
 }
+
+.escolha_avatar{
+  border-bottom: 3px solid rgba(255, 255, 255, 0.5);;
+}
+
+.Foto_para_escolher{
+  height: 40px;
+  margin: 5px;
+}
+
+.Perfil_detalhes {
+  margin-top: 30px;
+}
+
+/* .Informacoes_pessoais{
+
+} */

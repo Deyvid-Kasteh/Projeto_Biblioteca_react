@@ -30,7 +30,7 @@
 
 .livro {
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   padding: 20px;
@@ -40,7 +40,7 @@
   height: auto;
 }
 
-.livro button {
+.livro .livro_buttom {
   border: none;
   height: 300px;
   background: rgba(0, 0, 0, 0);
@@ -94,4 +94,31 @@
   width: 210px;
   cursor: pointer;
   margin: 10px;
+}
+
+
+.books_fav {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  bottom: 50px;
+  left: 80px;
+  border-radius: 50%;
+}
+
+.books_fav svg {
+    fill: #fce57e;
+    font-size: 40px;
+
+}
+
+.books_fav .books_fav_buttom {
+  border: none;
+  background-color: white;
+  border-radius: 50%;
+  height: 40px;
+  width: 40px;
+  cursor: pointer;
 }
