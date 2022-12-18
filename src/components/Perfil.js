@@ -31,10 +31,6 @@ import avatar15 from "./img/userPic/avatar15.png";
 
 
 
-
-
-
-
 function Perfil() {
   const { id } = useParams();
   const { user } = useContext(AuthContext);
@@ -47,9 +43,15 @@ function Perfil() {
   const avatares = [avatar_padrao, avatar0, avatar1, avatar2, avatar3, avatar5, avatar6, avatar7, avatar8, avatar9, avatar10, avatar11, avatar12, avatar13, avatar14, avatar15];
 
   const [Avatar, setAvatar] = useState(avatar_padrao);
+  const [divEditar_avatar, setDivEditar_avatar] = useState(false);
+
 
   function escolha_avatar(avata) {
     setAvatar(avata)
+  }
+
+  function editar_Avatar() {
+    setDivEditar_avatar((prevToggle) => !prevToggle);
 
   }
   return (
@@ -60,19 +62,26 @@ function Perfil() {
           <div className={`${styles.Perfil_container}`}>
             <div className={styles.Perfil}>
               <div>
-                <img className={`${styles.Foto}`} src={Avatar} />
+                <img
+                  className={`${styles.Foto}`}
+                  src={Avatar}
+                  onClick={() => editar_Avatar()}
+                />
               </div>
-              <div className={styles.escolha_avatar}>
-                {avatares.map((avat) => (
-                  <img
-                    className={`${styles.Foto_para_escolher}`}
-                    src={avat}
-                    onClick={() => escolha_avatar(avat)}
-                  />
-                ))}
+              {divEditar_avatar && (
+                <div className={styles.escolha_avatar}>
+                  {avatares.map((avat) => (
+                    <img
+                      className={`${styles.Foto_para_escolher}`}
+                      src={avat}
+                      onClick={() => escolha_avatar(avat)}
+                    />
+                  ))}
 
-                {/* <img className={`${styles.avatares}`} src={avatar_padrao} /> */}
-              </div>
+                  {/* <img className={`${styles.avatares}`} src={avatar_padrao} /> */}
+                </div>
+              )}
+
               <div className={styles.Perfil_detalhes}>
                 <h1>{nomeCapitalized}</h1>
                 <FaUserEdit />
