@@ -26,7 +26,6 @@ function SignUp() {
       alert("Por favor, coloque seu email e senha");
       return;
     }
-
     console.log("Login");
     console.log("nome:", name);
     console.log("email:", email);
@@ -46,9 +45,9 @@ function SignUp() {
     navigate(-1)
     alert("Cadastro realizado com sucesso");
     console.log("passou pelo navigate");
-
-
   };
+
+  
   return (
     <div className={`${styles.login_container}`}>
       <Navbar />

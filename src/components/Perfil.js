@@ -28,6 +28,7 @@ import avatar12 from "./img/userPic/avatar12.png";
 import avatar13 from "./img/userPic/avatar13.png";
 import avatar14 from "./img/userPic/avatar14.png";
 import avatar15 from "./img/userPic/avatar15.png";
+import { api } from "../services/api";
 
 
 
@@ -44,6 +45,7 @@ function Perfil() {
 
   const [Avatar, setAvatar] = useState(avatar_padrao);
   const [divEditar_avatar, setDivEditar_avatar] = useState(false);
+  const [age, setAge] = useState();
 
 
   function escolha_avatar(avata) {
@@ -52,11 +54,26 @@ function Perfil() {
 
   function editar_Avatar() {
     setDivEditar_avatar((prevToggle) => !prevToggle);
-
   }
+
+  const patchAge = async (e) => {
+    e.preventDefault();
+    if (age <= 0 || age === undefined || age === null) {
+      alert("Por favor, coloque seu email e senha");
+      return;
+    }
+    const data = {
+      age
+    };
+    const response = await api.patch(`/Perfil/${id}`, data);
+    console.log(response.data);
+    alert("Atualização realizada com sucesso");
+  };
+
+
   return (
     <div className={`${styles.Perfil_Page}`}>
-      {user && (
+      {nome && (
         <>
           <Navbar />
           <div className={`${styles.Perfil_container}`}>
@@ -85,7 +102,24 @@ function Perfil() {
               <div className={styles.Perfil_detalhes}>
                 <h1>{nomeCapitalized}</h1>
                 <FaUserEdit />
-                <div className={styles.Informacoes_pessoais}></div>
+                <div className={styles.Informacoes_pessoais}>
+                  <input
+                    className={`${styles.input_age}`}
+                    type="number"
+                    name="input_age"
+                    placeholder="Digite sua Idade"
+                    value= {age}
+                    onChange={(e) => setAge(e.target.value)}
+                    autoComplete="off"
+                  />
+                  <button
+                    type="submit"
+                    className={styles.login_btn}
+                    onClick={patchAge}
+                  >
+                    Atualizar
+                  </button>
+                </div>
               </div>
             </div>
             <div className={styles.Perfil_painel}></div>
