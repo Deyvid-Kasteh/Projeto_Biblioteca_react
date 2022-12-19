@@ -8,8 +8,14 @@ import { styled } from "@mui/material/styles";
 import Tooltip, { tooltipClasses } from "@mui/material/Tooltip";
 import Fade from "@mui/material/Fade";
 import { yellow } from "@mui/material/colors";
-import { MdFavorite, MdOutlineFavorite } from "react-icons/md";
-import { MdWatchLater, MdOutlineWatchLater } from "react-icons/md";
+import {
+  MdFavorite,
+  MdOutlineFavorite,
+  MdOutlineBookmarkAdd,
+  MdOutlineBookmarkAdded,
+  MdWatchLater,
+  MdOutlineWatchLater,
+} from "react-icons/md";
 
 
 
@@ -50,6 +56,13 @@ function Books() {
       .catch((err) => console.log(err));
   }, []);
 
+
+  const handleAddReadLater = async (todo) => {
+
+
+  }
+
+
   return (
     <div className={`${styles.Books_Page}`}>
       <Navbar />
@@ -86,8 +99,8 @@ function Books() {
                       TransitionComponent={Fade}
                       TransitionProps={{ timeout: 1000 }}
                     >
-                      <button className={`${styles.books_fav_buttom}`}>
-                        <MdWatchLater />
+                      <button className={`${styles.books_fav_buttom}`} onClick={handleAddReadLater(livro)}>
+                        {!livro.done ? <MdOutlineBookmarkAdd /> : <MdOutlineBookmarkAdded/>}
                       </button>
                     </BootstrapTooltip>
                   </div>
