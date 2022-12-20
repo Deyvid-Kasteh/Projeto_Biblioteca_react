@@ -24,13 +24,11 @@ import {
 
 function Books() {
   const btnRef = useRef([]);
-
   const { id } = useParams();
   const [resultadosLivros, setResultadosLivros] = useState();
 
   console.log("1");
   const colorYellow = yellow[500];
-
   const BootstrapTooltip = styled(({ className, ...props }) => (
     <Tooltip {...props} arrow classes={{ popper: className }} />
   ))(({ theme }) => ({
@@ -57,9 +55,12 @@ function Books() {
   }, []);
 
 
-  const handleAddReadLater = async (todo) => {
+  const handleAddReadLater = async (livro) => {
+    livro.feito = !livro.feito;
+    console.log('foi todo.done')
+    console.log(livro.done);
 
-
+    return (livro.feito)
   }
 
 
@@ -99,8 +100,8 @@ function Books() {
                       TransitionComponent={Fade}
                       TransitionProps={{ timeout: 1000 }}
                     >
-                      <button className={`${styles.books_fav_buttom}`} onClick={handleAddReadLater(livro)}>
-                        {!livro.done ? <MdOutlineBookmarkAdd /> : <MdOutlineBookmarkAdded/>}
+                      <button className={`${styles.books_fav_buttom}`} onClick={() => handleAddReadLater(livro)}>
+                        {!livro.feito ? <MdOutlineBookmarkAdd /> : <MdOutlineBookmarkAdded/>}
                       </button>
                     </BootstrapTooltip>
                   </div>
