@@ -45,7 +45,7 @@ function Perfil() {
 
   const [Avatar, setAvatar] = useState(avatar_padrao);
   const [divEditar_avatar, setDivEditar_avatar] = useState(false);
-  const [age, setAge] = useState();
+  const [age, setAge] = useState('');
 
 
   function escolha_avatar(avata) {

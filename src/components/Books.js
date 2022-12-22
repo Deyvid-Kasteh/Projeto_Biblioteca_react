@@ -16,6 +16,7 @@ import {
   MdWatchLater,
   MdOutlineWatchLater,
 } from "react-icons/md";
+import { api } from "../services/api";
 
 
 
@@ -58,9 +59,12 @@ function Books() {
   const handleAddReadLater = async (livro) => {
     livro.feito = !livro.feito;
     console.log('foi todo.done')
-    console.log(livro.done);
+    console.log(livro.id);
+    const data = livro.id
 
-    return (livro.feito)
+    const response = await api.patch(`/Perfil/${id}/addBookToFavorites/${livro.id}`, data);
+    console.log(response.data);
+    alert("Atualização realizada com sucesso");
   }
 
 
