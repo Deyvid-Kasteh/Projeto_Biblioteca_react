@@ -1,12 +1,9 @@
 import { Link } from "react-router-dom";
 import { useContext, useRef, useState } from "react";
 
-
 import styles from "./LoginNav.module.css";
 import { BsPersonCircle } from "react-icons/bs";
 import { AuthContext } from "../contexts/auth";
-
-
 
 function LoginNav() {
   const loginName = useRef('Login');

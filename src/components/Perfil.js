@@ -1,16 +1,12 @@
-import { useContext, useState } from "react";
-import { Link, useParams } from "react-router-dom";
+import { useContext, useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
 import { AuthContext } from "../contexts/auth";
 
 import Navbar from "./Navbar";
 import FooterBack from "./FooterBack";
 
-
-
 import styles from "./Perfil.module.css";
 import { FaUserEdit } from "react-icons/fa";
-
-
 
 import avatar_padrao from "./img/userPic/avatar_padrao.png"
 import avatar0 from "./img/userPic/avatar.png";
@@ -28,13 +24,13 @@ import avatar12 from "./img/userPic/avatar12.png";
 import avatar13 from "./img/userPic/avatar13.png";
 import avatar14 from "./img/userPic/avatar14.png";
 import avatar15 from "./img/userPic/avatar15.png";
+
 import { api } from "../services/api";
-
-
 
 function Perfil() {
   const { id } = useParams();
   const { user } = useContext(AuthContext);
+  const [usuario, setUsuario] = useState('');
   const capitalizeFirst = (str) => {
     return str.charAt(0).toUpperCase() + str.slice(1);
   };
@@ -46,6 +42,22 @@ function Perfil() {
   const [Avatar, setAvatar] = useState(avatar_padrao);
   const [divEditar_avatar, setDivEditar_avatar] = useState(false);
   const [age, setAge] = useState('');
+
+
+
+
+  useEffect(() => {
+    const fetchUsuario = async () => {
+      const resp = await api.get(`/Perfil/${id}`);
+      setUsuario(resp.data)
+      console.log(resp);
+
+    };
+
+    fetchUsuario().catch(console.error);
+  }, []);
+
+
 
 
   function escolha_avatar(avata) {
@@ -69,6 +81,12 @@ function Perfil() {
     console.log(response.data);
     alert("Atualização realizada com sucesso");
   };
+  console.log(user)
+  console.log(usuario);
+  const usuarioLivros = usuario.books
+  console.log(usuarioLivros);
+
+
 
 
   return (
@@ -83,6 +101,7 @@ function Perfil() {
                   className={`${styles.Foto}`}
                   src={Avatar}
                   onClick={() => editar_Avatar()}
+                  alt=""
                 />
               </div>
               {divEditar_avatar && (
@@ -92,6 +111,7 @@ function Perfil() {
                       className={`${styles.Foto_para_escolher}`}
                       src={avat}
                       onClick={() => escolha_avatar(avat)}
+                      alt=""
                     />
                   ))}
 
@@ -108,7 +128,7 @@ function Perfil() {
                     type="number"
                     name="input_age"
                     placeholder="Digite sua Idade"
-                    value= {age}
+                    value={age}
                     onChange={(e) => setAge(e.target.value)}
                     autoComplete="off"
                   />
@@ -122,7 +142,11 @@ function Perfil() {
                 </div>
               </div>
             </div>
-            <div className={styles.Perfil_painel}></div>
+            <div className={styles.Perfil_painel}>
+              {usuarioLivros?.map((idLivro) => (
+                <h1>{idLivro}</h1>
+              ))}
+            </div>
           </div>
           <FooterBack />
         </>

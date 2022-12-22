@@ -1,7 +1,9 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useContext, useEffect, useRef, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import Navbar from "./Navbar";
 import FooterBack from "./FooterBack";
+import { api } from "../services/api";
+import { AuthContext } from "../contexts/auth";
 
 import styles from "./Books.module.css";
 import { styled } from "@mui/material/styles";
@@ -9,26 +11,24 @@ import Tooltip, { tooltipClasses } from "@mui/material/Tooltip";
 import Fade from "@mui/material/Fade";
 import { yellow } from "@mui/material/colors";
 import {
-  MdFavorite,
-  MdOutlineFavorite,
   MdOutlineBookmarkAdd,
   MdOutlineBookmarkAdded,
-  MdWatchLater,
-  MdOutlineWatchLater,
 } from "react-icons/md";
-import { api } from "../services/api";
-
-
-
-
 
 
 function Books() {
   const btnRef = useRef([]);
   const { id } = useParams();
+  const { user } = useContext(AuthContext);
+  const idUsuario = user.id;
+
+
   const [resultadosLivros, setResultadosLivros] = useState();
 
   console.log("1");
+  console.log(id);
+  console.log(user.id);
+
   const colorYellow = yellow[500];
   const BootstrapTooltip = styled(({ className, ...props }) => (
     <Tooltip {...props} arrow classes={{ popper: className }} />
@@ -57,13 +57,22 @@ function Books() {
 
 
   const handleAddReadLater = async (livro) => {
-    livro.feito = !livro.feito;
+    // livro.feito = !livro.feito;
     console.log('foi todo.done')
     console.log(livro.id);
-    const data = livro.id
+    console.log(user);
+    const idLivro = livro.id;
 
-    const response = await api.patch(`/Perfil/${id}/addBookToFavorites/${livro.id}`, data);
+    const response = await api.patch(
+      `/Perfil/${idUsuario}/addBookToFavorites/${idLivro}`,
+      idLivro
+    );
+    console.log('1teste');
+    console.log(response);
+    console.log('2teste');
     console.log(response.data);
+    console.log("3teste");
+    console.log(user.id);
     alert("Atualização realizada com sucesso");
   }
 

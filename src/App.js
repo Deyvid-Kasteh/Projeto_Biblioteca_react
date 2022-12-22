@@ -12,7 +12,7 @@ import SignUp from "./components/SignUp";
 import Books from "./components/Books";
 import Perfil from "./components/Perfil";
 
-import ProtectedRoutes from "./RotasProtegidas/Rotas_protegidas";
+// import ProtectedRoutes from "./RotasProtegidas/Rotas_protegidas";
 
 
 function App() {
