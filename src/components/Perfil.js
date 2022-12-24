@@ -35,6 +35,8 @@ import { api } from "../services/api";
 function Perfil() {
   const { id } = useParams();
   const { user } = useContext(AuthContext);
+  const idUsuario = user.id;
+
   const [usuario, setUsuario] = useState('');
   const capitalizeFirst = (str) => {
     return str.charAt(0).toUpperCase() + str.slice(1);
@@ -107,6 +109,31 @@ function Perfil() {
 
 
 
+  const destroyFavBook = async ({Livro}) => {
+    console.log(Livro);
+
+    const { idLivro } = Livro;
+    console.log(idLivro);
+
+
+    const response = await api.delete(
+      `/Perfil/${idUsuario}/destroyBookfromFavorites/${idLivro}`,
+      { idLivro }
+    );
+    console.log("1teste");
+    console.log(idLivro);
+    console.log(response);
+    console.log("2teste");
+    console.log(response.data);
+    console.log("3teste");
+    console.log(user.id);
+    alert("Atualização realizada com sucesso");
+
+
+  }
+
+
+
 
   return (
     <div className={`${styles.Perfil_Page}`}>
@@ -165,13 +192,15 @@ function Perfil() {
               {usuarioLivros?.map((Livro) => (
                 <div key={Livro.idLivro} className={`${styles.livro}`}>
                   <div
-                  // ref={(el) => (btnRef.current[livro.id] = el)}
+                    className={`${styles.livroCada}`}
+                    // ref={(el) => (btnRef.current[livro.id] = el)}
                   >
                     <BootstrapTooltip
                       title={Livro.ttlLivro}
                       arrow
                       TransitionComponent={Fade}
                       TransitionProps={{ timeout: 1000 }}
+                      placement="top"
                     >
                       <button className={`${styles.livro_buttom}`}>
                         <Link to={`/book/${Livro.idLivro}`}>
@@ -183,6 +212,15 @@ function Perfil() {
                         </Link>
                       </button>
                     </BootstrapTooltip>
+                    <div>
+                      <button
+                        type="submit"
+                        className={styles.favRemove_btn}
+                        onClick={() => destroyFavBook({Livro})}
+                      >
+                        Remover dos favoritos
+                      </button>
+                    </div>
                   </div>
                 </div>
               ))}

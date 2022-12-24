@@ -20,16 +20,10 @@ function Book() {
                           setLivro(bookData.volumeInfo)
                           console.log(livro)
                   }
-
           )
-            .then(console.log(livro))
-
                   .catch((err) => console.log(err));
 
   }, []);
-
-
-
 
         return (
           <div className={`${styles.Book_Page}`}>
