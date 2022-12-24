@@ -1,5 +1,5 @@
 import { useContext, useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { AuthContext } from "../contexts/auth";
 
 import Navbar from "./Navbar";
@@ -7,6 +7,11 @@ import FooterBack from "./FooterBack";
 
 import styles from "./Perfil.module.css";
 import { FaUserEdit } from "react-icons/fa";
+
+import { styled } from "@mui/material/styles";
+import Tooltip, { tooltipClasses } from "@mui/material/Tooltip";
+import Fade from "@mui/material/Fade";
+import { yellow } from "@mui/material/colors";
 
 import avatar_padrao from "./img/userPic/avatar_padrao.png"
 import avatar0 from "./img/userPic/avatar.png";
@@ -42,6 +47,20 @@ function Perfil() {
   const [Avatar, setAvatar] = useState(avatar_padrao);
   const [divEditar_avatar, setDivEditar_avatar] = useState(false);
   const [age, setAge] = useState('');
+
+
+  const colorYellow = yellow[500];
+  const BootstrapTooltip = styled(({ className, ...props }) => (
+    <Tooltip {...props} arrow classes={{ popper: className }} />
+  ))(({ theme }) => ({
+    [`& .${tooltipClasses.arrow}`]: {
+      color: colorYellow,
+    },
+    [`& .${tooltipClasses.tooltip}`]: {
+      backgroundColor: colorYellow,
+      color: "black",
+    },
+  }));
 
 
 
@@ -143,8 +162,29 @@ function Perfil() {
               </div>
             </div>
             <div className={styles.Perfil_painel}>
-              {usuarioLivros?.map((idLivro) => (
-                <h1>{idLivro}</h1>
+              {usuarioLivros?.map((Livro) => (
+                <div key={Livro.idLivro} className={`${styles.livro}`}>
+                  <div
+                  // ref={(el) => (btnRef.current[livro.id] = el)}
+                  >
+                    <BootstrapTooltip
+                      title={Livro.ttlLivro}
+                      arrow
+                      TransitionComponent={Fade}
+                      TransitionProps={{ timeout: 1000 }}
+                    >
+                      <button className={`${styles.livro_buttom}`}>
+                        <Link to={`/book/${Livro.idLivro}`}>
+                          <img
+                            className={`${styles.capa}`}
+                            src={Livro.imgLivro}
+                            alt={Livro.ttlLivro}
+                          />
+                        </Link>
+                      </button>
+                    </BootstrapTooltip>
+                  </div>
+                </div>
               ))}
             </div>
           </div>
