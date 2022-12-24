@@ -59,13 +59,15 @@ function Books() {
   const handleAddReadLater = async (livro) => {
     // livro.feito = !livro.feito;
     console.log('foi todo.done')
-    console.log(livro.id);
-    console.log(user);
+    console.log(livro);
+    console.log(livro);
     const idLivro = livro.id;
+    const imgLivro = livro.volumeInfo.imageLinks.thumbnail;
+    const ttlLivro = livro.volumeInfo.title;
 
     const response = await api.patch(
       `/Perfil/${idUsuario}/addBookToFavorites/${idLivro}`,
-      idLivro
+      {idLivro, imgLivro, ttlLivro}
     );
     console.log('1teste');
     console.log(response);

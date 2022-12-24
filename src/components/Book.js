@@ -21,7 +21,8 @@ function Book() {
                           console.log(livro)
                   }
 
-                  )
+          )
+            .then(console.log(livro))
 
                   .catch((err) => console.log(err));
 
