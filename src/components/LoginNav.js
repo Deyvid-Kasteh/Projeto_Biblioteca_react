@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { useContext, useRef, useState } from "react";
+import { useContext, useRef } from "react";
 
 import styles from "./LoginNav.module.css";
 import { BsPersonCircle } from "react-icons/bs";

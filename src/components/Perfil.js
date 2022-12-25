@@ -13,7 +13,7 @@ import Tooltip, { tooltipClasses } from "@mui/material/Tooltip";
 import Fade from "@mui/material/Fade";
 import { yellow } from "@mui/material/colors";
 
-import avatar_padrao from "./img/userPic/avatar_padrao.png"
+import avatar_padrao from "./img/userPic/avatar_padrao.png";
 import avatar0 from "./img/userPic/avatar.png";
 import avatar1 from "./img/userPic/avatar1.png";
 import avatar2 from "./img/userPic/avatar2.png";
@@ -35,21 +35,40 @@ import { api } from "../services/api";
 function Perfil() {
   const { id } = useParams();
   const { user } = useContext(AuthContext);
-  const idUsuario = user.id;
+  const idUsuario = id;
 
-  const [usuario, setUsuario] = useState('');
+  const [usuario, setUsuario] = useState("");
   const capitalizeFirst = (str) => {
     return str.charAt(0).toUpperCase() + str.slice(1);
   };
   const nome = user?.name;
   const nomeCapitalized = capitalizeFirst(nome);
 
-  const avatares = [avatar_padrao, avatar0, avatar1, avatar2, avatar3, avatar5, avatar6, avatar7, avatar8, avatar9, avatar10, avatar11, avatar12, avatar13, avatar14, avatar15];
+  const avatares = [
+    avatar_padrao,
+    avatar0,
+    avatar1,
+    avatar2,
+    avatar3,
+    avatar5,
+    avatar6,
+    avatar7,
+    avatar8,
+    avatar9,
+    avatar10,
+    avatar11,
+    avatar12,
+    avatar13,
+    avatar14,
+    avatar15,
+  ];
 
-  const [Avatar, setAvatar] = useState(avatar_padrao);
+  const [Avatar, setAvatar] = useState(
+    avatar_padrao
+  );
   const [divEditar_avatar, setDivEditar_avatar] = useState(false);
-  const [age, setAge] = useState('');
-
+  const [divPerfilDetalhesPainel, setDivPerfilDetalhesPainel] = useState(true);
+  const [age, setAge] = useState("");
 
   const colorYellow = yellow[500];
   const BootstrapTooltip = styled(({ className, ...props }) => (
@@ -64,29 +83,24 @@ function Perfil() {
     },
   }));
 
+  const fetchUsuario = async () => {
+    const resp = await api.get(`/Perfil/${id}`);
+    setUsuario(resp?.data);
+    const data1 = await resp.data
+    const data2 = await data1.details;
+    const data3 = await data2.picture;
+    const picture = await data3;
+    await functionWithSwitch(picture);
+    console.log(usuario);
+  };
 
 
 
-  useEffect(() => {
-    const fetchUsuario = async () => {
-      const resp = await api.get(`/Perfil/${id}`);
-      setUsuario(resp.data)
-      console.log(resp);
-
-    };
-
-    fetchUsuario().catch(console.error);
-  }, []);
-
-
-
-
-  function escolha_avatar(avata) {
-    setAvatar(avata)
-  }
 
   function editar_Avatar() {
     setDivEditar_avatar((prevToggle) => !prevToggle);
+    setDivPerfilDetalhesPainel((prevToggle) => !prevToggle);
+
   }
 
   const patchAge = async (e) => {
@@ -96,48 +110,167 @@ function Perfil() {
       return;
     }
     const data = {
-      age
+      age,
     };
     const response = await api.patch(`/Perfil/${id}`, data);
-    console.log(response.data);
+    // console.log(response.data);
     alert("Atualização realizada com sucesso");
   };
-  console.log(user)
-  console.log(usuario);
-  const usuarioLivros = usuario.books
-  console.log(usuarioLivros);
+  // console.log(user);
+  // console.log(usuario);
+  const usuarioLivros = usuario.books;
+  // console.log(usuarioLivros);
 
+  const addPicToProfile = async (pic) => {
+    const data = {
+      pic,
+    };
+    const response = await api.patch(`/Perfil/${id}/pic`, data);
+    // console.log(response.data);
+    console.log("acho que foi");
 
+  };
 
-  const destroyFavBook = async ({Livro}) => {
-    console.log(Livro);
+  const functionWithSwitch = async (parameter) => {
+    switch (parameter) {
+      case 0:
+        setAvatar(avatar_padrao);
+        await addPicToProfile(0);
+        return;
+
+      case 1:
+        setAvatar(avatar0);
+        await addPicToProfile(1);
+
+        return;
+
+      case 2:
+        setAvatar(avatar1);
+        await addPicToProfile(2);
+
+        return;
+
+      case 3:
+        setAvatar(avatar2);
+        await addPicToProfile(3);
+
+        return;
+
+      case 4:
+        setAvatar(avatar3);
+        await addPicToProfile(4);
+
+        return;
+
+      case 5:
+        setAvatar(avatar5);
+        await addPicToProfile(5);
+
+        return;
+
+      case 6:
+        setAvatar(avatar6);
+        await addPicToProfile(6);
+
+        return;
+
+      case 7:
+        setAvatar(avatar7);
+        await addPicToProfile(7);
+
+        return;
+
+      case 8:
+        setAvatar(avatar8);
+        await addPicToProfile(8);
+
+        return;
+
+      case 9:
+        setAvatar(avatar9);
+        await addPicToProfile(9);
+
+        return;
+
+      case 10:
+        setAvatar(avatar10);
+        await addPicToProfile(10);
+
+        return;
+
+      case 11:
+        setAvatar(avatar11);
+        await addPicToProfile(11);
+
+        return;
+
+      case 12:
+        setAvatar(avatar12);
+        await addPicToProfile(12);
+
+        return;
+
+      case 13:
+        setAvatar(avatar13);
+        await addPicToProfile(13);
+
+        return;
+
+      case 14:
+        setAvatar(avatar14);
+        await addPicToProfile(14);
+
+        return;
+
+      case 15:
+        setAvatar(avatar15);
+        await addPicToProfile(15);
+
+        return;
+
+      default:
+        console.log(parameter);
+        return "Error";
+    }
+  };
+
+  function escolha_avatar(avat) {
+    // console.log(avatares.indexOf(avat));
+    const avatarIndex = avatares.indexOf(avat);
+    functionWithSwitch(avatarIndex);
+  }
+
+  const destroyFavBook = async ({ Livro }) => {
+    // console.log(Livro);
 
     const { idLivro } = Livro;
-    console.log(idLivro);
-
+    // console.log(idLivro);
 
     const response = await api.delete(
       `/Perfil/${idUsuario}/destroyBookfromFavorites/${idLivro}`,
-      { idLivro }
+      idLivro
     );
-    console.log("1teste");
-    console.log(idLivro);
-    console.log(response);
-    console.log("2teste");
-    console.log(response.data);
-    console.log("3teste");
-    console.log(user.id);
+    // console.log("1teste");
+    // console.log(idLivro);
+    // console.log(response);
+    // console.log("2teste");
+    // console.log(response.data);
+    // console.log("3teste");
+    // console.log(user.id);
     alert("Atualização realizada com sucesso");
+    fetchUsuario()
+  };
 
-
-  }
-
-
-
+  useEffect(() => {
+    try {
+        fetchUsuario();
+      } catch (error) {
+      }
+    }, []);
 
   return (
     <div className={`${styles.Perfil_Page}`}>
-      {nome && (
+      {usuario && (
         <>
           <Navbar />
           <div className={`${styles.Perfil_container}`}>
@@ -149,43 +282,56 @@ function Perfil() {
                   onClick={() => editar_Avatar()}
                   alt=""
                 />
+                {/* <FaUserEdit /> */}
               </div>
               {divEditar_avatar && (
-                <div className={styles.escolha_avatar}>
-                  {avatares.map((avat) => (
-                    <img
-                      className={`${styles.Foto_para_escolher}`}
-                      src={avat}
-                      onClick={() => escolha_avatar(avat)}
-                      alt=""
-                    />
-                  ))}
+                <>
+                  <div className={styles.escolha_avatar}>
+                    {avatares.map((avat) => (
+                      <img
+                        className={`${styles.Foto_para_escolher}`}
+                        src={avat}
+                        onClick={() => escolha_avatar(avat)}
+                        alt=""
+                        key={avat}
+                      />
+                    ))}
 
-                  {/* <img className={`${styles.avatares}`} src={avatar_padrao} /> */}
-                </div>
+                    {/* <img className={`${styles.avatares}`} src={avatar_padrao} /> */}
+                  </div>
+                  <div className={styles.Informacoes_pessoais}>
+                    <input
+                      className={`${styles.input_age}`}
+                      type="number"
+                      name="input_age"
+                      placeholder="Digite sua Idade"
+                      value={age}
+                      onChange={(e) => setAge(e.target.value)}
+                      autoComplete="off"
+                    />
+                    <button
+                      type="submit"
+                      className={styles.login_btn}
+                      onClick={patchAge}
+                    >
+                      Atualizar
+                    </button>
+                  </div>
+                </>
               )}
 
               <div className={styles.Perfil_detalhes}>
-                <h1>{nomeCapitalized}</h1>
-                <FaUserEdit />
-                <div className={styles.Informacoes_pessoais}>
-                  <input
-                    className={`${styles.input_age}`}
-                    type="number"
-                    name="input_age"
-                    placeholder="Digite sua Idade"
-                    value={age}
-                    onChange={(e) => setAge(e.target.value)}
-                    autoComplete="off"
-                  />
-                  <button
-                    type="submit"
-                    className={styles.login_btn}
-                    onClick={patchAge}
-                  >
-                    Atualizar
-                  </button>
-                </div>
+                {divPerfilDetalhesPainel && (
+                  <div className={styles.perfilDetalhesPainel}>
+                    <h1>{nomeCapitalized}</h1>
+                    <button className={styles.favPage_btn} onClick={patchAge}>
+                      Meus favoritos
+                    </button>
+                    <button className={styles.seeLater_btn} onClick={patchAge}>
+                      Ver depois
+                    </button>
+                  </div>
+                )}
               </div>
             </div>
             <div className={styles.Perfil_painel}>
@@ -216,7 +362,7 @@ function Perfil() {
                       <button
                         type="submit"
                         className={styles.favRemove_btn}
-                        onClick={() => destroyFavBook({Livro})}
+                        onClick={() => destroyFavBook({ Livro })}
                       >
                         Remover dos favoritos
                       </button>

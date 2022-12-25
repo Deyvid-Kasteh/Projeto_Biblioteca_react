@@ -58,9 +58,9 @@ function Books() {
 
   const handleAddReadLater = async (livro) => {
     // livro.feito = !livro.feito;
-    console.log('foi todo.done')
-    console.log(livro);
-    console.log(livro);
+    // console.log('foi todo.done')
+    // console.log(livro);
+    // console.log(livro);
     const idLivro = livro.id;
     const imgLivro = livro.volumeInfo.imageLinks.thumbnail;
     const ttlLivro = livro.volumeInfo.title;
@@ -69,12 +69,12 @@ function Books() {
       `/Perfil/${idUsuario}/addBookToFavorites/${idLivro}`,
       {idLivro, imgLivro, ttlLivro}
     );
-    console.log('1teste');
-    console.log(response);
-    console.log('2teste');
+    // console.log('1teste');
+    // console.log(response);
+    // console.log('2teste');
     console.log(response.data);
-    console.log("3teste");
-    console.log(user.id);
+    // console.log("3teste");
+    // console.log(user.id);
     alert("Atualização realizada com sucesso");
   }
 
