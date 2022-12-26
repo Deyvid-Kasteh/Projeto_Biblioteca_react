@@ -33,32 +33,36 @@ function Perfil() {
   const { id } = useParams();
   const { user } = useContext(AuthContext);
 
+
   const [usuario, setUsuario] = useState("");
+  const [nome, setNome] = useState("");
   const [removeLoading, setRemoveLoading] = useState(false);
 
   const fetchUsuario = async () => {
     const resp = await api.get(`/Perfil/${id}`);
     setUsuario(resp?.data);
     const data1 = await resp.data;
-    const data2 = await data1.details;
-    const data3 = await data2.picture;
-    const picture = await data3;
-    await functionWithSwitch(picture);
+    if (data1.details) {
+      const data2 = await data1.details;
+      const data3 = await data2.picture;
+      const picture = await data3;
+      await functionWithSwitch(picture);
+    }
     setRemoveLoading(true);
-    // console.log(usuario);
+    //   console.log("++++++++++++++++++++++++++++++++++++++");
+    // console.log(user);
+    //   console.log("++++++++++++++++++++++++++++++++++++++");
+    const capitalizeFirst = (str) => {
+      return str.charAt(0).toUpperCase() + str.slice(1);
+    };
+    const nomeCapitalized = await capitalizeFirst(data1.name);
+    setNome(nomeCapitalized)
   };
 
-  const capitalizeFirst = (str) => {
-    return str.charAt(0).toUpperCase() + str.slice(1);
-  };
-  const nome = user?.name;
-  // console.log("++++++++++++++++++++++++++++++++++++++");
-  // console.log(usuario);
-  // console.log("++++++++++++++++++++++++++++++++++++++");
 
 
 
-  const nomeCapitalized = capitalizeFirst(nome);
+
 
   const avatares = [
     avatar_padrao,
@@ -84,7 +88,7 @@ function Perfil() {
   );
   const [divEditar_avatar, setDivEditar_avatar] = useState(false);
   const [divPerfilDetalhesPainel, setDivPerfilDetalhesPainel] = useState(true);
-  const [age, setAge] = useState("");
+  // const [age, setAge] = useState("");
 
 
 
@@ -94,22 +98,20 @@ function Perfil() {
   function editar_Avatar() {
     setDivEditar_avatar((prevToggle) => !prevToggle);
     setDivPerfilDetalhesPainel((prevToggle) => !prevToggle);
-
   }
 
-  const patchAge = async (e) => {
-    e.preventDefault();
-    if (age <= 0 || age === undefined || age === null) {
-      alert("Por favor, coloque seu email e senha");
-      return;
-    }
-    const data = {
-      age,
-    };
-    const response = await api.patch(`/Perfil/${id}`, data);
-    // console.log(response.data);
-    alert("Atualização realizada com sucesso");
-  };
+  // const patchAge = async (e) => {
+  //   e.preventDefault();
+  //   if (age <= 0 || age === undefined || age === null) {
+  //     alert("Por favor, coloque seu email e senha");
+  //     return;
+  //   }
+  //   const data = {
+  //     age,
+  //   };
+  //   const response = await api.patch(`/Perfil/${id}`, data);
+  //   alert("Atualização realizada com sucesso");
+  // };
 
 
   const addPicToProfile = async (pic) => {
@@ -117,7 +119,6 @@ function Perfil() {
       pic,
     };
     const response = await api.patch(`/Perfil/${id}/pic`, data);
-    // console.log(response.data);
     console.log("acho que foi");
 
   };
@@ -220,21 +221,17 @@ function Perfil() {
         return;
 
       default:
-        console.log(parameter);
+        // console.log(parameter);
         return "Error";
     }
   };
 
   function escolha_avatar(avat) {
-    // console.log(avatares.indexOf(avat));
     const avatarIndex = avatares.indexOf(avat);
     functionWithSwitch(avatarIndex);
   }
 
   const destroyFavBook = async ({ Livro }) => {
-    console.log("++++++++++++++++++++++++++++++++++++++");
-    console.log(Livro);
-    console.log("++++++++++++++++++++++++++++++++++++++");
     const { idLivro } = await Livro; //Desestruturação
     await api.delete(
       `/Perfil/${usuario._id}/destroyBookfromFavorites/${idLivro}`,
@@ -289,7 +286,7 @@ function Perfil() {
                   {/* <img className={`${styles.avatares}`} src={avatar_padrao} /> */}
                 </div>
                 <div className={styles.Informacoes_pessoais}>
-                  <input
+                  {/* <input
                     className={`${styles.input_age}`}
                     type="number"
                     name="input_age"
@@ -304,7 +301,7 @@ function Perfil() {
                     onClick={patchAge}
                   >
                     Atualizar
-                  </button>
+                  </button> */}
                 </div>
               </>
             )}
@@ -312,11 +309,11 @@ function Perfil() {
             <div className={styles.Perfil_detalhes}>
               {divPerfilDetalhesPainel && (
                 <div className={styles.perfilDetalhesPainel}>
-                  <h1>{nomeCapitalized}</h1>
-                  <button className={styles.favPage_btn} onClick={patchAge}>
+                  <h1>{nome}</h1>
+                  <button className={styles.favPage_btn}>
                     Meus favoritos
                   </button>
-                  <button className={styles.seeLater_btn} onClick={patchAge}>
+                  <button className={styles.seeLater_btn}>
                     Ver depois
                   </button>
                 </div>

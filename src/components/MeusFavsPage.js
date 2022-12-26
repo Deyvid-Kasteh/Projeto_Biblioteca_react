@@ -22,9 +22,9 @@ function MeusFavsPage({ Livros, destroyFavBook }) {
 
 
 
-  console.log("++++++++++++++++++++++++++++++++++++++");
-  console.log(Livros);
-  console.log("++++++++++++++++++++++++++++++++++++++");
+  // console.log("++++++++++++++++++++++++++++++++++++++");
+  // console.log(Livros);
+  // console.log("++++++++++++++++++++++++++++++++++++++");
 
 
   return (
