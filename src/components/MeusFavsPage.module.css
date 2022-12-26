@@ -1,0 +1,29 @@
+.livro {
+  display: flex;
+  margin: 40px;
+  background-color: transparent;
+}
+
+.livroCada {
+  display: flex;
+  flex-direction: column;
+  background-color: transparent;
+  border: none;
+}
+
+.livro_buttom{
+  background-color: transparent;
+  border: none;
+}
+
+.capa {
+  height: 270px;
+  width: 189px;
+  cursor: pointer;
+  border-radius: 10px;
+}
+
+.favRemove_btn{
+    background-color: transparent;
+    border: none;
+}
