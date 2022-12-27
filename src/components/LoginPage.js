@@ -5,7 +5,6 @@ import FooterBack from "./FooterBack";
 
 import Switch from "@mui/material/Switch";
 import styles from "./LoginPage.module.css";
-import { VscKey } from "react-icons/vsc";
 
 
 import { AuthContext } from "../contexts/auth";
@@ -64,7 +63,7 @@ function LoginPage() {
               <div className={styles.formGroup_key}>
                 <Link to="/login">
                   <p>Esqueci a senha</p>
-                  <VscKey className={`${styles.icons}`} />
+                  🔑
                 </Link>
               </div>
               <div className={styles.formGroup_btn}>
@@ -94,7 +93,7 @@ function LoginPage() {
           </form>
         </div>
       </div>
-      <FooterBack/>
+      <FooterBack />
     </div>
   );
 }

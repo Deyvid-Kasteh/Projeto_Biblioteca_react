@@ -2,7 +2,7 @@
   display: flex;
   position: absolute;
   flex-direction: column;
-
+  width: 100%;
 }
 
 .bookFavTitle {
@@ -10,13 +10,14 @@
   justify-content: center;
   align-items: center;
   position: sticky;
+  width: 100%;
   top: 0px;
   background-color: rgba(0, 0, 0, 0.603);
-
 }
 
-.bookFavBox {
+.bookSeeLaterBox {
   display: flex;
+  width: 100%;
   flex-direction: row;
   flex-wrap: wrap;
   justify-content: center;
@@ -34,6 +35,8 @@
   flex-direction: column;
   background-color: transparent;
   border: none;
+  justify-content: center;
+  align-items: center;
 }
 
 .livro_buttom {
@@ -49,6 +52,9 @@
 }
 
 .favRemove_btn {
-  background-color: transparent;
+  box-sizing: border-box;
+  background-color: rgba(0, 0, 0, 0.63);
   border: none;
+  padding: 5px;
+  border-radius: 10px;
 }

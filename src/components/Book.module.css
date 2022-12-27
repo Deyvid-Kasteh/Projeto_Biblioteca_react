@@ -1,5 +1,5 @@
 .Book_Page {
-    display: flex;
+  display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
@@ -13,67 +13,101 @@
   background-attachment: fixed;
 }
 
-
-.Book_Page_box{
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    width: 100vw;
-    height: 80vh;
+.Book_Page_box {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100vw;
+  height: 80vh;
 }
 
-
-.Book_container{
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    backdrop-filter: blur(40px);
-    height: 80vh;
-    width: 80%;
-    padding: 20px;
-    border-radius: 15px;
+.Book_container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  backdrop-filter: blur(40px);
+  height: 80vh;
+  width: 80%;
+  padding: 20px;
+  border-radius: 15px;
 }
 
-.up{
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-    height: 70%;
-    width: 100%;
-    /* justify-content: start;
+.up {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  height: 70%;
+  width: 100%;
+  /* justify-content: start;
     align-items: flex-start; */
-    /* background-color: chocolate; */
+  /* background-color: chocolate; */
+}
+.bookCover {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  width: 50%;
 }
 
 .capa {
-    height: 500px;
-    margin-right: 20px;
-    border-radius: 15px;
+  display: flex;
+  height: 500px;
+  margin-right: 20px;
+  border-radius: 15px;
 }
 
-.bookDetails{
-    display: flex;
-    height: 100%;
-    flex-direction: column;
-    /* justify-content: start;
+.DivFavAdd_btn{
+  display: flex;
+  width: 80%;
+  justify-content: center;
+  align-items: center;
+}
+
+.favAdd_btn {
+  display: flex;
+  width: 80%;
+  box-sizing: border-box;
+  background-color: rgba(0, 0, 0, 0.63);
+  border: none;
+  padding: 5px;
+  border-radius: 10px;
+  justify-content: center;
+  align-items: center;
+
+}
+
+.bookDetails {
+  display: flex;
+  height: 100%;
+  flex-direction: column;
+  /* justify-content: start;
     align-items: flex-start; */
-    overflow: hidden;
+  overflow: hidden;
 }
 
-.bookDetails h3{
-    margin-top: 10px;
+.bookDetails h3 {
+  margin-top: 10px;
 }
 
-.down{
-    height: 30%
+.down {
+  height: 30%;
 }
 
-.capaDetails{
-    height: 184px;
-    width: 128px;
-    margin-right: 5px;
-    margin-left: 5px;
+.capaDetails {
+  height: 184px;
+  width: 128px;
+  margin-right: 5px;
+  margin-left: 5px;
+}
+
+.description {
+  overflow-y: auto;
+}
+
+.description::-webkit-scrollbar {
+  display: none;
 }

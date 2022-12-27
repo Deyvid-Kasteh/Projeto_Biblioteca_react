@@ -272,7 +272,7 @@ function Perfil() {
                 onClick={() => editar_Avatar()}
                 alt=""
               />
-              <div className={`${styles.editar_Avatar}`}>✏️</div>
+              <span className={`${styles.editar_Avatar}`}> Editar Avatar✏️</span>
             </div>
             {divEditar_avatar && (
               <>
@@ -286,8 +286,7 @@ function Perfil() {
                       key={avat}
                     />
                   ))}
-
-                  {/* <img className={`${styles.avatares}`} src={avatar_padrao} /> */}
+                  <p>Escolha um avatar</p>
                 </div>
                 <div className={styles.Informacoes_pessoais}>
                   {/* <input
@@ -310,11 +309,11 @@ function Perfil() {
               </>
             )}
 
+
             <div className={styles.Perfil_detalhes}>
               {divPerfilDetalhesPainel && (
                 <div className={styles.perfilDetalhesPainel}>
-                  <h1>{nome}</h1>
-                  <p>❤️ ✏️</p>
+                  <h1>{nome}🌞</h1>
                   <button
                     className={styles.favPage_btn}
                     onClick={() => openDivPainelFavorites()}

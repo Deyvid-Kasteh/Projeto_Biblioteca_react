@@ -29,7 +29,7 @@ function MeusSeeLaterPage({ LivrosSeeLater, destroySeeLaterBook }) {
         <div className={`${styles.bookFavTitle}`}>
           <h1>Ver depois</h1>
         </div>
-        <div className={`${styles.bookFavBox}`}>
+        <div className={`${styles.bookSeeLaterBox}`}>
           {LivrosSeeLater?.map((Livro) => (
             <div key={Livro.idLivro} className={`${styles.livro}`}>
               <div
@@ -59,7 +59,7 @@ function MeusSeeLaterPage({ LivrosSeeLater, destroySeeLaterBook }) {
                     className={styles.favRemove_btn}
                     onClick={() => destroySeeLaterBook({ Livro })}
                   >
-                    Remover dos favoritos
+                  Remover do Ver depois ❌
                   </button>
                 </div>
               </div>

@@ -63,7 +63,7 @@ function MeusFavsPage({ Livros, destroyFavBook }) {
                     className={styles.favRemove_btn}
                     onClick={() => destroyFavBook({ Livro })}
                   >
-                    Remover dos favoritos
+                    💔 Remover dos favoritos 💔
                   </button>
                 </div>
               </div>
