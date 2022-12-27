@@ -1,12 +1,11 @@
-import styles from "./MeusFavsPage.module.css";
+import styles from "./MeusSeeLaterPage.module.css";
 import { Link } from "react-router-dom";
 import { styled } from "@mui/material/styles";
 import Tooltip, { tooltipClasses } from "@mui/material/Tooltip";
 import Fade from "@mui/material/Fade";
 import { yellow } from "@mui/material/colors";
 
-function MeusFavsPage({ Livros, destroyFavBook }) {
-
+function MeusSeeLaterPage({ LivrosSeeLater, destroySeeLaterBook }) {
   const colorYellow = yellow[500];
   const BootstrapTooltip = styled(({ className, ...props }) => (
     <Tooltip {...props} arrow classes={{ popper: className }} />
@@ -20,21 +19,18 @@ function MeusFavsPage({ Livros, destroyFavBook }) {
     },
   }));
 
-
-
   // console.log("++++++++++++++++++++++++++++++++++++++");
   // console.log(Livros);
   // console.log("++++++++++++++++++++++++++++++++++++++");
-
 
   return (
     <>
       <div className={`${styles.bookFavContainer}`}>
         <div className={`${styles.bookFavTitle}`}>
-          <h1>Meus Favoritos</h1>
+          <h1>Ver depois</h1>
         </div>
         <div className={`${styles.bookFavBox}`}>
-          {Livros?.map((Livro) => (
+          {LivrosSeeLater?.map((Livro) => (
             <div key={Livro.idLivro} className={`${styles.livro}`}>
               <div
                 className={`${styles.livroCada}`}
@@ -61,7 +57,7 @@ function MeusFavsPage({ Livros, destroyFavBook }) {
                   <button
                     type="submit"
                     className={styles.favRemove_btn}
-                    onClick={() => destroyFavBook({ Livro })}
+                    onClick={() => destroySeeLaterBook({ Livro })}
                   >
                     Remover dos favoritos
                   </button>
@@ -75,4 +71,4 @@ function MeusFavsPage({ Livros, destroyFavBook }) {
   );
 }
 
-export default MeusFavsPage;
+export default MeusSeeLaterPage;

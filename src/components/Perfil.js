@@ -5,10 +5,10 @@ import { AuthContext } from "../contexts/auth";
 import Navbar from "./Navbar";
 import FooterBack from "./FooterBack";
 import MeusFavsPage from "./MeusFavsPage";
+import MeusSeeLaterPage from "./MeusSeeLaterPage";
 import Loading from "./Loading";
 
 import styles from "./Perfil.module.css";
-import { FaUserEdit } from "react-icons/fa";
 
 import avatar_padrao from "./img/userPic/avatar_padrao.png";
 import avatar0 from "./img/userPic/avatar.png";
@@ -33,7 +33,6 @@ function Perfil() {
   const { id } = useParams();
   const { user } = useContext(AuthContext);
 
-
   const [usuario, setUsuario] = useState("");
   const [nome, setNome] = useState("");
   const [removeLoading, setRemoveLoading] = useState(false);
@@ -56,13 +55,8 @@ function Perfil() {
       return str.charAt(0).toUpperCase() + str.slice(1);
     };
     const nomeCapitalized = await capitalizeFirst(data1.name);
-    setNome(nomeCapitalized)
+    setNome(nomeCapitalized);
   };
-
-
-
-
-
 
   const avatares = [
     avatar_padrao,
@@ -83,21 +77,27 @@ function Perfil() {
     avatar15,
   ];
 
-  const [Avatar, setAvatar] = useState(
-    avatar_padrao
-  );
+  const [Avatar, setAvatar] = useState(avatar_padrao);
   const [divEditar_avatar, setDivEditar_avatar] = useState(false);
+  const [divPainelFavorites, setDivPainelFavorites] = useState(false);
+  const [divPainelSeeLater, setDivPainelSeeLater] = useState(false);
+
   const [divPerfilDetalhesPainel, setDivPerfilDetalhesPainel] = useState(true);
   // const [age, setAge] = useState("");
-
-
-
-
-
 
   function editar_Avatar() {
     setDivEditar_avatar((prevToggle) => !prevToggle);
     setDivPerfilDetalhesPainel((prevToggle) => !prevToggle);
+  }
+
+  function openDivPainelFavorites() {
+    setDivPainelSeeLater((prevToggle) => false);
+    setDivPainelFavorites((prevToggle) => true);
+  }
+
+  function openDivPainelSeeLater() {
+    setDivPainelFavorites((prevToggle) => false);
+    setDivPainelSeeLater((prevToggle) => true);
   }
 
   // const patchAge = async (e) => {
@@ -113,14 +113,13 @@ function Perfil() {
   //   alert("Atualização realizada com sucesso");
   // };
 
-
   const addPicToProfile = async (pic) => {
     const data = {
       pic,
     };
     const response = await api.patch(`/Perfil/${id}/pic`, data);
     console.log("acho que foi");
-
+    console.log(response);
   };
 
   const functionWithSwitch = async (parameter) => {
@@ -241,19 +240,24 @@ function Perfil() {
     fetchUsuario();
   };
 
+  const destroySeeLaterBook = async ({ Livro }) => {
+    const { idLivro } = await Livro; //Desestruturação
+    await api.delete(
+      `/Perfil/${usuario._id}/destroySeeLaterBook/${idLivro}`,
+      idLivro
+    );
+    alert("See Later deletado com sucesso");
+    fetchUsuario();
+  };
+
   useEffect(() => {
     try {
-        fetchUsuario();
-      } catch (error) {
-      }
+      fetchUsuario();
+    } catch (error) {}
   }, []);
 
-
-
-  const Livros = usuario.books
-
-
-
+  const Livros = usuario.books;
+  const LivrosSeeLater = usuario.booksSeeLater;
 
   return (
     <div className={`${styles.Perfil_Page}`}>
@@ -261,14 +265,14 @@ function Perfil() {
       {usuario && (
         <div className={`${styles.Perfil_container}`}>
           <div className={styles.Perfil}>
-            <div>
+            <div className={styles.Perfil_foto}>
               <img
                 className={`${styles.Foto}`}
                 src={Avatar}
                 onClick={() => editar_Avatar()}
                 alt=""
               />
-              {/* <FaUserEdit /> */}
+              <div className={`${styles.editar_Avatar}`}>✏️</div>
             </div>
             {divEditar_avatar && (
               <>
@@ -310,18 +314,35 @@ function Perfil() {
               {divPerfilDetalhesPainel && (
                 <div className={styles.perfilDetalhesPainel}>
                   <h1>{nome}</h1>
-                  <button className={styles.favPage_btn}>
-                    Meus favoritos
+                  <p>❤️ ✏️</p>
+                  <button
+                    className={styles.favPage_btn}
+                    onClick={() => openDivPainelFavorites()}
+                  >
+                    <div>Meus favoritos</div>
+                    <div className={styles.favPage_btn_heart}>❤️</div>
                   </button>
-                  <button className={styles.seeLater_btn}>
-                    Ver depois
+                  <button
+                    className={styles.seeLater_btn}
+                    onClick={() => openDivPainelSeeLater()}
+                  >
+                    <div>Ver depois</div>
+                    <div className={styles.seeLater_btn_alam}>⏰</div>
                   </button>
                 </div>
               )}
             </div>
           </div>
           <div className={styles.Perfil_painel}>
-            <MeusFavsPage Livros={Livros} destroyFavBook={destroyFavBook} />
+            {divPainelFavorites && (
+              <MeusFavsPage Livros={Livros} destroyFavBook={destroyFavBook} />
+            )}
+            {divPainelSeeLater && (
+              <MeusSeeLaterPage
+                LivrosSeeLater={LivrosSeeLater}
+                destroySeeLaterBook={destroySeeLaterBook}
+              />
+            )}
           </div>
         </div>
       )}

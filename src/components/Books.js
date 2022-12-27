@@ -10,10 +10,7 @@ import { styled } from "@mui/material/styles";
 import Tooltip, { tooltipClasses } from "@mui/material/Tooltip";
 import Fade from "@mui/material/Fade";
 import { yellow } from "@mui/material/colors";
-import {
-  MdOutlineBookmarkAdd,
-  MdOutlineBookmarkAdded,
-} from "react-icons/md";
+
 
 
 function Books() {
@@ -56,27 +53,17 @@ function Books() {
   }, []);
 
 
-  const handleAddReadLater = async (livro) => {
-    // livro.feito = !livro.feito;
-    // console.log('foi todo.done')
-    // console.log(livro);
-    // console.log(livro);
+  const handleAddBookToSeeLater = async (livro) => {
     const idLivro = livro.id;
     const imgLivro = livro.volumeInfo.imageLinks.thumbnail;
     const ttlLivro = livro.volumeInfo.title;
-
     const response = await api.patch(
-      `/Perfil/${idUsuario}/addBookToFavorites/${idLivro}`,
-      {idLivro, imgLivro, ttlLivro}
+      `/Perfil/${idUsuario}/addBookToSeeLater/${idLivro}`,
+      { idLivro, imgLivro, ttlLivro }
     );
-    // console.log('1teste');
-    // console.log(response);
-    // console.log('2teste');
     console.log(response.data);
-    // console.log("3teste");
-    // console.log(user.id);
     alert("Atualização realizada com sucesso");
-  }
+  };
 
 
   return (
@@ -115,8 +102,12 @@ function Books() {
                       TransitionComponent={Fade}
                       TransitionProps={{ timeout: 1000 }}
                     >
-                      <button className={`${styles.books_fav_buttom}`} onClick={() => handleAddReadLater(livro)}>
-                        {!livro.feito ? <MdOutlineBookmarkAdd /> : <MdOutlineBookmarkAdded/>}
+                      <button
+                        className={`${styles.books_fav_buttom}`}
+                        onClick={() => handleAddBookToSeeLater(livro)}
+                      >
+                        {/* {!livro.feito ? <MdOutlineBookmarkAdd /> : <MdOutlineBookmarkAdded/>} */}
+                        <p className={`${styles.books_fav_buttom_book}`}>⏰</p>
                       </button>
                     </BootstrapTooltip>
                   </div>
