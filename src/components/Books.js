@@ -22,9 +22,9 @@ function Books() {
 
   const [resultadosLivros, setResultadosLivros] = useState();
 
-  console.log("1");
-  console.log(id);
-  console.log(user.id);
+  // console.log("1");
+  // console.log(id);
+  // console.log(user.id);
 
   const colorYellow = yellow[500];
   const BootstrapTooltip = styled(({ className, ...props }) => (
@@ -48,7 +48,7 @@ function Books() {
     })
       .then((resp) => resp.json())
       .then((data) => setResultadosLivros(data.items))
-      .then(console.log(resultadosLivros))
+      // .then(console.log(resultadosLivros))
       .catch((err) => console.log(err));
   }, []);
 
@@ -60,23 +60,32 @@ function Books() {
       `/Perfil/${idUsuario}/addBookToSeeLater/${idLivro}`,
       { idLivro, imgLivro, ttlLivro }
     );
-    console.log(response.data);
-    notify()
+    // console.log(response.data);
+    notify();
   };
-
   const notify = () => toast("Livro salvo em Ver Depois ⏰");
+
+  const [divAtHover, setDivAtHover] = useState(false);
+  const showAtHover = (key) => {
+    setDivAtHover(true)
+  console.log(key)}
+    const HideAtNoHover = () => setDivAtHover(false);
+
+  // console.log(livro)
 
   return (
     <div className={`${styles.Books_Page}`}>
       <Navbar />
       <div className={`${styles.books_container}`}>
-        {resultadosLivros?.map((livro) => (
+        {resultadosLivros?.map((livro, key) => (
           <div key={livro.id}>
             {livro.volumeInfo.imageLinks && (
               <>
                 <div
                   ref={(el) => (btnRef.current[livro.id] = el)}
                   className={`${styles.livro}`}
+                  onMouseEnter={() => showAtHover(key)}
+                  onMouseLeave={() => HideAtNoHover()}
                 >
                   <BootstrapTooltip
                     title={livro.volumeInfo.title}
@@ -95,22 +104,25 @@ function Books() {
                       </Link>
                     </button>
                   </BootstrapTooltip>
-                  <div className={`${styles.books_fav}`}>
-                    <BootstrapTooltip
-                      title="Ler depois"
-                      arrow
-                      TransitionComponent={Fade}
-                      TransitionProps={{ timeout: 1000 }}
-                    >
-                      <button
-                        className={`${styles.books_fav_buttom}`}
-                        onClick={() => handleAddBookToSeeLater(livro)}
+                  {(divAtHover) ? (
+                    <div className={`${styles.books_fav}`}>
+                      <BootstrapTooltip
+                        title="Ler depois"
+                        arrow
+                        TransitionComponent={Fade}
+                        TransitionProps={{ timeout: 1000 }}
                       >
-                        {/* {!livro.feito ? <MdOutlineBookmarkAdd /> : <MdOutlineBookmarkAdded/>} */}
-                        <p className={`${styles.books_fav_buttom_book}`}>⏰</p>
-                      </button>
-                    </BootstrapTooltip>
-                  </div>
+                        <button
+                          className={`${styles.books_fav_buttom}`}
+                          onClick={() => handleAddBookToSeeLater(livro)}
+                        >
+                          <p className={`${styles.books_fav_buttom_book}`}>
+                            ⏰
+                          </p>
+                        </button>
+                      </BootstrapTooltip>
+                    </div>
+                  ) : ("")}
                 </div>
               </>
             )}

@@ -70,11 +70,11 @@
 .Foto {
   height: 200px;
   margin-top: 30px;
+  cursor: pointer;
 }
 
 .Foto:hover + .editar_Avatar {
   display: flex;
-
 }
 
 .editar_Avatar {
@@ -92,7 +92,6 @@
   font-size: 0.7em;
   color: black;
   width: 100px;
-
 }
 
 .escolha_avatar {

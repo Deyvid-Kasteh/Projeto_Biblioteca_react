@@ -65,6 +65,7 @@
   width: 80%;
   justify-content: center;
   align-items: center;
+
 }
 
 .favAdd_btn {
@@ -77,6 +78,8 @@
   border-radius: 10px;
   justify-content: center;
   align-items: center;
+    cursor: pointer;
+
 
 }
 

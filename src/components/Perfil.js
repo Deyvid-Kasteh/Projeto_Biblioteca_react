@@ -272,7 +272,10 @@ function Perfil() {
                 onClick={() => editar_Avatar()}
                 alt=""
               />
-              <span className={`${styles.editar_Avatar}`}> Editar Avatar✏️</span>
+              <span className={`${styles.editar_Avatar}`}>
+                {" "}
+                Editar Avatar✏️
+              </span>
             </div>
             {divEditar_avatar && (
               <>
@@ -288,8 +291,10 @@ function Perfil() {
                   ))}
                   <p>Escolha um avatar</p>
                 </div>
-                <div className={styles.Informacoes_pessoais}>
-                  {/* <input
+                <div className={styles.Informacoes_pessoais}></div>
+              </>
+            )}
+            {/* <input
                     className={`${styles.input_age}`}
                     type="number"
                     name="input_age"
@@ -305,10 +310,6 @@ function Perfil() {
                   >
                     Atualizar
                   </button> */}
-                </div>
-              </>
-            )}
-
 
             <div className={styles.Perfil_detalhes}>
               {divPerfilDetalhesPainel && (
