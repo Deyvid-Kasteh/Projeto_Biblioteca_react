@@ -7,6 +7,8 @@ import Navbar from "./Navbar";
 import FooterBack from "./FooterBack";
 import { api } from "../services/api";
 import { AuthContext } from "../contexts/auth";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 function Book() {
   const { user } = useContext(AuthContext);
@@ -30,11 +32,7 @@ function Book() {
   const handleAddBookToFavorites = async ({livro}) => {
     const idLivro = id;
     console.log(idLivro);
-    // console.log(livro);
-    // console.log(livro);
-    // console.log(livro);
-    // console.log(livro);
-    // console.log(livro);
+
 
     const imgLivro = await livro.imageLinks.thumbnail;
     console.log("11111111111111111111111111111111111");
@@ -48,8 +46,11 @@ function Book() {
       { idLivro, imgLivro, ttlLivro }
     );
     console.log(response.data);
-    alert("Favorito adicionado com sucesso");
+    notify();
+
   };
+    const notify = () => toast("Livro adicionado aos ❤️");
+
 
   return (
     <div className={`${styles.Book_Page}`}>
@@ -102,42 +103,23 @@ function Book() {
               </div>
             </div>
             <div className={`${styles.down}`}>
-              <div className={`${styles.images}`}>
-                <img
-                  className={`${styles.capaDetails}`}
-                  src={livro.imageLinks.thumbnail || { noimage }}
-                  alt={livro.id}
-                />
-                <img
-                  className={`${styles.capaDetails}`}
-                  src={livro.imageLinks.small || { noimage }}
-                  alt={livro.id}
-                  key={livro.id}
-                />
-                <img
-                  className={`${styles.capaDetails}`}
-                  src={livro.imageLinks.medium || { noimage }}
-                  alt={livro.id}
-                  key={livro.id}
-                />
-                <img
-                  className={`${styles.capaDetails}`}
-                  src={livro.imageLinks.large || { noimage }}
-                  alt={livro.id}
-                  key={livro.id}
-                />
-                <img
-                  className={`${styles.capaDetails}`}
-                  src={livro.imageLinks.extraLarge || { noimage }}
-                  alt={livro.id}
-                  key={livro.id}
-                />
-              </div>
               <div></div>
               <div></div>
             </div>
           </div>
         )}
+        <ToastContainer
+          position="top-center"
+          autoClose={3000}
+          hideProgressBar={false}
+          newestOnTop={false}
+          closeOnClick
+          rtl={false}
+          pauseOnFocusLoss
+          draggable
+          pauseOnHover
+          theme="dark"
+        />
       </div>
       <FooterBack />
     </div>

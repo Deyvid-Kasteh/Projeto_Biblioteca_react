@@ -13,23 +13,18 @@ function Clock() {
       const timeNight = "18:00:00";
       const day = "🌞";
       const night = "🌛";
-      if (timeNow >= timeDay) {
+      if (timeDay < timeNow && timeNow < timeNight)
+      {
         setClock(`${timeNow} ${day}`);
-      } else if (timeNow >= timeNight) {
+      }
+      else 
+      {
         setClock(`${timeNow} ${night}`);
-      } else if (timeNow < timeDay) {
-        setClock(`${timeNow} ${night}`);
-      } else {
-        setClock(timeNow);
       }
     }, 1000);
   }, []);
 
-  return (
-    <div className={`${styles.clock}`}>
-      {clock}
-    </div>
-  );
+  return <div className={`${styles.clock}`}>{clock}</div>;
 }
 
 export default Clock;

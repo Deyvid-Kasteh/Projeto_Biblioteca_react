@@ -11,14 +11,14 @@ import Tooltip, { tooltipClasses } from "@mui/material/Tooltip";
 import Fade from "@mui/material/Fade";
 import { yellow } from "@mui/material/colors";
 
-
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 function Books() {
   const btnRef = useRef([]);
   const { id } = useParams();
   const { user } = useContext(AuthContext);
   const idUsuario = user.id;
-
 
   const [resultadosLivros, setResultadosLivros] = useState();
 
@@ -52,7 +52,6 @@ function Books() {
       .catch((err) => console.log(err));
   }, []);
 
-
   const handleAddBookToSeeLater = async (livro) => {
     const idLivro = livro.id;
     const imgLivro = livro.volumeInfo.imageLinks.thumbnail;
@@ -62,9 +61,10 @@ function Books() {
       { idLivro, imgLivro, ttlLivro }
     );
     console.log(response.data);
-    alert("Atualização realizada com sucesso");
+    notify()
   };
 
+  const notify = () => toast("Livro salvo em Ver Depois ⏰");
 
   return (
     <div className={`${styles.Books_Page}`}>
@@ -116,6 +116,18 @@ function Books() {
             )}
           </div>
         ))}
+        <ToastContainer
+          position="top-center"
+          autoClose={3000}
+          hideProgressBar={false}
+          newestOnTop={false}
+          closeOnClick
+          rtl={false}
+          pauseOnFocusLoss
+          draggable
+          pauseOnHover
+          theme="dark"
+        />
       </div>
       <FooterBack />
     </div>
