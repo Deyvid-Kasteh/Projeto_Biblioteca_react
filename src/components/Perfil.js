@@ -8,6 +8,8 @@ import MeusFavsPage from "./MeusFavsPage";
 import MeusSeeLaterPage from "./MeusSeeLaterPage";
 import Loading from "./Loading";
 
+import Avatar, { AvatarPainel } from "../components/Avatar/Avatar";
+
 import styles from "./Perfil.module.css";
 
 import avatar_padrao from "./img/userPic/avatar_padrao.png";
@@ -45,7 +47,7 @@ function Perfil() {
       const data2 = await data1.details;
       const data3 = await data2.picture;
       const picture = await data3;
-      await functionWithSwitch(picture);
+      // await functionWithSwitch(picture);
     }
     setRemoveLoading(true);
     //   console.log("++++++++++++++++++++++++++++++++++++++");
@@ -76,19 +78,20 @@ function Perfil() {
     avatar14,
     avatar15,
   ];
+    // console.log(avatares);
 
-  const [Avatar, setAvatar] = useState(avatar_padrao);
-  const [divEditar_avatar, setDivEditar_avatar] = useState(false);
+
+  // const [Avatar, setAvatar] = useState(avatar_padrao);
+  // const [divEditar_avatar, setDivEditar_avatar] = useState(false);
   const [divPainelFavorites, setDivPainelFavorites] = useState(false);
   const [divPainelSeeLater, setDivPainelSeeLater] = useState(false);
 
   const [divPerfilDetalhesPainel, setDivPerfilDetalhesPainel] = useState(true);
-  // const [age, setAge] = useState("");
 
-  function editar_Avatar() {
-    setDivEditar_avatar((prevToggle) => !prevToggle);
-    setDivPerfilDetalhesPainel((prevToggle) => !prevToggle);
-  }
+  // function editar_Avatar() {
+  //   setDivEditar_avatar((prevToggle) => !prevToggle);
+  //   setDivPerfilDetalhesPainel((prevToggle) => !prevToggle);
+  // }
 
   function openDivPainelFavorites() {
     setDivPainelSeeLater((prevToggle) => false);
@@ -100,135 +103,122 @@ function Perfil() {
     setDivPainelSeeLater((prevToggle) => true);
   }
 
-  // const patchAge = async (e) => {
-  //   e.preventDefault();
-  //   if (age <= 0 || age === undefined || age === null) {
-  //     alert("Por favor, coloque seu email e senha");
-  //     return;
-  //   }
+  // const addPicToProfile = async (pic) => {
   //   const data = {
-  //     age,
+  //     pic,
   //   };
-  //   const response = await api.patch(`/Perfil/${id}`, data);
-  //   alert("Atualização realizada com sucesso");
+  //   const response = await api.patch(`/Perfil/${id}/pic`, data);
+  //   console.log("acho que foi");
+  //   console.log(response);
   // };
 
-  const addPicToProfile = async (pic) => {
-    const data = {
-      pic,
-    };
-    const response = await api.patch(`/Perfil/${id}/pic`, data);
-    console.log("acho que foi");
-    console.log(response);
-  };
+  // const functionWithSwitch = async (parameter) => {
+  //   switch (parameter) {
+  //     case 0:
+  //       setAvatar(avatar_padrao);
+  //       await addPicToProfile(0);
+  //       return;
 
-  const functionWithSwitch = async (parameter) => {
-    switch (parameter) {
-      case 0:
-        setAvatar(avatar_padrao);
-        await addPicToProfile(0);
-        return;
+  //     case 1:
+  //       setAvatar(avatar0);
+  //       await addPicToProfile(1);
 
-      case 1:
-        setAvatar(avatar0);
-        await addPicToProfile(1);
+  //       return;
 
-        return;
+  //     case 2:
+  //       setAvatar(avatar1);
+  //       await addPicToProfile(2);
 
-      case 2:
-        setAvatar(avatar1);
-        await addPicToProfile(2);
+  //       return;
 
-        return;
+  //     case 3:
+  //       setAvatar(avatar2);
+  //       await addPicToProfile(3);
 
-      case 3:
-        setAvatar(avatar2);
-        await addPicToProfile(3);
+  //       return;
 
-        return;
+  //     case 4:
+  //       setAvatar(avatar3);
+  //       await addPicToProfile(4);
 
-      case 4:
-        setAvatar(avatar3);
-        await addPicToProfile(4);
+  //       return;
 
-        return;
+  //     case 5:
+  //       setAvatar(avatar5);
+  //       await addPicToProfile(5);
 
-      case 5:
-        setAvatar(avatar5);
-        await addPicToProfile(5);
+  //       return;
 
-        return;
+  //     case 6:
+  //       setAvatar(avatar6);
+  //       await addPicToProfile(6);
 
-      case 6:
-        setAvatar(avatar6);
-        await addPicToProfile(6);
+  //       return;
 
-        return;
+  //     case 7:
+  //       setAvatar(avatar7);
+  //       await addPicToProfile(7);
 
-      case 7:
-        setAvatar(avatar7);
-        await addPicToProfile(7);
+  //       return;
 
-        return;
+  //     case 8:
+  //       setAvatar(avatar8);
+  //       await addPicToProfile(8);
 
-      case 8:
-        setAvatar(avatar8);
-        await addPicToProfile(8);
+  //       return;
 
-        return;
+  //     case 9:
+  //       setAvatar(avatar9);
+  //       await addPicToProfile(9);
 
-      case 9:
-        setAvatar(avatar9);
-        await addPicToProfile(9);
+  //       return;
 
-        return;
+  //     case 10:
+  //       setAvatar(avatar10);
+  //       await addPicToProfile(10);
 
-      case 10:
-        setAvatar(avatar10);
-        await addPicToProfile(10);
+  //       return;
 
-        return;
+  //     case 11:
+  //       setAvatar(avatar11);
+  //       await addPicToProfile(11);
 
-      case 11:
-        setAvatar(avatar11);
-        await addPicToProfile(11);
+  //       return;
 
-        return;
+  //     case 12:
+  //       setAvatar(avatar12);
+  //       await addPicToProfile(12);
 
-      case 12:
-        setAvatar(avatar12);
-        await addPicToProfile(12);
+  //       return;
 
-        return;
+  //     case 13:
+  //       setAvatar(avatar13);
+  //       await addPicToProfile(13);
 
-      case 13:
-        setAvatar(avatar13);
-        await addPicToProfile(13);
+  //       return;
 
-        return;
+  //     case 14:
+  //       setAvatar(avatar14);
+  //       await addPicToProfile(14);
 
-      case 14:
-        setAvatar(avatar14);
-        await addPicToProfile(14);
+  //       return;
 
-        return;
+  //     case 15:
+  //       setAvatar(avatar15);
+  //       await addPicToProfile(15);
 
-      case 15:
-        setAvatar(avatar15);
-        await addPicToProfile(15);
+  //       return;
 
-        return;
+  //     default:
+  //       // console.log(parameter);
+  //       return "Error";
+  //   }
+  // };
 
-      default:
-        // console.log(parameter);
-        return "Error";
-    }
-  };
-
-  function escolha_avatar(avat) {
-    const avatarIndex = avatares.indexOf(avat);
-    functionWithSwitch(avatarIndex);
-  }
+  // function escolha_avatar(avat) {
+  //   const avatarIndex = avatares.indexOf(avat);
+  //   functionWithSwitch(avatarIndex);
+  // }
 
   const destroyFavBook = async ({ Livro }) => {
     const { idLivro } = await Livro; //Desestruturação
@@ -258,14 +248,16 @@ function Perfil() {
 
   const Livros = usuario.books;
   const LivrosSeeLater = usuario.booksSeeLater;
-
+  //+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++  AQUI COMEÇA O RENDER     ++++++++++++++++++++++ ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++//
   return (
     <div className={`${styles.Perfil_Page}`}>
       <Navbar />
       {usuario && (
         <div className={`${styles.Perfil_container}`}>
           <div className={styles.Perfil}>
-            <div className={styles.Perfil_foto}>
+            <AvatarPainel/>
+            {/* <Avatar.AvatarLogo /> */}
+            {/* <div className={styles.Perfil_foto}>
               <img
                 className={`${styles.Foto}`}
                 src={Avatar}
@@ -293,7 +285,7 @@ function Perfil() {
                 </div>
                 <div className={styles.Informacoes_pessoais}></div>
               </>
-            )}
+            )} */}
             {/* <input
                     className={`${styles.input_age}`}
                     type="number"

@@ -54,7 +54,6 @@
   align-items: flex-start;
   box-shadow: 0 5px 30px black;
   backdrop-filter: blur(6px);
-  /* padding: 15px; */
   overflow-y: auto;
 }
 
@@ -62,22 +61,22 @@
   display: none;
 }
 
-.Perfil_foto {
+/* .Perfil_foto {
   display: flex;
   position: relative;
-}
+} */
 
-.Foto {
+/* .Foto {
   height: 200px;
   margin-top: 30px;
   cursor: pointer;
-}
+} */
 
-.Foto:hover + .editar_Avatar {
+/* .Foto:hover + .editar_Avatar {
   display: flex;
-}
+} */
 
-.editar_Avatar {
+/* .editar_Avatar {
   display: none;
   box-sizing: border-box;
   flex-direction: row;
@@ -88,13 +87,12 @@
   bottom: 0px;
   left: 100px;
   border-radius: 10px;
-  /* padding-left: 10px; */
   font-size: 0.7em;
   color: black;
   width: 100px;
-}
+} */
 
-.escolha_avatar {
+/* .escolha_avatar {
   display: flex;
   box-sizing: border-box;
   padding: 1px;
@@ -104,12 +102,12 @@
   flex-wrap: wrap;
   border-radius: 10px;
   margin-top: 15px;
-}
+} */
 
-.Foto_para_escolher {
+/* .Foto_para_escolher {
   height: 40px;
   margin: 5px;
-}
+} */
 
 .Perfil_detalhes {
   margin-top: 30px;
@@ -119,9 +117,6 @@
   color: black;
 }
 
-/* .Informacoes_pessoais{
-
-} */
 
 .perfilDetalhesPainel {
   display: flex;
@@ -182,7 +177,6 @@
 }
 
 .favPage_btn:hover > .favPage_btn_heart {
-  /* background-color: yellow; */
   box-sizing: border-box;
   font-size: 1.3em;
 }

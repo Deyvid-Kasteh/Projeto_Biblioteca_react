@@ -4,9 +4,10 @@ import { useContext, useRef } from "react";
 import styles from "./LoginNav.module.css";
 import { BsPersonCircle } from "react-icons/bs";
 import { AuthContext } from "../contexts/auth";
+import { AvatarLogo } from "./Avatar/Avatar";
 
 function LoginNav() {
-  const loginName = useRef('Login');
+  const loginName = useRef("Login");
   const { authenticated, user, logout } = useContext(AuthContext);
   const capitalizeFirst = (str) => {
     return str.charAt(0).toUpperCase() + str.slice(1);
@@ -19,8 +20,8 @@ function LoginNav() {
 
     loginName.current = nomeCapitalized;
   } else {
-    loginName.current = 'Login';
- }
+    loginName.current = "Login";
+  }
 
   console.log(authenticated);
   console.log(user?.id);
@@ -43,13 +44,13 @@ function LoginNav() {
           </Link>
         ) : (
           <>
-            Bem vindo
             <Link
               to={`/Perfil/${idPerfil}`}
               className={`${styles.loginNav_item}`}
             >
               {loginName.current}
             </Link>
+            <AvatarLogo />
             <Link
               to="/loginPage"
               className={`${styles.loginNav_item}`}
