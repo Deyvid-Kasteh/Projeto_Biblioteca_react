@@ -5,8 +5,10 @@ import Tooltip, { tooltipClasses } from "@mui/material/Tooltip";
 import Fade from "@mui/material/Fade";
 import { yellow } from "@mui/material/colors";
 
-function MeusFavsPage({ Livros, destroyFavBook }) {
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
+function MeusFavsPage({ Livros, destroyFavBook }) {
   const colorYellow = yellow[500];
   const BootstrapTooltip = styled(({ className, ...props }) => (
     <Tooltip {...props} arrow classes={{ popper: className }} />
@@ -19,13 +21,16 @@ function MeusFavsPage({ Livros, destroyFavBook }) {
       color: "black",
     },
   }));
+  const notify = () => toast("❤️ => 💔");
 
-
+  async function DestroyFavBooksFavPage({ Livro }) {
+    destroyFavBook({ Livro });
+    notify();
+  }
 
   // console.log("++++++++++++++++++++++++++++++++++++++");
   // console.log(Livros);
   // console.log("++++++++++++++++++++++++++++++++++++++");
-
 
   return (
     <>
@@ -61,7 +66,7 @@ function MeusFavsPage({ Livros, destroyFavBook }) {
                   <button
                     type="submit"
                     className={styles.favRemove_btn}
-                    onClick={() => destroyFavBook({ Livro })}
+                    onClick={() => DestroyFavBooksFavPage({ Livro })}
                   >
                     💔 Remover dos favoritos 💔
                   </button>
@@ -71,6 +76,18 @@ function MeusFavsPage({ Livros, destroyFavBook }) {
           ))}
         </div>
       </div>
+      <ToastContainer
+        position="top-center"
+        autoClose={3000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="dark"
+      />
     </>
   );
 }

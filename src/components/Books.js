@@ -23,8 +23,6 @@ function Books() {
   const [resultadosLivros, setResultadosLivros] = useState();
 
   // console.log("1");
-  // console.log(id);
-  // console.log(user.id);
 
   const colorYellow = yellow[500];
   const BootstrapTooltip = styled(({ className, ...props }) => (
@@ -51,7 +49,10 @@ function Books() {
       // .then(console.log(resultadosLivros))
       .catch((err) => console.log(err));
   }, []);
+//
+  // console.log(resultadosLivros);
 
+  const notify = () => toast("Livro salvo em Ver Depois ⏰");
   const handleAddBookToSeeLater = async (livro) => {
     const idLivro = livro.id;
     const imgLivro = livro.volumeInfo.imageLinks.thumbnail;
@@ -60,16 +61,23 @@ function Books() {
       `/Perfil/${idUsuario}/addBookToSeeLater/${idLivro}`,
       { idLivro, imgLivro, ttlLivro }
     );
-    // console.log(response.data);
+    console.log(response.data);
     notify();
   };
-  const notify = () => toast("Livro salvo em Ver Depois ⏰");
+
+  const handleSeeBook = async (livro) => {
+    console.log(
+      "-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+"
+    );
+    localStorage.setItem("LivroParaVer", JSON.stringify(livro));
+  }
 
   const [divAtHover, setDivAtHover] = useState(false);
   const showAtHover = (key) => {
-    setDivAtHover(true)
-  console.log(key)}
-    const HideAtNoHover = () => setDivAtHover(false);
+    setDivAtHover(true);
+    console.log(key);
+  };
+  const HideAtNoHover = () => setDivAtHover(false);
 
   // console.log(livro)
 
@@ -93,7 +101,10 @@ function Books() {
                     TransitionComponent={Fade}
                     TransitionProps={{ timeout: 1000 }}
                   >
-                    <button className={`${styles.livro_buttom}`}>
+                    <button
+                      className={`${styles.livro_buttom}`}
+                      onClick={() => handleSeeBook(livro)}
+                    >
                       <Link to={`/book/${livro.id}`}>
                         <img
                           className={`${styles.capa}`}
@@ -104,7 +115,7 @@ function Books() {
                       </Link>
                     </button>
                   </BootstrapTooltip>
-                  {(divAtHover) ? (
+                  {divAtHover ? (
                     <div className={`${styles.books_fav}`}>
                       <BootstrapTooltip
                         title="Ler depois"
@@ -122,7 +133,9 @@ function Books() {
                         </button>
                       </BootstrapTooltip>
                     </div>
-                  ) : ("")}
+                  ) : (
+                    ""
+                  )}
                 </div>
               </>
             )}

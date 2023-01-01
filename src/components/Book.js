@@ -16,6 +16,7 @@ function Book() {
 
   const { id } = useParams();
   const [livro, setLivro] = useState();
+  const [livroCompleto, setLivroCompleto] = useState();
   useEffect(() => {
     fetch(`https://www.googleapis.com/books/v1/volumes/${id}`, {
       method: "GET",
@@ -23,34 +24,25 @@ function Book() {
     })
       .then((resp) => resp.json())
       .then((bookData) => {
+        setLivroCompleto(bookData);
         setLivro(bookData.volumeInfo);
-        console.log(livro);
       })
       .catch((err) => console.log(err));
   }, []);
+  const notify = () => toast("Livro adicionado aos ❤️");
+  const handleAddBookToFavorites = async (livroCompleto) => {
+    console.log(livroCompleto);
+    const idLivro = livroCompleto.id;
+    const imgLivro = `http://books.google.com/books/content?id=${idLivro}&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api`;
+    const ttlLivro = livroCompleto.volumeInfo.title;
 
-  const handleAddBookToFavorites = async ({livro}) => {
-    const idLivro = id;
-    console.log(idLivro);
-
-
-    const imgLivro = await livro.imageLinks.thumbnail;
-    console.log("11111111111111111111111111111111111");
-    console.log(idUsuario);
-    console.log("11111111111111111111111111111111111");
-
-    const ttlLivro = await livro.title;
-    console.log(ttlLivro);
     const response = await api.patch(
       `/Perfil/${idUsuario}/addBookToFavorites/${idLivro}`,
       { idLivro, imgLivro, ttlLivro }
     );
     console.log(response.data);
     notify();
-
   };
-    const notify = () => toast("Livro adicionado aos ❤️");
-
 
   return (
     <div className={`${styles.Book_Page}`}>
@@ -70,7 +62,7 @@ function Book() {
                   <button
                     type="submit"
                     className={styles.favAdd_btn}
-                    onClick={() => handleAddBookToFavorites({ livro })}
+                    onClick={() => handleAddBookToFavorites(livroCompleto)}
                   >
                     Add aos FAVORITOS ❤️
                   </button>

@@ -1,4 +1,4 @@
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import styles from "./Avatar.module.css";
 import { api } from "../../services/api";
 import { useParams } from "react-router-dom";
@@ -40,13 +40,96 @@ const avataresArray = [
   avatar15,
 ];
 
-function AvatarState(avatar) {
-  const [Avatar, setAvatar] = useState(avatar_padrao);
-  if (avatar) {
-    setAvatar(avatar);
+const functionWithSwitch = (AvatarLocalStorage) => {
+  console.log(AvatarLocalStorage);
+
+  switch (Number(AvatarLocalStorage)) {
+    case 0:
+      console.log(avatar_padrao);
+
+      return avatar_padrao;
+
+    case 1:
+      console.log(avatar0);
+
+      return avatar0;
+
+    case 2:
+      console.log(avatar1);
+
+      return avatar1;
+
+    case 3:
+      console.log(avatar2);
+
+      return avatar2;
+
+    case 4:
+      console.log(avatar3);
+
+      return avatar3;
+
+    case 5:
+      console.log(avatar5);
+
+      return avatar5;
+
+    case 6:
+      console.log(avatar6);
+
+      return avatar6;
+
+    case 7:
+      console.log(avatar7);
+
+      return avatar7;
+
+    case 8:
+      console.log(avatar8);
+
+      return avatar8;
+
+    case 9:
+      console.log(avatar9);
+
+      return avatar9;
+
+    case 10:
+      console.log(avatar10);
+
+      return avatar10;
+
+    case 11:
+      console.log(avatar11);
+
+      return avatar11;
+
+    case 12:
+      console.log(avatar12);
+
+      return avatar12;
+
+    case 13:
+      console.log(avatar13);
+
+      return avatar13;
+
+    case 14:
+      console.log(avatar14);
+
+      return avatar14;
+
+    case 15:
+      console.log(avatar15);
+
+      return avatar15;
+
+    default:
+      console.log("nenhum deles");
+      return "Error";
   }
-  return Avatar;
-}
+  return;
+};
 
 // const AddPicToProfile = async (pic) => {
 //   const { id } = useParams();
@@ -59,124 +142,39 @@ function AvatarState(avatar) {
 // };
 
 const AddPicToProfile = async (avatar, id) => {
-  console.log("antes do +++++++++++++++++ avatarIndex +++++++++++++++++");
   const avatarIndex = avataresArray.indexOf(avatar);
-  console.log("depois do +++++++++++++++++ avatarIndex +++++++++++++++++");
   const pic = avatarIndex;
   const data = {
     pic,
   };
   const response = await api.patch(`/Perfil/${id}/pic`, data);
-  console.log("acho que foi");
-  console.log(response);
-//   localStorage.setItem('user', JSON.stringify(response.data));
+  localStorage.setItem("userAvatar", JSON.stringify(avatarIndex));
+  window.location.reload(false);
 };
 
 export const AvatarPainel = () => {
   // const { id } = useParams();
   const { user } = useContext(AuthContext);
   const id = user.id;
-
   const [Avatar, setAvatar] = useState(avatar_padrao);
+
+  useEffect(() => {
+    const avatarLocalStorage = localStorage.getItem("userAvatar");
+    if (avatarLocalStorage) {
+      const avatarResponse = functionWithSwitch(avatarLocalStorage);
+      console.log(avatarLocalStorage);
+      console.log(avatarResponse);
+      if (avatarResponse != Avatar) {
+        setAvatar(avatarResponse);
+      }
+    }
+  }, []);
 
   const [divEditar_avatar, setDivEditar_avatar] = useState(false);
   const avatares = avataresArray;
   function editar_Avatar() {
     setDivEditar_avatar((prevToggle) => !prevToggle);
   }
-  //   console.log(avatares)
-  //   function escolha_avatar(avat) {
-  //     const avatarIndex = avatares.indexOf(avat);
-  //     functionWithSwitch(avatarIndex);
-  //   }
-
-  const functionWithSwitch = (avatarIndex) => {
-    console.log("chegou no functionWithSwitch");
-    switch (avatarIndex) {
-      case 0:
-        AvatarState(avatar_padrao);
-        return;
-
-      case 1:
-        AvatarState(avatar0);
-
-        return;
-
-      case 2:
-        AvatarState(avatar1);
-
-        return;
-
-      case 3:
-        AvatarState(avatar2);
-
-        return;
-
-      case 4:
-        AvatarState(avatar3);
-
-        return;
-
-      case 5:
-        AvatarState(avatar5);
-
-        return;
-
-      case 6:
-        AvatarState(avatar6);
-
-        return;
-
-      case 7:
-        AvatarState(avatar7);
-
-        return;
-
-      case 8:
-        AvatarState(avatar8);
-
-        return;
-
-      case 9:
-        AvatarState(avatar9);
-
-        return;
-
-      case 10:
-        AvatarState(avatar10);
-
-        return;
-
-      case 11:
-        AvatarState(avatar11);
-
-        return;
-
-      case 12:
-        AvatarState(avatar12);
-
-        return;
-
-      case 13:
-        AvatarState(avatar13);
-
-        return;
-
-      case 14:
-        AvatarState(avatar14);
-
-        return;
-
-      case 15:
-        AvatarState(avatar15);
-
-        return;
-
-      default:
-        // console.log(parameter);
-        return "Error";
-    }
-  };
 
   return (
     <>
@@ -219,102 +217,21 @@ export const AvatarPainel = () => {
 };
 
 export const AvatarLogo = () => {
-  const { user } = useContext(AuthContext);
+const [Avatar, setAvatar] = useState(avatar_padrao);
 
-  const Avatar = AvatarState();
-  // localStorage.getItem("picture", JSON.stringify());
-
-  const functionWithSwitch = (avatarIndex) => {
-    console.log("chegou no functionWithSwitch");
-    switch (avatarIndex) {
-      case 0:
-        AvatarState(avatar_padrao);
-        return;
-
-      case 1:
-        AvatarState(avatar0);
-
-        return;
-
-      case 2:
-        AvatarState(avatar1);
-
-        return;
-
-      case 3:
-        AvatarState(avatar2);
-
-        return;
-
-      case 4:
-        AvatarState(avatar3);
-
-        return;
-
-      case 5:
-        AvatarState(avatar5);
-
-        return;
-
-      case 6:
-        AvatarState(avatar6);
-
-        return;
-
-      case 7:
-        AvatarState(avatar7);
-
-        return;
-
-      case 8:
-        AvatarState(avatar8);
-
-        return;
-
-      case 9:
-        AvatarState(avatar9);
-
-        return;
-
-      case 10:
-        AvatarState(avatar10);
-
-        return;
-
-      case 11:
-        AvatarState(avatar11);
-
-        return;
-
-      case 12:
-        AvatarState(avatar12);
-
-        return;
-
-      case 13:
-        AvatarState(avatar13);
-
-        return;
-
-      case 14:
-        AvatarState(avatar14);
-
-        return;
-
-      case 15:
-        AvatarState(avatar15);
-
-        return;
-
-      default:
-        // console.log(parameter);
-        return "Error";
+useEffect(() => {
+  const avatarLocalStorage = localStorage.getItem("userAvatar");
+  if (avatarLocalStorage) {
+    const avatarResponse = functionWithSwitch(avatarLocalStorage);
+    console.log(avatarLocalStorage);
+    console.log(avatarResponse);
+    if (avatarResponse != Avatar) {
+      setAvatar(avatarResponse);
     }
-  };
+  }
+}, []);
 
   return (
-    <>
-      <img className={`${styles.Foto_Logo}`} src={Avatar} alt="" />
-    </>
+    <><img className={`${styles.Foto_Logo}`} src={Avatar} alt="" /></>
   );
 };
