@@ -62,13 +62,15 @@ function LoginNav() {
     <div className={`${styles.loginNav_container}`}>
       <>
         {!authenticated ? (
-          <Link
-            to="/loginPage"
-            className={`${styles.loginNav_item}`}
-            onClick={sair}
-          >
-            <BsPersonCircle /> Login
-          </Link>
+          <h1>
+            <Link
+              to="/loginPage"
+              className={`${styles.loginNav_item}`}
+              onClick={sair}
+            >
+              <BsPersonCircle /> Login
+            </Link>
+          </h1>
         ) : (
           <>
             <div>

@@ -153,13 +153,14 @@ const AddPicToProfile = async (avatar, id) => {
 };
 
 export const AvatarPainel = () => {
-  // const { id } = useParams();
   const { user } = useContext(AuthContext);
   const id = user.id;
   const [Avatar, setAvatar] = useState(avatar_padrao);
 
   useEffect(() => {
     const avatarLocalStorage = localStorage.getItem("userAvatar");
+          const avatarDatabase = user?.details.picture;
+
     if (avatarLocalStorage) {
       const avatarResponse = functionWithSwitch(avatarLocalStorage);
       console.log(avatarLocalStorage);
@@ -167,7 +168,15 @@ export const AvatarPainel = () => {
       if (avatarResponse != Avatar) {
         setAvatar(avatarResponse);
       }
+    } else if (avatarDatabase) {
+      const avatarResponse = functionWithSwitch(avatarDatabase);
+      console.log(avatarDatabase);
+      console.log(avatarResponse);
+      if (avatarResponse != Avatar) {
+        setAvatar(avatarResponse);
+      }
     }
+    // console.log(user.details.picture);
   }, []);
 
   const [divEditar_avatar, setDivEditar_avatar] = useState(false);
@@ -217,21 +226,23 @@ export const AvatarPainel = () => {
 };
 
 export const AvatarLogo = () => {
-const [Avatar, setAvatar] = useState(avatar_padrao);
+  const [Avatar, setAvatar] = useState(avatar_padrao);
 
-useEffect(() => {
-  const avatarLocalStorage = localStorage.getItem("userAvatar");
-  if (avatarLocalStorage) {
-    const avatarResponse = functionWithSwitch(avatarLocalStorage);
-    console.log(avatarLocalStorage);
-    console.log(avatarResponse);
-    if (avatarResponse != Avatar) {
-      setAvatar(avatarResponse);
+  useEffect(() => {
+    const avatarLocalStorage = localStorage.getItem("userAvatar");
+    if (avatarLocalStorage) {
+      const avatarResponse = functionWithSwitch(avatarLocalStorage);
+      console.log(avatarLocalStorage);
+      console.log(avatarResponse);
+      if (avatarResponse != Avatar) {
+        setAvatar(avatarResponse);
+      }
     }
-  }
-}, []);
+  }, []);
 
   return (
-    <><img className={`${styles.Foto_Logo}`} src={Avatar} alt="" /></>
+    <>
+      <img className={`${styles.Foto_Logo}`} src={Avatar} alt="" />
+    </>
   );
 };
