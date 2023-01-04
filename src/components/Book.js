@@ -29,7 +29,7 @@ function Book() {
       })
       .catch((err) => console.log(err));
   }, []);
-  const notify = () => toast("Livro adicionado aos ❤️");
+  const notify = () => toast.success("Livro adicionado aos ❤️");
   const handleAddBookToFavorites = async (livroCompleto) => {
     console.log(livroCompleto);
     const idLivro = livroCompleto.id;
