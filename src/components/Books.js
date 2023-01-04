@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useRef, useState } from "react";
-import { Link, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import Navbar from "./Navbar";
 import FooterBack from "./FooterBack";
 import { api } from "../services/api";
@@ -14,15 +14,28 @@ import { yellow } from "@mui/material/colors";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
+// CRIAÇÃO DE CAIXA DE CONTEXTO
+import {
+  Menu,
+  Item,
+  Separator,
+  Submenu,
+  useContextMenu,
+} from "react-contexify";
+import "react-contexify/dist/ReactContexify.css";
+// CRIAÇÃO DE CAIXA DE CONTEXTO
+
 function Books() {
   const btnRef = useRef([]);
+  const idLivroParaContextMenu = useRef();
+  const imgLivroParaContextMenu = useRef();
+  const ttlLivroParaContextMenu = useRef();
+
   const { id } = useParams();
   const { user } = useContext(AuthContext);
-  const idUsuario = user.id;
-
+  const idUsuario = user?.id;
   const [resultadosLivros, setResultadosLivros] = useState();
-
-  // console.log("1");
+  const [tituloLivroMenuContexto, setTituloLivroMenuContexto] = useState();
 
   const colorYellow = yellow[500];
   const BootstrapTooltip = styled(({ className, ...props }) => (
@@ -49,109 +62,146 @@ function Books() {
       // .then(console.log(resultadosLivros))
       .catch((err) => console.log(err));
   }, []);
-//
+  //
   // console.log(resultadosLivros);
 
-  const notify = () => toast("Livro salvo em Ver Depois ⏰");
-  const handleAddBookToSeeLater = async (livro) => {
-    const idLivro = livro.id;
-    const imgLivro = livro.volumeInfo.imageLinks.thumbnail;
-    const ttlLivro = livro.volumeInfo.title;
+  const navigate = useNavigate();
+
+  const notifyVerDepois = () => toast.success("Livro salvo em Ver Depois ⏰");
+  const notifyFavoritos = () => toast.success("Livro salvo nos Favoritos ❤️");
+
+  // CAIXA DE CONTEXTO
+
+  const { show } = useContextMenu();
+
+  function displayMenu(e) {
+    // console.log(e);
+    idLivroParaContextMenu.current = e.target.alt;
+    imgLivroParaContextMenu.current = e.target.src;
+    ttlLivroParaContextMenu.current = e.target.title;
+    setTituloLivroMenuContexto(e.target.alt);
+    console.log(ttlLivroParaContextMenu.current);
+    console.log(ttlLivroParaContextMenu.current);
+    console.log(ttlLivroParaContextMenu.current);
+    console.log(ttlLivroParaContextMenu.current);
+
+    // run some logic to determine which menu you should display
+    show({
+      id: "menuLivro",
+      event: e,
+    });
+  }
+  // CAIXA DE CONTEXTO
+
+  // ADICIONAR AOS  FAVORITOS
+  const handleAddBookToFavorites = async () => {
+    console.log();
+    const idLivro = idLivroParaContextMenu.current;
+    const imgLivro = imgLivroParaContextMenu.current;
+    const ttlLivro = ttlLivroParaContextMenu.current;
+
+    const response = await api.patch(
+      `/Perfil/${idUsuario}/addBookToFavorites/${idLivro}`,
+      { idLivro, imgLivro, ttlLivro }
+    );
+    console.log(response.data);
+    notifyFavoritos();
+  };
+  // ADICIONAR AOS  FAVORITOS
+
+  // ADICIONAR AO VER DEPOIS
+  const handleAddBookToSeeLater = async () => {
+    const idLivro = idLivroParaContextMenu.current;
+    const imgLivro = imgLivroParaContextMenu.current;
+    const ttlLivro = ttlLivroParaContextMenu.current;
     const response = await api.patch(
       `/Perfil/${idUsuario}/addBookToSeeLater/${idLivro}`,
       { idLivro, imgLivro, ttlLivro }
     );
     console.log(response.data);
-    notify();
+    notifyVerDepois();
   };
+  // ADICIONAR AO VER DEPOIS
 
-  const handleSeeBook = async (livro) => {
-    console.log(
-      "-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+"
-    );
-    localStorage.setItem("LivroParaVer", JSON.stringify(livro));
-  }
-
-  const [divAtHover, setDivAtHover] = useState(false);
-  const showAtHover = (key) => {
-    setDivAtHover(true);
-    console.log(key);
+  // VER LIVRO
+  const handleSeeBook = () => {
+    navigate(`/book/${idLivroParaContextMenu.current}`);
   };
-  const HideAtNoHover = () => setDivAtHover(false);
-
-  // console.log(livro)
+  // VER LIVRO
 
   return (
     <div className={`${styles.Books_Page}`}>
       <Navbar />
       <div className={`${styles.books_container}`}>
-        {resultadosLivros?.map((livro, key) => (
+        {resultadosLivros?.map((livro) => (
           <div key={livro.id}>
             {livro.volumeInfo.imageLinks && (
               <>
                 <div
                   ref={(el) => (btnRef.current[livro.id] = el)}
                   className={`${styles.livro}`}
-                  onMouseEnter={() => showAtHover(key)}
-                  onMouseLeave={() => HideAtNoHover()}
                 >
-                  <BootstrapTooltip
-                    title={livro.volumeInfo.title}
-                    arrow
-                    TransitionComponent={Fade}
-                    TransitionProps={{ timeout: 1000 }}
+                  <div
+                    id={`${livro.id}`}
+                    key={`${livro.id}`}
+                    onClick={displayMenu}
+                    // onClick={()=>(displayMenu(livro))}
                   >
-                    <button
-                      className={`${styles.livro_buttom}`}
-                      onClick={() => handleSeeBook(livro)}
+                    <BootstrapTooltip
+                      title={livro.volumeInfo.title}
+                      arrow
+                      TransitionComponent={Fade}
+                      TransitionProps={{ timeout: 1000 }}
                     >
-                      <Link to={`/book/${livro.id}`}>
+                      <button
+                        className={`${styles.livro_buttom}`}
+                        // onClick={() => handleSeeBook(livro)}
+                      >
+                        {/* <Link to={`/book/${livro.id}`}> */}
                         <img
                           className={`${styles.capa}`}
                           src={livro.volumeInfo.imageLinks.thumbnail}
                           alt={livro.id}
                           key={livro.id}
+                          title={livro.volumeInfo.title}
                         />
-                      </Link>
-                    </button>
-                  </BootstrapTooltip>
-                  {divAtHover ? (
-                    <div className={`${styles.books_fav}`}>
-                      <BootstrapTooltip
-                        title="Ler depois"
-                        arrow
-                        TransitionComponent={Fade}
-                        TransitionProps={{ timeout: 1000 }}
-                      >
-                        <button
-                          className={`${styles.books_fav_buttom}`}
-                          onClick={() => handleAddBookToSeeLater(livro)}
-                        >
-                          <p className={`${styles.books_fav_buttom_book}`}>
-                            ⏰
-                          </p>
-                        </button>
-                      </BootstrapTooltip>
-                    </div>
-                  ) : (
-                    ""
-                  )}
+                        {/* </Link> */}
+                      </button>
+                    </BootstrapTooltip>
+                  </div>
                 </div>
               </>
             )}
           </div>
         ))}
+        <Menu id={"menuLivro"} theme="light">
+          <Item onClick={handleSeeBook}>
+            📖 {ttlLivroParaContextMenu.current}
+          </Item>
+          <Separator />
+          <Item onClick={handleAddBookToFavorites}>❤️ Favoritar</Item>
+          <Separator />
+          <Item onClick={handleAddBookToSeeLater}>⏰ Ver depois</Item>
+          <Separator />
+          <Item disabled>💰 comprar</Item>
+          <Separator />
+          <Submenu label="⏬  Mais opções">
+            {/* <Item>Reportar um erro 📣📢‼️❗⛔🚫💡💰💣📩✉🔗</Item> */}
+            <Item>💡 Sugerir uma dica </Item>
+            <Item>📢 Reportar um erro </Item>
+          </Submenu>
+        </Menu>
         <ToastContainer
-          position="top-center"
-          autoClose={3000}
+          position="bottom-right"
+          autoClose={5000}
           hideProgressBar={false}
-          newestOnTop={false}
+          newestOnTop
           closeOnClick
           rtl={false}
           pauseOnFocusLoss
           draggable
           pauseOnHover
-          theme="dark"
+          theme="colored"
         />
       </div>
       <FooterBack />

@@ -46,22 +46,16 @@
   margin: 5px;
 }
 
-
-
-
-
-
-
-
 .salvarAvatarButton {
   color: black;
 }
 
+.Foto_Logo {
+  height: 40px;
+  cursor: pointer;
+}
 
-
-
-
-.Foto_Logo{
-  height: 34px;
-  margin-left: 20px;
+.Foto_Logo:hover {
+  height: 50px;
+  cursor: pointer;
 }

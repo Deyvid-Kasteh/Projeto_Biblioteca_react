@@ -13,16 +13,18 @@ function Navbar() {
 
   return (
     <div className={`${styles.Navbar_container}`}>
-      <div>
+      <div className={`${styles.Navbar_Item}`}>
         <h1>
           <Link to="/" reloadDocument>
             Biblioteca.
           </Link>
         </h1>
       </div>
-      <Clock />
-      <div>
-          <LoginNav/>
+      <div className={`${styles.Navbar_Item}`}>
+        <Clock />
+      </div>
+      <div className={`${styles.Navbar_Item}`}>
+        <LoginNav />
       </div>
     </div>
   );

@@ -6,16 +6,15 @@
     min-height: 10vh;
 }
 
+.Navbar_Item {
+    display: flex;
+    width: 33%;
+    justify-content: space-around;
+    align-items: center;
+
+}
+
 a {
     text-decoration: none;
 }
 
-.login_btn {
-  border: none;
-  padding: 10px;
-  padding-left: 20px;
-  margin-bottom: 30px;
-  background-color: transparent;
-  color: white;
-  cursor: pointer;
-}

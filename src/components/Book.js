@@ -12,7 +12,7 @@ import "react-toastify/dist/ReactToastify.css";
 
 function Book() {
   const { user } = useContext(AuthContext);
-  const idUsuario = user.id;
+  const idUsuario = user?.id;
 
   const { id } = useParams();
   const [livro, setLivro] = useState();
