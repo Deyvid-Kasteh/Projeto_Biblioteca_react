@@ -75,7 +75,7 @@ function Book() {
                 <h3 className={`${styles.authors}`}>
                   {livro.authors
                     ? `Autor: ${livro.authors[0]}`
-                    : "Não identificado"}
+                    : "Autor: Não identificado"}
                 </h3>
                 <h3 className={`${styles.language}`}>
                   Idioma: {livro.language}

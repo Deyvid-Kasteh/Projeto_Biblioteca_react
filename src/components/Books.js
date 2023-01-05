@@ -6,6 +6,7 @@ import { api } from "../services/api";
 import { AuthContext } from "../contexts/auth";
 
 import styles from "./Books.module.css";
+import genericCover from "../components/img/genericCover.jpg";
 import { styled } from "@mui/material/styles";
 import Tooltip, { tooltipClasses } from "@mui/material/Tooltip";
 import Fade from "@mui/material/Fade";
@@ -75,14 +76,14 @@ function Books() {
   const { show } = useContextMenu();
 
   function displayMenu(e) {
-    // console.log(e);
+    console.log(e);
     idLivroParaContextMenu.current = e.target.alt;
     imgLivroParaContextMenu.current = e.target.src;
     ttlLivroParaContextMenu.current = e.target.title;
     setTituloLivroMenuContexto(e.target.alt);
     console.log(ttlLivroParaContextMenu.current);
-    console.log(ttlLivroParaContextMenu.current);
-    console.log(ttlLivroParaContextMenu.current);
+    console.log(imgLivroParaContextMenu.current);
+    console.log(idLivroParaContextMenu.current);
     console.log(ttlLivroParaContextMenu.current);
 
     // run some logic to determine which menu you should display
@@ -123,6 +124,10 @@ function Books() {
   };
   // ADICIONAR AO VER DEPOIS
 
+
+console.log(resultadosLivros);
+
+
   // VER LIVRO
   const handleSeeBook = () => {
     navigate(`/book/${idLivroParaContextMenu.current}`);
@@ -135,7 +140,7 @@ function Books() {
       <div className={`${styles.books_container}`}>
         {resultadosLivros?.map((livro) => (
           <div key={livro.id}>
-            {livro.volumeInfo.imageLinks && (
+            {livro.volumeInfo && (
               <>
                 <div
                   ref={(el) => (btnRef.current[livro.id] = el)}
@@ -158,13 +163,24 @@ function Books() {
                         // onClick={() => handleSeeBook(livro)}
                       >
                         {/* <Link to={`/book/${livro.id}`}> */}
-                        <img
-                          className={`${styles.capa}`}
-                          src={livro.volumeInfo.imageLinks.thumbnail}
-                          alt={livro.id}
-                          key={livro.id}
-                          title={livro.volumeInfo.title}
-                        />
+                        {livro.volumeInfo.imageLinks ? (
+                          <img
+                            className={`${styles.capa}`}
+                            src={livro.volumeInfo.imageLinks.thumbnail}
+                            alt={livro.id}
+                            key={livro.id}
+                            title={livro.volumeInfo.title}
+                          />
+                        ) : (
+                          <img
+                            className={`${styles.capa}`}
+                            src={genericCover}
+                            alt={livro.id}
+                            key={livro.id}
+                            title={livro.volumeInfo.title}
+                          />
+                        )}
+
                         {/* </Link> */}
                       </button>
                     </BootstrapTooltip>
