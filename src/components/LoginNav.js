@@ -88,10 +88,17 @@ function LoginNav() {
                 <Item disabled>🛒 Carrinho</Item>
                 <Separator />
                 <Submenu label="⏬ Mais opções">
-                  <Item onClick={() => navigate(`/Perfil/${idPerfil}`)}>
-                    👤 {loginName.current}
-                  </Item>
-                  <Item onClick={""}>Sub Item 2</Item>
+                  <Item>💰 Mandar um Pix 😜</Item>
+                  <Separator />
+                  <Item>🫖 Tomar um café ☕</Item>
+                  <Separator />
+                  <Item>🥠 Biscoito da Sorte 🍀</Item>
+                  <Separator />
+                  <Item>🖨️ xerox: 0,25 📄</Item>
+                  <Separator />
+                  <Item>👨‍💻️ Crítica construtiva 🤬</Item>
+                  <Separator />
+                  <Item>🚽 Banheiro Não-binário</Item>
                 </Submenu>
                 <Separator />
 
