@@ -1,5 +1,5 @@
 import { Link, useNavigate } from "react-router-dom";
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import Navbar from "./Navbar";
 import FooterBack from "./FooterBack";
 
@@ -15,6 +15,8 @@ function LoginPage() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
+
+
   const handleLogin = async (e) => {
     e.preventDefault();
     if (email === "" || password === "") {
@@ -27,7 +29,7 @@ function LoginPage() {
     console.log("password:", password);
     login(email, password);
     console.log("passou pelo login");
-    navigate('/');
+    navigate("/");
   };
   return (
     <div className={`${styles.login_container}`}>

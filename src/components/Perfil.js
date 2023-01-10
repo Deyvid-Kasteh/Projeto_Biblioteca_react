@@ -4,8 +4,8 @@ import { AuthContext } from "../contexts/auth";
 
 import Navbar from "./Navbar";
 import FooterBack from "./FooterBack";
-import MeusFavsPage from "./MeusFavsPage";
-import MeusSeeLaterPage from "./MeusSeeLaterPage";
+import MeusFavsPage from "./MeusFavsPage1";
+import MeusSeeLaterPage from "./MeusSeeLaterPage1";
 import Loading from "./Loading";
 
 import { AvatarPainel } from "../components/Avatar/Avatar";
@@ -31,16 +31,12 @@ import avatar15 from "./img/userPic/avatar15.png";
 
 import { api } from "../services/api";
 
-
-
 function Perfil() {
   const { id } = useParams();
-  const { user } = useContext(AuthContext);
 
   const [usuario, setUsuario] = useState("");
   const [nome, setNome] = useState("");
   const [removeLoading, setRemoveLoading] = useState(false);
-
 
   const fetchUsuario = async () => {
     const resp = await api.get(`/Perfil/${id}`);
@@ -98,7 +94,7 @@ function Perfil() {
       `/Perfil/${id}/destroyBookfromFavorites/${idLivro}`,
       idLivro
     );
-    console.log(response)
+    console.log(response);
     // alert("Favorito deletado com sucesso");
     fetchUsuario();
   };
@@ -132,7 +128,7 @@ function Perfil() {
             <div className={styles.Perfil_detalhes}>
               {divPerfilDetalhesPainel && (
                 <div className={styles.perfilDetalhesPainel}>
-                  <h1>{nome}🌞</h1>
+                  <h1>{nome}</h1>
                   <button
                     className={styles.favPage_btn}
                     onClick={() => openDivPainelFavorites()}
@@ -153,7 +149,7 @@ function Perfil() {
           </div>
           <div className={styles.Perfil_painel}>
             {divPainelFavorites && (
-                <MeusFavsPage Livros={Livros} destroyFavBook={destroyFavBook} />
+              <MeusFavsPage Livros={Livros} destroyFavBook={destroyFavBook} />
             )}
             {divPainelSeeLater && (
               <MeusSeeLaterPage

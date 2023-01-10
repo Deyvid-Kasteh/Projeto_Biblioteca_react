@@ -17,7 +17,6 @@ import {
 import "react-contexify/dist/ReactContexify.css";
 // CRIAÇÃO DE CAIXA DE CONTEXTO
 
-
 function LoginNav() {
   const loginName = useRef("Login");
   const { authenticated, user, logout } = useContext(AuthContext);
@@ -79,12 +78,19 @@ function LoginNav() {
               </div>
 
               <Menu id={MENU_ID} theme="light">
-                <Item>
-                  <Item onClick={() => navigate(`/Perfil/${idPerfil}`)}>
-                    👤 {loginName.current}
-                  </Item>
+                <Item onClick={() => navigate(`/Perfil/${idPerfil}`)}>
+                  👤 Perfil
                 </Item>
                 <Separator />
+                <Item onClick={() => navigate(`/Perfil/${idPerfil}/favoritos`)}>
+                  ❤️ Favoritos
+                </Item>
+                <Separator />
+                <Item onClick={() => navigate(`/Perfil/${idPerfil}/verDepois`)}>
+                  ⏰ Ver depois
+                </Item>
+                <Separator />
+
                 <Item disabled>🛒 Carrinho</Item>
                 <Separator />
                 <Submenu label="⏬ Mais opções">
@@ -94,7 +100,7 @@ function LoginNav() {
                   <Separator />
                   <Item>🥠 Biscoito da Sorte 🍀</Item>
                   <Separator />
-                  <Item>🖨️ xerox: 0,25 📄</Item>
+                  <Item>🖨️ Xerox: 0,25 📄</Item>
                   <Separator />
                   <Item>👨‍💻️ Crítica construtiva 🤬</Item>
                   <Separator />

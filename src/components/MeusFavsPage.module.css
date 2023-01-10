@@ -1,3 +1,65 @@
+.Favorites_Page {
+  display: flex;
+  flex-direction: column;
+  width: 100vw;
+  height: 100vh;
+  justify-content: space-evenly;
+  align-items: center;
+  background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
+    url(../components/img/bibliglobe.jpg);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+}
+
+
+.Favorites_container {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  height: 80vh;
+  width: 100vw;
+}
+
+.Favorites_painel {
+  display: flex;
+  position: relative;
+  flex-direction: row;
+  flex-wrap: wrap;
+  height: 750px;
+  width: 75vw;
+  box-sizing: border-box;
+  margin-left: 20px;
+  background: rgba(255, 255, 255, 0.13);
+  border-radius: 40px;
+  padding-left: 30px;
+  padding-right: 30px;
+  justify-content: center;
+  align-items: flex-start;
+  box-shadow: 0 5px 30px black;
+  backdrop-filter: blur(6px);
+  overflow-y: auto;
+}
+
+.Favorites_painel::-webkit-scrollbar {
+  display: none;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 .bookFavContainer {
   display: flex;
   position: absolute;
