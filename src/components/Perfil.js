@@ -143,6 +143,20 @@ function Perfil() {
                     <div>Mensagens </div>
                     <div className={styles.seeLater_btn_alam}>✉️</div>
                   </button>
+                  {/* <button
+                    className={styles.favPage_btn}
+                    // onClick={() => openDivPainelFavorites()}
+                  >
+                    <div>Meus favoritos</div>
+                    <div className={styles.favPage_btn_heart}>❤️</div>
+                  </button>
+                  <button
+                    className={styles.seeLater_btn}
+                    // onClick={() => openDivPainelSeeLater()}
+                  >
+                    <div>Ver depois</div>
+                    <div className={styles.seeLater_btn_alam}>⏰</div>
+                  </button> */}
                 </div>
               )}
             </div>
