@@ -129,7 +129,7 @@ function Perfil() {
               {divPerfilDetalhesPainel && (
                 <div className={styles.perfilDetalhesPainel}>
                   <h1>{nome}</h1>
-                  <button
+                  {/* <button
                     className={styles.favPage_btn}
                     onClick={() => openDivPainelFavorites()}
                   >
@@ -142,13 +142,13 @@ function Perfil() {
                   >
                     <div>Ver depois</div>
                     <div className={styles.seeLater_btn_alam}>⏰</div>
-                  </button>
+                  </button> */}
                 </div>
               )}
             </div>
           </div>
           <div className={styles.Perfil_painel}>
-            {divPainelFavorites && (
+            {/* {divPainelFavorites && (
               <MeusFavsPage Livros={Livros} destroyFavBook={destroyFavBook} />
             )}
             {divPainelSeeLater && (
@@ -156,7 +156,7 @@ function Perfil() {
                 LivrosSeeLater={LivrosSeeLater}
                 destroySeeLaterBook={destroySeeLaterBook}
               />
-            )}
+            )} */}
           </div>
         </div>
       )}

@@ -31,9 +31,13 @@
 
 .escolha_avatar {
   display: flex;
+  width: 100%;
+
+  position: relative;
   box-sizing: border-box;
   padding: 1px;
-  border: 3px solid rgba(255, 255, 255, 0.5);
+  background-color: rgba(255, 255, 255, 0.2); /* Green */
+  /* border: 3px solid rgba(255, 255, 255, 0.5); */
   align-items: center;
   justify-content: center;
   flex-wrap: wrap;
@@ -41,13 +45,47 @@
   margin-top: 15px;
 }
 
+.escolha_avatar_titulo {
+  display: flex;
+  position: relative;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+}
+
+.escolha_avatar_titulo,
+p {
+  font-size: 1.2em;
+}
+
 .Foto_para_escolher {
   height: 40px;
   margin: 5px;
 }
 
+.salvarAvatarDiv {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
 .salvarAvatarButton {
-  color: black;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(0, 0, 0, 0.3); /* Green */
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  /* border: none; */
+  border-radius: 11px;
+  color: white;
+  padding: 4px 25px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 1.2em;
+  cursor: pointer;
+  margin-bottom: 0.3em;
 }
 
 .Foto_Logo {

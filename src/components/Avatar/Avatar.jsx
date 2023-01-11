@@ -198,23 +198,28 @@ export const AvatarPainel = () => {
       {divEditar_avatar && (
         <>
           <div className={styles.escolha_avatar}>
-            {avatares.map((avat) => (
-              <img
-                className={`${styles.Foto_para_escolher}`}
-                src={avat}
-                onClick={() => setAvatar(avat)}
-                // escolha_avatar(avat)}
-                alt=""
-                key={avat}
-              />
-            ))}
-            <p>Escolha um avatar</p>
+            <div className={styles.escolha_avatar_titulo}>
+              <p>Escolha um avatar</p>
+            </div>
+            <div>
+              {avatares.map((avat) => (
+                <img
+                  className={`${styles.Foto_para_escolher}`}
+                  src={avat}
+                  onClick={() => setAvatar(avat)}
+                  // escolha_avatar(avat)}
+                  alt=""
+                  key={avat}
+                />
+              ))}
+            </div>
+
             <div className={styles.salvarAvatar}>
               <button
                 className={styles.salvarAvatarButton}
                 onClick={() => AddPicToProfile(Avatar, id)}
               >
-                Salvar
+                Salvar 💾
               </button>
             </div>
           </div>
