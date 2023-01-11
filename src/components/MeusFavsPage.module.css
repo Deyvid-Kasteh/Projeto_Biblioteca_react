@@ -29,7 +29,7 @@
   flex-direction: row;
   flex-wrap: wrap;
   height: 750px;
-  width: 75vw;
+  width: 90vw;
   box-sizing: border-box;
   margin-left: 20px;
   background: rgba(255, 255, 255, 0.13);
@@ -47,8 +47,22 @@
   display: none;
 }
 
+.Favorites_painel_titulo {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 20px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.9);
+  width: 80%;
+  padding-bottom: 1em;
+}
 
-
+.Favorites_painel_livros {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: flex-start;
+}
 
 
 

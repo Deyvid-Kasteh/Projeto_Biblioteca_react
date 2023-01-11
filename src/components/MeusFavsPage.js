@@ -66,49 +66,47 @@ function MeusFavsPage() {
       <Navbar />
       {livrosFav && (
         <div className={`${styles.Favorites_container}`}>
-          <div className={styles.Perfil}>
-            <AvatarPainel />
-            <div className={styles.Perfil_detalhes}>
-              <h1>❤️ Favoritos</h1>
-              <h1>Buscar</h1>
-            </div>
-          </div>
           <div className={styles.Favorites_painel}>
-            {livrosFav?.map((Livro) => (
-              <div key={Livro.idLivro} className={`${styles.livro}`}>
-                <div
-                  className={`${styles.livroCada}`}
-                  // ref={(el) => (btnRef.current[livro.id] = el)}
-                >
-                  <BootstrapTooltip
-                    title={Livro.ttlLivro}
-                    arrow
-                    TransitionComponent={Fade}
-                    TransitionProps={{ timeout: 1000 }}
-                    placement="top"
+            <div className={styles.Favorites_painel_titulo}>
+              <h1>Favoritos</h1>
+            </div>
+            <div className={styles.Favorites_painel_livros}>
+              {livrosFav?.map((Livro) => (
+                <div key={Livro.idLivro} className={`${styles.livro}`}>
+                  <div
+                    className={`${styles.livroCada}`}
+                    // ref={(el) => (btnRef.current[livro.id] = el)}
                   >
-                    <button className={`${styles.livro_buttom}`}>
-                      <Link to={`/book/${Livro.idLivro}`}>
-                        <img
-                          className={`${styles.capa}`}
-                          src={Livro.imgLivro}
-                          alt={Livro.ttlLivro}
-                        />
-                      </Link>
-                    </button>
-                  </BootstrapTooltip>
-                  <div>
-                    <button
-                      type="submit"
-                      className={styles.favRemove_btn}
-                      onClick={() => destroyFavBook({ Livro })}
+                    <BootstrapTooltip
+                      title={Livro.ttlLivro}
+                      arrow
+                      TransitionComponent={Fade}
+                      TransitionProps={{ timeout: 1000 }}
+                      placement="top"
                     >
-                      💔 Remover dos favoritos 💔
-                    </button>
+                      <button className={`${styles.livro_buttom}`}>
+                        <Link to={`/book/${Livro.idLivro}`}>
+                          <img
+                            className={`${styles.capa}`}
+                            src={Livro.imgLivro}
+                            alt={Livro.ttlLivro}
+                          />
+                        </Link>
+                      </button>
+                    </BootstrapTooltip>
+                    <div>
+                      <button
+                        type="submit"
+                        className={styles.favRemove_btn}
+                        onClick={() => destroyFavBook({ Livro })}
+                      >
+                        💔 Remover dos favoritos 💔
+                      </button>
+                    </div>
                   </div>
                 </div>
-              </div>
-            ))}
+              ))}
+            </div>
           </div>
         </div>
       )}

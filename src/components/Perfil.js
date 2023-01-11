@@ -4,8 +4,8 @@ import { AuthContext } from "../contexts/auth";
 
 import Navbar from "./Navbar";
 import FooterBack from "./FooterBack";
-import MeusFavsPage from "./MeusFavsPage1";
-import MeusSeeLaterPage from "./MeusSeeLaterPage1";
+import MeusFavsPage from "./MeusFavsPage";
+import MeusSeeLaterPage from "./MeusSeeLaterPage";
 import Loading from "./Loading";
 
 import { AvatarPainel } from "../components/Avatar/Avatar";
