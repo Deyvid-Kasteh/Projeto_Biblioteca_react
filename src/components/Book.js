@@ -89,9 +89,15 @@ function Book() {
                 <h3 className={`${styles.publishedDate}`}>
                   Lançamento: {livro.publishedDate}
                 </h3>
-                <h3 className={`${styles.description}`}>
-                  Descrição: {parse(livro.description)}
-                </h3>
+                {livro.description ? (
+                  <h3 className={`${styles.description}`}>
+                    Descrição: {parse(livro.description)}
+                  </h3>
+                ) : (
+                  <h3 className={`${styles.description}`}>
+                    Descrição: Sem descrição.
+                  </h3>
+                )}
               </div>
             </div>
             <div className={`${styles.down}`}>

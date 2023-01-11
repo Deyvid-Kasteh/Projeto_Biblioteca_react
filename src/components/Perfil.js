@@ -115,8 +115,8 @@ function Perfil() {
     } catch (error) {}
   }, []);
 
-  const Livros = usuario.books;
-  const LivrosSeeLater = usuario.booksSeeLater;
+  // const Livros = usuario.books;
+  // const LivrosSeeLater = usuario.booksSeeLater;
   //+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++  AQUI COMEÇA O RENDER     ++++++++++++++++++++++ ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++//
   return (
     <div className={`${styles.Perfil_Page}`}>

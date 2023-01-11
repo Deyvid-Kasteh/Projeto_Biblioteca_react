@@ -165,14 +165,14 @@ export const AvatarPainel = () => {
       const avatarResponse = functionWithSwitch(avatarLocalStorage);
       console.log(avatarLocalStorage);
       console.log(avatarResponse);
-      if (avatarResponse != Avatar) {
+      if (avatarResponse !== Avatar) {
         setAvatar(avatarResponse);
       }
     } else if (avatarDatabase) {
       const avatarResponse = functionWithSwitch(avatarDatabase);
       console.log(avatarDatabase);
       console.log(avatarResponse);
-      if (avatarResponse != Avatar) {
+      if (avatarResponse !== Avatar) {
         setAvatar(avatarResponse);
       }
     }
