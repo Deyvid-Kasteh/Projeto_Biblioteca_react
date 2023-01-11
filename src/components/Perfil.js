@@ -129,20 +129,20 @@ function Perfil() {
               {divPerfilDetalhesPainel && (
                 <div className={styles.perfilDetalhesPainel}>
                   <h1>{nome}</h1>
-                  {/* <button
+                  <button
                     className={styles.favPage_btn}
-                    onClick={() => openDivPainelFavorites()}
+                    // onClick={() => openDivPainelFavorites()}
                   >
-                    <div>Meus favoritos</div>
-                    <div className={styles.favPage_btn_heart}>❤️</div>
+                    <div>Notificações </div>
+                    <div className={styles.favPage_btn_heart}>🔔</div>
                   </button>
                   <button
                     className={styles.seeLater_btn}
-                    onClick={() => openDivPainelSeeLater()}
+                    // onClick={() => openDivPainelSeeLater()}
                   >
-                    <div>Ver depois</div>
-                    <div className={styles.seeLater_btn_alam}>⏰</div>
-                  </button> */}
+                    <div>Mensagens </div>
+                    <div className={styles.seeLater_btn_alam}>✉️</div>
+                  </button>
                 </div>
               )}
             </div>
