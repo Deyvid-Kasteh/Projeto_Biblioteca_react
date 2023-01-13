@@ -32,6 +32,7 @@ function Books() {
   const imgLivroParaContextMenu = useRef();
   const ttlLivroParaContextMenu = useRef();
 
+
   const { id } = useParams();
   const { user } = useContext(AuthContext);
   const idUsuario = user?.id;
@@ -76,15 +77,17 @@ function Books() {
   const { show } = useContextMenu();
 
   function displayMenu(e) {
-    console.log(e);
-    idLivroParaContextMenu.current = e.target.alt;
-    imgLivroParaContextMenu.current = e.target.src;
-    ttlLivroParaContextMenu.current = e.target.title;
+    // console.log(e.target.data);
+    // console.log(e.target.dataset.src);
+    // console.log(e.target.data);
+    idLivroParaContextMenu.current = e.target.dataset.id;
+    imgLivroParaContextMenu.current = e.target.dataset.src;
+    ttlLivroParaContextMenu.current = e.target.dataset.title;
     setTituloLivroMenuContexto(e.target.alt);
-    console.log(ttlLivroParaContextMenu.current);
-    console.log(imgLivroParaContextMenu.current);
-    console.log(idLivroParaContextMenu.current);
-    console.log(ttlLivroParaContextMenu.current);
+    // console.log(ttlLivroParaContextMenu.current);
+    // console.log(imgLivroParaContextMenu.current);
+    // console.log(idLivroParaContextMenu.current);
+    // console.log(ttlLivroParaContextMenu.current);
 
     // run some logic to determine which menu you should display
     show({
@@ -124,9 +127,7 @@ function Books() {
   };
   // ADICIONAR AO VER DEPOIS
 
-
-console.log(resultadosLivros);
-
+  console.log(resultadosLivros);
 
   // VER LIVRO
   const handleSeeBook = () => {
@@ -169,16 +170,28 @@ console.log(resultadosLivros);
                             src={livro.volumeInfo.imageLinks.thumbnail}
                             alt={livro.id}
                             key={livro.id}
-                            title={livro.volumeInfo.title}
+                            // title={livro.volumeInfo.title}
+                            data-id={livro.id}
+                            data-src={livro.volumeInfo.imageLinks.thumbnail}
+                            data-title={livro.volumeInfo.title}
                           />
                         ) : (
-                          <img
-                            className={`${styles.capa}`}
-                            src={genericCover}
-                            alt={livro.id}
-                            key={livro.id}
-                            title={livro.volumeInfo.title}
-                          />
+                          <div className={styles.capa}>
+                            <img
+                              className={styles.capaSemImagem}
+                              src={genericCover}
+                              alt={livro.id}
+                              key={livro.id}
+                              // title={livro.volumeInfo.title}
+                              // data-capa-generica={genericCoverCapa}
+                              data-id={livro.id}
+                              data-src={genericCover}
+                              data-title={livro.volumeInfo.title}
+                            />
+                            <p className={styles.capaSemImagemP}>
+                              {livro.volumeInfo.title}
+                            </p>
+                          </div>
                         )}
 
                         {/* </Link> */}

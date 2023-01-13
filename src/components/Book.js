@@ -10,6 +10,9 @@ import { AuthContext } from "../contexts/auth";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
+import genericCover from "../components/img/genericCover.jpg";
+
+
 function Book() {
   const { user } = useContext(AuthContext);
   const idUsuario = user?.id;
@@ -54,7 +57,7 @@ function Book() {
               <div className={`${styles.bookCover}`}>
                 <img
                   className={`${styles.capa}`}
-                  src={livro.imageLinks.thumbnail}
+                  src={livro.imageLinks ? (livro.imageLinks.thumbnail):(genericCover) }
                   alt={livro.id}
                   key={livro.id}
                 />
