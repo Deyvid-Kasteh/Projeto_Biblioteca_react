@@ -47,7 +47,7 @@ function SignUp() {
     console.log("passou pelo navigate");
   };
 
-  
+
   return (
     <div className={`${styles.login_container}`}>
       <Navbar />
@@ -64,7 +64,7 @@ function SignUp() {
                 name="name"
                 id="user name"
                 value={name}
-                placeholder="Nome..."
+                placeholder="Apelido..."
                 autoComplete="off"
                 onChange={(e) => setName(e.target.value)}
               />
@@ -75,7 +75,7 @@ function SignUp() {
                 name="email"
                 id="email"
                 value={email}
-                placeholder="Email.."
+                placeholder="Email..."
                 autoComplete="off"
                 onChange={(e) => setEmail(e.target.value)}
               />

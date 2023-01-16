@@ -221,7 +221,7 @@ function Books() {
           </Submenu>
         </Menu>
         <ToastContainer
-          position="bottom-right"
+          position="top-center"
           autoClose={5000}
           hideProgressBar={false}
           newestOnTop
@@ -230,7 +230,9 @@ function Books() {
           pauseOnFocusLoss
           draggable
           pauseOnHover
+          // toastStyle={{color: "white", backgroundColor: "transparent"}}
           theme="colored"
+          // closeButton={<p>Fechar</p>}
         />
       </div>
       <FooterBack />

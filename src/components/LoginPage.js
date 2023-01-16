@@ -9,6 +9,11 @@ import styles from "./LoginPage.module.css";
 
 import { AuthContext } from "../contexts/auth";
 
+
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
+
 function LoginPage() {
   const navigate = useNavigate();
   const { authenticated, user, login } = useContext(AuthContext);
@@ -16,11 +21,16 @@ function LoginPage() {
   const [password, setPassword] = useState("");
 
 
+  const notifyNoEmailSenhaAlert = (text) => toast.warning(text);
 
   const handleLogin = async (e) => {
     e.preventDefault();
     if (email === "" || password === "") {
-      alert("Por favor, coloque seu email e senha");
+      notifyNoEmailSenhaAlert("Por favor, coloque email e senha");
+      return;
+    }
+    if (password.length <= 7) {
+      notifyNoEmailSenhaAlert("Senha minima: 8 caracteres");
       return;
     }
 
@@ -47,7 +57,7 @@ function LoginPage() {
                 name="email"
                 id="email"
                 value={email}
-                placeholder="Email.."
+                placeholder="Email..."
                 autoComplete="off"
                 onChange={(e) => setEmail(e.target.value)}
               />
@@ -74,7 +84,7 @@ function LoginPage() {
                   className={styles.login_btn}
                   onClick={handleLogin}
                 >
-                  Entrar
+                  ENTRAR
                 </button>
               </div>
               <div className={styles.formGroup_switch}>
@@ -94,6 +104,20 @@ function LoginPage() {
             </div>
           </form>
         </div>
+        <ToastContainer
+          position="top-center"
+          autoClose={5000}
+          hideProgressBar={false}
+          newestOnTop
+          closeOnClick
+          rtl={false}
+          pauseOnFocusLoss
+          draggable
+          pauseOnHover
+          // toastStyle={{color: "white", backgroundColor: "transparent"}}
+          theme="colored"
+          // closeButton={<p>Fechar</p>}
+        />
       </div>
       <FooterBack />
     </div>
