@@ -7,12 +7,6 @@ import styles from "./SignUp.module.css";
 
 import FooterBack from "./FooterBack";
 
-
-
-
-
-
-
 function SignUp() {
   const navigate = useNavigate()
   const [name, setName] = useState("");
@@ -56,7 +50,6 @@ function SignUp() {
           <div className={`${styles.title}`}>
             <h1>Inscrever</h1>
           </div>
-
           <form className={styles.login_form_login}>
             <div className={styles.formGroup}>
               <input
@@ -89,7 +82,17 @@ function SignUp() {
                   autoComplete="off"
                   onChange={(e) => setPassword(e.target.value)}
                 />
+                <div
+                  className={`${styles.feedback} ${styles.pswd_feedback} ${styles.l}`}
+                >
+                  {/* <p> Força...</p> */}
+                  {/* <p>😀😄</p> */}
+                  {/* <p>😁</p> */}
+                  <h2>😄</h2>
+                  {/* <p>☹️😕😐🙂😀😄👍</p> */}
+                </div>
               </div>
+
               <div className={styles.formGroup}>
                 <input
                   type="password"
