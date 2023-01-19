@@ -8,11 +8,22 @@ import styles from "./SignUp.module.css";
 import FooterBack from "./FooterBack";
 
 function SignUp() {
-  const navigate = useNavigate()
+  const navigate = useNavigate();
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
+
+  const insuficiente = "☹️";
+  const fraco = "😕";
+  const medio = "😐";
+  const bom = "😄";
+  const forte = "💪";
+  const falha = "❌";
+  const trabalhando = "🤖";
+  const correto = "👍";
+  const teste = "💪";
+  const valido = "✅";
 
   const handleSignUp = async (e) => {
     e.preventDefault();
@@ -36,11 +47,10 @@ function SignUp() {
     };
     const response = await api.post("/users", data);
     console.log(response.data);
-    navigate(-1)
+    navigate(-1);
     alert("Cadastro realizado com sucesso");
     console.log("passou pelo navigate");
   };
-
 
   return (
     <div className={`${styles.login_container}`}>
@@ -61,6 +71,9 @@ function SignUp() {
                 autoComplete="off"
                 onChange={(e) => setName(e.target.value)}
               />
+              <div className={`${styles.feedback}`}>
+                {name.length >= 3 ? <h2>{valido}</h2> : ""}
+              </div>
             </div>
             <div className={styles.formGroup}>
               <input
@@ -72,54 +85,54 @@ function SignUp() {
                 autoComplete="off"
                 onChange={(e) => setEmail(e.target.value)}
               />
-              <div className={styles.formGroup}>
-                <input
-                  type="password"
-                  name="password"
-                  id="password"
-                  value={password}
-                  placeholder="Senha..."
-                  autoComplete="off"
-                  onChange={(e) => setPassword(e.target.value)}
-                />
-                <div
-                  className={`${styles.feedback} ${styles.pswd_feedback} ${styles.l}`}
-                >
-                  {/* <p> Força...</p> */}
-                  {/* <p>😀😄</p> */}
-                  {/* <p>😁</p> */}
-                  <h2>😄</h2>
-                  {/* <p>☹️😕😐🙂😀😄👍</p> */}
-                </div>
+              <div className={`${styles.feedback}`}>
+                {email.length >= 10 ? <h2>{valido}</h2> : ""}
               </div>
+            </div>
+            <div className={styles.formGroup}>
+              <input
+                type="password"
+                name="password"
+                id="password"
+                value={password}
+                placeholder="Senha..."
+                autoComplete="off"
+                onChange={(e) => setPassword(e.target.value)}
+              />
+              <div className={`${styles.feedback}`}>
+                {password.length >= 8 ? <h2>{forte}</h2> : ""}
+              </div>
+            </div>
 
-              <div className={styles.formGroup}>
-                <input
-                  type="password"
-                  name="confirmPassword"
-                  id="confirmPassword"
-                  value={confirmPassword}
-                  placeholder="Confirme a senha..."
-                  autoComplete="off"
-                  onChange={(e) => setConfirmPassword(e.target.value)}
-                />
+            <div className={styles.formGroup}>
+              <input
+                type="password"
+                name="confirmPassword"
+                id="confirmPassword"
+                value={confirmPassword}
+                placeholder="Confirme a senha..."
+                autoComplete="off"
+                onChange={(e) => setConfirmPassword(e.target.value)}
+              />
+              <div className={`${styles.feedback}`}>
+                {confirmPassword.length >= 8 ? <h2>{forte}</h2> : ""}
               </div>
+            </div>
 
-              <div className={styles.formGroup_btn}>
-                <button
-                  type="submit"
-                  className={styles.login_btn}
-                  onClick={handleSignUp}
-                >
-                  Inscrever
-                </button>
-              </div>
-              <div className={styles.formGroup_Login}>
-                <p>Já tem conta?</p>
-                <Link to="/loginPage">
-                  <p>Login</p>
-                </Link>
-              </div>
+            <div className={styles.formGroup_btn}>
+              <button
+                type="submit"
+                className={styles.login_btn}
+                onClick={handleSignUp}
+              >
+                Inscrever
+              </button>
+            </div>
+            <div className={styles.formGroup_Login}>
+              <p>Já tem conta?</p>
+              <Link to="/loginPage">
+                <p>Login</p>
+              </Link>
             </div>
           </form>
         </div>
