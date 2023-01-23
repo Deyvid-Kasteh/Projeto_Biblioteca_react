@@ -92,6 +92,11 @@
   color: white;
 }
 
+.password:focus {
+letter-spacing: .5rem;
+}
+
+
 .formGroup input:focus {
   outline: none;
   background-color: rgba(0, 0, 0, 0.4);

@@ -2,10 +2,16 @@ import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { api } from "../services/api";
 import Navbar from "./Navbar";
-
 import styles from "./SignUp.module.css";
-
 import FooterBack from "./FooterBack";
+
+// ICONS ----------------------------------------------------------------
+
+import { BsFillCheckCircleFill, BsCheckCircle } from "react-icons/bs";
+
+import { FaCheck, FaCheckCircle } from "react-icons/fa";
+
+// ICONS ----------------------------------------------------------------
 
 function SignUp() {
   const navigate = useNavigate();
@@ -14,7 +20,7 @@ function SignUp() {
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
 
-  const insuficiente = "☹️";
+  const insuficiente = "😭";
   const fraco = "😕";
   const medio = "😐";
   const bom = "😄";
@@ -22,8 +28,11 @@ function SignUp() {
   const falha = "❌";
   const trabalhando = "🤖";
   const correto = "👍";
-  const teste = "💪";
-  const valido = "✅";
+  const teste = "⏳";
+  const valido = <FaCheckCircle />;
+  const regExpEmail = /^[a-z0-9.]+@[a-z0-9]+\.[a-z]+(\.[a-z]+)?$/i;
+
+  console.log(regExpEmail.test(email));
 
   const handleSignUp = async (e) => {
     e.preventDefault();
@@ -80,20 +89,31 @@ function SignUp() {
                 type="email"
                 name="email"
                 id="email"
+                className={styles.email}
                 value={email}
                 placeholder="Email..."
                 autoComplete="off"
                 onChange={(e) => setEmail(e.target.value)}
               />
-              <div className={`${styles.feedback}`}>
-                {email.length >= 10 ? <h2>{valido}</h2> : ""}
-              </div>
+
+              {email ? (
+                <div className={`${styles.feedback}`}>
+                  {regExpEmail.test(email) ? (
+                    <h2>{valido}</h2>
+                  ) : (
+                    <h2>{teste}</h2>
+                  )}
+                </div>
+              ) : (
+                ""
+              )}
             </div>
             <div className={styles.formGroup}>
               <input
                 type="password"
                 name="password"
                 id="password"
+                className={styles.password}
                 value={password}
                 placeholder="Senha..."
                 autoComplete="off"
@@ -109,14 +129,19 @@ function SignUp() {
                 type="password"
                 name="confirmPassword"
                 id="confirmPassword"
+                className={styles.password}
                 value={confirmPassword}
                 placeholder="Confirme a senha..."
                 autoComplete="off"
                 onChange={(e) => setConfirmPassword(e.target.value)}
               />
-              <div className={`${styles.feedback}`}>
-                {confirmPassword.length >= 8 ? <h2>{forte}</h2> : ""}
-              </div>
+              {confirmPassword ? (
+                <div className={`${styles.feedback}`}>
+                  {confirmPassword === password ? <h2>{valido}</h2> : ""}
+                </div>
+              ) : (
+                ""
+              )}
             </div>
 
             <div className={styles.formGroup_btn}>
