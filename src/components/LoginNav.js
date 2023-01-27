@@ -34,8 +34,8 @@ function LoginNav() {
     loginName.current = "Login";
   }
 
-  console.log(authenticated);
-  console.log(user?.id);
+  // console.log(authenticated);
+  // console.log(user?.id);
 
   const sair = async () => {
     await logout();

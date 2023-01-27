@@ -1,6 +1,10 @@
 import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { api } from "../services/api";
+import zxcvbn from "zxcvbn";
+
+
+
 import Navbar from "./Navbar";
 import styles from "./SignUp.module.css";
 import FooterBack from "./FooterBack";
@@ -19,6 +23,7 @@ function SignUp() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
+  const passwordStrengthScore = zxcvbn(password).score;
 
   const insuficiente = "😭";
   const fraco = "😕";
@@ -30,9 +35,38 @@ function SignUp() {
   const correto = "👍";
   const teste = "⏳";
   const valido = <FaCheckCircle />;
-  const regExpEmail = /^[a-z0-9.]+@[a-z0-9]+\.[a-z]+(\.[a-z]+)?$/i;
 
-  console.log(regExpEmail.test(email));
+  const regExpEmail = /^[a-z0-9.]+@[a-z0-9]+\.[a-z]+(\.[a-z]+)?$/i;
+  let formFilled = false;
+
+  if (
+    name.length > 0 &&
+    email.length > 0 &&
+    password.length > 0 &&
+    confirmPassword > 0
+  ) {
+    formFilled = true;
+  } else {
+    formFilled = false;
+  }
+
+  // console.log(regExpEmail.test(email));
+  console.log(formFilled)
+
+  const passwordStrengthSwitch = (passwordStrengthScore) => {
+    switch (passwordStrengthScore) {
+      case 0:
+        return <h2>{insuficiente}</h2>;
+      case 1:
+        return <h2>{fraco}</h2>;
+      case 2:
+        return <h2>{medio}</h2>;
+      case 3:
+        return <h2>{bom}</h2>;
+      case 4:
+        return <h2>{forte}</h2>;
+    }
+  };
 
   const handleSignUp = async (e) => {
     e.preventDefault();
@@ -40,11 +74,11 @@ function SignUp() {
       alert("Por favor, coloque seu email e senha");
       return;
     }
-    console.log("Login");
-    console.log("nome:", name);
-    console.log("email:", email);
-    console.log("senha:", password);
-    console.log("confirmação de senha:", confirmPassword);
+    // console.log("Login");
+    // console.log("nome:", name);
+    // console.log("email:", email);
+    // console.log("senha:", password);
+    // console.log("confirmação de senha:", confirmPassword);
     if (password !== confirmPassword) {
       alert("As senhas precisam ser iguais");
       return;
@@ -55,10 +89,10 @@ function SignUp() {
       password,
     };
     const response = await api.post("/users", data);
-    console.log(response.data);
+    // console.log(response.data);
     navigate(-1);
     alert("Cadastro realizado com sucesso");
-    console.log("passou pelo navigate");
+    // console.log("passou pelo navigate");
   };
 
   return (
@@ -81,7 +115,11 @@ function SignUp() {
                 onChange={(e) => setName(e.target.value)}
               />
               <div className={`${styles.feedback}`}>
-                {name.length >= 3 ? <h2>{valido}</h2> : ""}
+                {name.length >= 3 ? (
+                  <h2 className={styles.icons}>{valido}</h2>
+                ) : (
+                  ""
+                )}
               </div>
             </div>
             <div className={styles.formGroup}>
@@ -99,7 +137,7 @@ function SignUp() {
               {email ? (
                 <div className={`${styles.feedback}`}>
                   {regExpEmail.test(email) ? (
-                    <h2>{valido}</h2>
+                    <h2 className={styles.icons}>{valido}</h2>
                   ) : (
                     <h2>{teste}</h2>
                   )}
@@ -119,9 +157,17 @@ function SignUp() {
                 autoComplete="off"
                 onChange={(e) => setPassword(e.target.value)}
               />
-              <div className={`${styles.feedback}`}>
-                {password.length >= 8 ? <h2>{forte}</h2> : ""}
-              </div>
+              {password ? (
+                <div className={`${styles.feedback}`}>
+                  {password.length === 0 ? (
+                    <h2>{falha}</h2>
+                  ) : (
+                    passwordStrengthSwitch(passwordStrengthScore)
+                  )}
+                </div>
+              ) : (
+                ""
+              )}
             </div>
 
             <div className={styles.formGroup}>
@@ -137,14 +183,23 @@ function SignUp() {
               />
               {confirmPassword ? (
                 <div className={`${styles.feedback}`}>
-                  {confirmPassword === password ? <h2>{valido}</h2> : ""}
+                  {confirmPassword === password ? (
+                    <h2 className={styles.icons}>{valido}</h2>
+                  ) : (
+                    <h2>{falha}</h2>
+                  )}
                 </div>
               ) : (
                 ""
               )}
             </div>
 
-            <div className={styles.formGroup_btn}>
+            <div
+              // className={styles.formGroup_btn}
+              className={`${
+                formFilled ? styles.formGroup_btnFilled : styles.formGroup_btn
+              }`}
+            >
               <button
                 type="submit"
                 className={styles.login_btn}

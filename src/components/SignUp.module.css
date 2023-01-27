@@ -93,9 +93,8 @@
 }
 
 .password:focus {
-letter-spacing: .5rem;
+  letter-spacing: 0.5rem;
 }
-
 
 .formGroup input:focus {
   outline: none;
@@ -128,10 +127,36 @@ letter-spacing: .5rem;
   cursor: pointer;
 }
 
-.formGroup_btn button:hover {
-  /* background-color: goldenrod; */
-  font-weight: bold;
+/* .formGroup_btn button:hover {
+  border: 2px solid #5cb85c;
+  background-color: #5cb85c;
+} */
+
+.formGroup_btnFilled {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  margin-top: 10px;
+  /* border: 1px solid white; */
 }
+
+
+.formGroup_btnFilled button {
+  box-sizing: border-box;
+  background-color: #5cb85c;
+  border: 2px solid #5cb85c;
+  padding: 15px 80px;
+  text-align: center;
+  text-decoration: none;
+  display: flex;
+  font-size: 1.5em;
+  border-radius: 12px;
+  /* box-shadow: 0 5px 30px black; */
+  cursor: pointer;
+}
+
+
 
 .formGroup_Login {
   width: 100%;
@@ -172,3 +197,7 @@ letter-spacing: .5rem;
     transition: opacity 0.5s;
 } */
 
+.icons svg {
+  color: #5cb85c;
+  fill: #5cb85c;
+}
