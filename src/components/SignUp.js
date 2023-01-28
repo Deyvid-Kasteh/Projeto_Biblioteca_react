@@ -11,8 +11,13 @@ import FooterBack from "./FooterBack";
 
 // ICONS ----------------------------------------------------------------
 
-import { FaCheck, FaCheckCircle } from "react-icons/fa";
-
+import {
+  FaEyeSlash,
+  FaEye,
+  FaCheckCircle,
+  FaTimesCircle,
+} from "react-icons/fa";
+import { RxEyeClosed, RxEyeOpen } from "react-icons/rx";
 // ICONS ----------------------------------------------------------------
 
 function SignUp() {
@@ -20,9 +25,10 @@ function SignUp() {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [inputPasswordType, setInputPasswordType] = useState(true);
   const [confirmPassword, setConfirmPassword] = useState("");
+  const [inputConfirmPasswordType, setInputConfirmPassword] = useState(true)
   const [change, setChange] = useState(false);
-
 
   const passwordStrengthScore = zxcvbn(password).score;
 
@@ -31,7 +37,7 @@ function SignUp() {
   const medio = "😐";
   const bom = "😄";
   const forte = "💪";
-  const falha = "❌";
+  const falha = <FaTimesCircle />;
   const trabalhando = "🤖";
   const correto = "👍";
   const teste = "⏳";
@@ -46,53 +52,44 @@ function SignUp() {
 
   const formFilled = useRef(false);
 
-  const notify = () => toast.success("Senhas iguais");
 
   const validNameFunction = (name) => {
-    if (name.length >= 3) {
+    if (name.length >= 4) {
       validName.current = true;
-      // console.log(`${"Nome SIM"}`);
       return <h2 className={styles.icons}>{valido}</h2>;
     } else {
       validName.current = false;
-      // console.log(`${"Nome NÃO"}`);
-      return "";
+      return <h2 className={styles.icons_disabled}>{valido}</h2>;
     }
   };
 
   const validEmailFunction = (email) => {
     if (regExpEmail.test(email)) {
       validEmail.current = true;
-      // console.log(`${"Email SIM"}`);
       return <h2 className={styles.icons}>{valido}</h2>;
     } else {
       validEmail.current = false;
-      // console.log(`${"Email NÃO"}`);
-      return <h2>{teste}</h2>;
+      return <h2 className={styles.icons_disabled}>{valido}</h2>;
     }
   };
 
   const validPasswordFunction = (password) => {
     if (password.length > 0) {
       validPassword.current = true;
-      // console.log(`${"Password SIM"}`);
       return passwordStrengthSwitch(passwordStrengthScore);
     } else {
       validPassword.current = false;
-      // console.log(`${"Password NÃO"}`);
-      return <h2>{falha}</h2>;
+      return <h2 className={styles.falha}>{falha}</h2>;
     }
   };
 
   const validConfirmPasswordFunction = (confirmPassword, password) => {
     if (confirmPassword === password) {
       validConfirmPassword.current = true;
-      // console.log(`${"ConfirmPassword SIM"}`);
       return <h2 className={styles.icons}>{valido}</h2>;
     } else {
       validConfirmPassword.current = false;
-      // console.log(`${"ConfirmPassword NÃO"}`);
-      return <h2>{falha}</h2>;
+      return <h2 className={styles.icons_disabled}>{valido}</h2>;
     }
   };
 
@@ -143,33 +140,37 @@ function SignUp() {
       validConfirmPassword.current
     ) {
       formFilled.current = true;
-      notify();
-      setChange(prev=> !prev)
+      setChange((prev) => !prev);
       console.log(`${"formFilled SIM"}`);
     } else {
       formFilled.current = false;
       console.log(`${"formFilled NÃO"}`);
-            setChange((prev) => !prev);
+      setChange((prev) => !prev);
 
       console.log(`${validName.current} + validName`);
       console.log(`${validEmail.current} + validEmail`);
       console.log(`${validPassword.current} + validPassword`);
       console.log(`${validConfirmPassword.current} + validConfirmPassword`);
     }
-  }
+  };
   const handleSignUp = async (e) => {
     e.preventDefault();
+
     if (email === "" || password === "") {
-      alert("Por favor, coloque seu email e senha");
+      toast.warning("Por favor, preencha todos os campos");
+
       return;
     }
-    // console.log("Login");
-    // console.log("nome:", name);
-    // console.log("email:", email);
-    // console.log("senha:", password);
-    // console.log("confirmação de senha:", confirmPassword);
+
+    if (!regExpEmail.test(email)) {
+      console.log("passou aqui");
+      toast.warning("Por favor, coloque um email válido");
+      return;
+    }
+
     if (password !== confirmPassword) {
-      alert("As senhas precisam ser iguais");
+      toast.warning("As senhas precisam ser iguais");
+
       return;
     }
     const data = {
@@ -178,10 +179,8 @@ function SignUp() {
       password,
     };
     const response = await api.post("/users", data);
-    // console.log(response.data);
     navigate(-1);
-    alert("Cadastro realizado com sucesso");
-    // console.log("passou pelo navigate");
+    // alert("Cadastro realizado com sucesso");
   };
 
   return (
@@ -208,16 +207,13 @@ function SignUp() {
                   formFilledFunction();
                 }}
               />
-              {/* <div className={`${styles.feedback}`}>
-                {name.length >= 3 ? (
-                  <h2 className={styles.icons}>{valido}</h2>
-                ) : (
-                  ""
-                )}
-              </div> */}
-              <div className={`${styles.feedback}`}>
-                {validNameFunction(name)}
-              </div>
+              {name ? (
+                <div className={`${styles.feedback}`}>
+                  {validNameFunction(name)}
+                </div>
+              ) : (
+                ""
+              )}
             </div>
             <div className={styles.formGroup}>
               <input
@@ -237,13 +233,6 @@ function SignUp() {
               />
 
               {email ? (
-                // <div className={`${styles.feedback}`}>
-                //   {regExpEmail.test(email) ? (
-                //     <h2 className={styles.icons}>{valido}</h2>
-                //   ) : (
-                //     <h2>{teste}</h2>
-                //   )}
-                // </div>
                 <div className={`${styles.feedback}`}>
                   {validEmailFunction(email)}
                 </div>
@@ -253,7 +242,7 @@ function SignUp() {
             </div>
             <div className={styles.formGroup}>
               <input
-                type="password"
+                type={inputPasswordType ? "password" : "text"}
                 name="password"
                 id="password"
                 className={styles.password}
@@ -268,16 +257,23 @@ function SignUp() {
                 }}
               />
               {password ? (
-                // <div className={`${styles.feedback}`}>
-                //   {password.length === 0 ? (
-                //     <h2>{falha}</h2>
-                //   ) : (
-                //     passwordStrengthSwitch(passwordStrengthScore)
-                //   )}
-                // </div>
-                <div className={`${styles.feedback}`}>
-                  {validPasswordFunction(password)}
-                </div>
+                <>
+                  <div className={`${styles.password_see}`}>
+                    <button
+                      onClick={(e) => {
+                        e.preventDefault();
+                        setInputPasswordType(!inputPasswordType);
+                      }}
+                    >
+                      <h2>
+                        {inputPasswordType ? <RxEyeClosed /> : <RxEyeOpen />}
+                      </h2>
+                    </button>
+                  </div>
+                  <div className={`${styles.feedback}`}>
+                    {validPasswordFunction(password)}
+                  </div>
+                </>
               ) : (
                 ""
               )}
@@ -285,7 +281,7 @@ function SignUp() {
 
             <div className={styles.formGroup}>
               <input
-                type="password"
+                type={inputConfirmPasswordType ? "password" : "text"}
                 name="confirmPassword"
                 id="confirmPassword"
                 className={styles.password}
@@ -300,16 +296,33 @@ function SignUp() {
                 }}
               />
               {confirmPassword ? (
-                <div className={`${styles.feedback}`}>
-                  {validConfirmPasswordFunction(confirmPassword, password)}
-                </div>
+                <>
+                  <div className={`${styles.password_see}`}>
+                    <button
+                      onClick={(e) => {
+                        e.preventDefault();
+                        setInputConfirmPassword(!inputConfirmPasswordType);
+                      }}
+                    >
+                      <h2>
+                        {inputConfirmPasswordType ? (
+                          <RxEyeClosed />
+                        ) : (
+                          <RxEyeOpen />
+                        )}
+                      </h2>
+                    </button>
+                  </div>
+                  <div className={`${styles.feedback}`}>
+                    {validConfirmPasswordFunction(confirmPassword, password)}
+                  </div>
+                </>
               ) : (
                 ""
               )}
             </div>
 
             <div
-              // className={styles.formGroup_btn}
               className={`${
                 formFilled.current
                   ? styles.formGroup_btnFilled

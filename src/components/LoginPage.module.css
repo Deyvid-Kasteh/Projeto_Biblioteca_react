@@ -170,3 +170,26 @@
   margin-left: 20px;
   border-bottom: 2px solid goldenrod;
 }
+
+
+.password_see {
+  position: absolute;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  right: 60px;
+  transform: translateY(-55%);
+  /* background-color: black; */
+}
+
+.password_see button {
+  box-sizing: border-box;
+  border: none;
+  background-color: transparent;
+  text-align: center;
+  text-decoration: none;
+  display: flex;
+  border-radius: 12px;
+  /* box-shadow: 0 5px 30px black; */
+  cursor: pointer;
+}

@@ -6,20 +6,21 @@ import FooterBack from "./FooterBack";
 import Switch from "@mui/material/Switch";
 import styles from "./LoginPage.module.css";
 
+// ICONS ----------------------------------------------------------------
+import { RxEyeClosed, RxEyeOpen } from "react-icons/rx";
+// ICONS ----------------------------------------------------------------
 
 import { AuthContext } from "../contexts/auth";
 
-
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-
 
 function LoginPage() {
   const navigate = useNavigate();
   const { authenticated, user, login } = useContext(AuthContext);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-
+  const [inputPasswordType, setInputPasswordType] = useState(true);
 
   const notifyNoEmailSenhaAlert = (text) => toast.warning(text);
 
@@ -63,7 +64,7 @@ function LoginPage() {
               />
               <div className={styles.formGroup}>
                 <input
-                  type="password"
+                  type={inputPasswordType ? "password" : "text"}
                   name="password"
                   id="password"
                   value={password}
@@ -71,6 +72,24 @@ function LoginPage() {
                   autoComplete="off"
                   onChange={(e) => setPassword(e.target.value)}
                 />
+                {password ? (
+                  <>
+                    <div className={`${styles.password_see}`}>
+                      <button
+                        onClick={(e) => {
+                          e.preventDefault();
+                          setInputPasswordType(!inputPasswordType);
+                        }}
+                      >
+                        <h2>
+                          {inputPasswordType ? <RxEyeClosed /> : <RxEyeOpen />}
+                        </h2>
+                      </button>
+                    </div>
+                  </>
+                ) : (
+                  ""
+                )}
               </div>
               <div className={styles.formGroup_key}>
                 <Link to="/login">
