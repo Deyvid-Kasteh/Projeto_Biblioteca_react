@@ -100,6 +100,7 @@ function LoginPage() {
               <div className={styles.formGroup_btn}>
                 <button
                   type="submit"
+                  // {styles.login_btn}
                   className={styles.login_btn}
                   onClick={handleLogin}
                 >
@@ -110,6 +111,8 @@ function LoginPage() {
                 <Switch
                   // defaultChecked
                   color="warning"
+                  // color="primary"
+
                   // onChange={handleChange}
                 />
                 <p>Manter logado</p>

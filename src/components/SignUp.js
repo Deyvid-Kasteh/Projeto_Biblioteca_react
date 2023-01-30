@@ -27,7 +27,7 @@ function SignUp() {
   const [password, setPassword] = useState("");
   const [inputPasswordType, setInputPasswordType] = useState(true);
   const [confirmPassword, setConfirmPassword] = useState("");
-  const [inputConfirmPasswordType, setInputConfirmPassword] = useState(true)
+  const [inputConfirmPasswordType, setInputConfirmPassword] = useState(true);
   const [change, setChange] = useState(false);
 
   const passwordStrengthScore = zxcvbn(password).score;
@@ -51,7 +51,6 @@ function SignUp() {
   const validConfirmPassword = useRef(false);
 
   const formFilled = useRef(false);
-
 
   const validNameFunction = (name) => {
     if (name.length >= 4) {
@@ -155,6 +154,26 @@ function SignUp() {
   };
   const handleSignUp = async (e) => {
     e.preventDefault();
+
+    if (name === "") {
+      toast.warning("Por favor, preencha o Apelido");
+      return;
+    }
+
+    if (email === "") {
+      toast.warning("Por favor, preencha o Email");
+      return;
+    }
+
+    if (password === "") {
+      toast.warning("Por favor, preencha a Senha");
+      return;
+    }
+
+    if (confirmPassword === "") {
+      toast.warning("Por favor, preencha a confirmação de senha");
+      return;
+    }
 
     if (email === "" || password === "") {
       toast.warning("Por favor, preencha todos os campos");

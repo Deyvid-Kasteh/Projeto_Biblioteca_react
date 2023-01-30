@@ -120,7 +120,7 @@
 
 .formGroup_btn button {
   background-color: transparent;
-  border: 2px solid goldenrod;
+  border: 2px solid #ffffff67;
   padding: 15px 80px;
   text-align: center;
   text-decoration: none;
@@ -132,9 +132,8 @@
 }
 
 .formGroup_btn button:hover {
-  /* background-color: #4caf50; */
-    background-color: goldenrod;
-
+  background-color: #5cb85c;
+  border: 2px solid #5cb85c;
   font-weight: bold;
 }
 

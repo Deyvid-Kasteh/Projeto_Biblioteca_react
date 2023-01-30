@@ -6,6 +6,9 @@ import { BsPersonCircle } from "react-icons/bs";
 import { AuthContext } from "../contexts/auth";
 import { AvatarLogo } from "./Avatar/Avatar";
 
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
 // CRIAÇÃO DE CAIXA DE CONTEXTO
 import {
   Menu,
@@ -94,17 +97,37 @@ function LoginNav() {
                 <Item disabled>🛒 Carrinho</Item>
                 <Separator />
                 <Submenu label="⏬ Mais opções">
-                  <Item>💰 Mandar um Pix 😜</Item>
+                  <Item
+                    onClick={() =>
+                      toast.warning(<h2>"Em construção... 🚧"</h2>)
+                    }
+                  >
+                    💰 Mandar um Pix 😜
+                  </Item>
                   <Separator />
-                  <Item>🫖 Tomar um café ☕</Item>
+                  <Item
+                    onClick={() =>
+                      toast.warning(<h2>"Em construção... 🚧"</h2>)
+                    }
+                  >
+                    🫖 Tomar um café ☕
+                  </Item>
                   <Separator />
-                  <Item>🥠 Biscoito da Sorte 🍀</Item>
+                  <Item onClick={() =>
+                      toast.warning(<h2>"Em construção... 🚧"</h2>)
+                    }>🥠 Biscoito da Sorte 🍀</Item>
                   <Separator />
-                  <Item>🖨️ Xerox: 0,25 📄</Item>
+                  <Item onClick={() =>
+                      toast.warning(<h2>"Em construção... 🚧"</h2>)
+                    }>🖨️ Xerox: 0,25 📄</Item>
                   <Separator />
-                  <Item>👨‍💻️ Crítica construtiva 🤬</Item>
+                  <Item onClick={() =>
+                      toast.warning(<h2>"Em construção... 🚧"</h2>)
+                    }>👨‍💻️ Crítica construtiva 🤬</Item>
                   <Separator />
-                  <Item>🚽 Banheiro Não-binário</Item>
+                  <Item onClick={() =>
+                      toast.warning(<h2>"Em construção... 🚧"</h2>)
+                    }>🚽 Banheiro Não-binário</Item>
                 </Submenu>
                 <Separator />
 

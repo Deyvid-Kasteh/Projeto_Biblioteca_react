@@ -8,6 +8,10 @@ import MeusFavsPage from "./MeusFavsPage";
 import MeusSeeLaterPage from "./MeusSeeLaterPage";
 import Loading from "./Loading";
 
+
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
 import { AvatarPainel } from "../components/Avatar/Avatar";
 
 import styles from "./Perfil.module.css";
@@ -131,14 +135,18 @@ function Perfil() {
                   <h1>{nome}</h1>
                   <button
                     className={styles.favPage_btn}
-                    // onClick={() => openDivPainelFavorites()}
+                    onClick={() =>
+                      toast.warning(<h2>"Em construção... 🚧"</h2>)
+                    }
                   >
                     <div>Notificações </div>
                     <div className={styles.favPage_btn_heart}>🔔</div>
                   </button>
                   <button
                     className={styles.seeLater_btn}
-                    // onClick={() => openDivPainelSeeLater()}
+                    onClick={() =>
+                      toast.warning(<h2>"Em construção... 🚧"</h2>)
+                    }
                   >
                     <div>Mensagens </div>
                     <div className={styles.seeLater_btn_alam}>✉️</div>
@@ -174,6 +182,20 @@ function Perfil() {
           </div>
         </div>
       )}
+      <ToastContainer
+        position="top-center"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        // toastStyle={{color: "white", backgroundColor: "transparent"}}
+        theme="dark"
+        // closeButton={<p>Fechar</p>}
+      />
       {!removeLoading && <Loading />}
       <FooterBack />
     </div>
