@@ -35,7 +35,7 @@ function Book() {
   const handleAddBookToFavorites = async (livroCompleto) => {
     notify();
     if (user) {
-      toast.warning("Tem USER");
+      toast.warning("");
       const idLivro = livroCompleto.id;
       const imgLivro = `http://books.google.com/books/content?id=${idLivro}&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api`;
       const ttlLivro = livroCompleto.volumeInfo.title;
