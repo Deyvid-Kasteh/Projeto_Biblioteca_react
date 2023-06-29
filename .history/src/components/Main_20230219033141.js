@@ -19,13 +19,9 @@ function Main() {
           type="text"
           name="input_busca"
           placeholder="Digite o nome do livro"
-          onChange={(e) => setPesquisa(e.target.value)}
+          // onChange==>()
           autoComplete="off"
-          onKeyUp={(e) => {
-            if (e.key === "Enter") {
-              navigate(`/books/${pesquisa}`);
-            }
-          }}
+          onKeyUp={(e) => {if (e.key === "Enter") {navigate(`/books/${pesquisa}`)}}}
         />
         <button className={`${styles.btn_busca}`}>
           <Link to={`/books/${pesquisa}`}>

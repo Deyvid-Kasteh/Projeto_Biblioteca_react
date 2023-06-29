@@ -33,7 +33,6 @@ function Book() {
   }, []);
   const notify = () => toast.success("Livro adicionado aos ❤️");
   const handleAddBookToFavorites = async (livroCompleto) => {
-    notify();
     if (user) {
       const idLivro = livroCompleto.id;
       const imgLivro = `http://books.google.com/books/content?id=${idLivro}&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api`;

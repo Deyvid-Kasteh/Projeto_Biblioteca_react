@@ -32,7 +32,6 @@ function Books() {
   const imgLivroParaContextMenu = useRef();
   const ttlLivroParaContextMenu = useRef();
 
-
   const { id } = useParams();
   const { user } = useContext(AuthContext);
   const idUsuario = user?.id;
@@ -61,11 +60,8 @@ function Books() {
     })
       .then((resp) => resp.json())
       .then((data) => setResultadosLivros(data.items))
-      // .then(console.log(resultadosLivros))
       .catch((err) => console.log(err));
   }, []);
-  //
-  // console.log(resultadosLivros);
 
   const navigate = useNavigate();
 
@@ -77,19 +73,11 @@ function Books() {
   const { show } = useContextMenu();
 
   function displayMenu(e) {
-    // console.log(e.target.data);
-    // console.log(e.target.dataset.src);
-    // console.log(e.target.data);
     idLivroParaContextMenu.current = e.target.dataset.id;
     imgLivroParaContextMenu.current = e.target.dataset.src;
     ttlLivroParaContextMenu.current = e.target.dataset.title;
     setTituloLivroMenuContexto(e.target.alt);
-    // console.log(ttlLivroParaContextMenu.current);
-    // console.log(imgLivroParaContextMenu.current);
-    // console.log(idLivroParaContextMenu.current);
-    // console.log(ttlLivroParaContextMenu.current);
 
-    // run some logic to determine which menu you should display
     show({
       id: "menuLivro",
       event: e,
@@ -99,31 +87,37 @@ function Books() {
 
   // ADICIONAR AOS  FAVORITOS
   const handleAddBookToFavorites = async () => {
-    console.log();
-    const idLivro = idLivroParaContextMenu.current;
-    const imgLivro = imgLivroParaContextMenu.current;
-    const ttlLivro = ttlLivroParaContextMenu.current;
-
-    const response = await api.patch(
-      `/Perfil/${idUsuario}/addBookToFavorites/${idLivro}`,
-      { idLivro, imgLivro, ttlLivro }
-    );
-    console.log(response.data);
-    notifyFavoritos();
+    if (user) {
+      const idLivro = idLivroParaContextMenu.current;
+      const imgLivro = imgLivroParaContextMenu.current;
+      const ttlLivro = ttlLivroParaContextMenu.current;
+      const response = await api.patch(
+        `/Perfil/${idUsuario}/addBookToFavorites/${idLivro}`,
+        { idLivro, imgLivro, ttlLivro }
+      );
+      console.log(response.data);
+      notifyFavoritos();
+    } else {
+      toast.warning("Necessário fazer Login");
+    }
   };
   // ADICIONAR AOS  FAVORITOS
 
   // ADICIONAR AO VER DEPOIS
   const handleAddBookToSeeLater = async () => {
-    const idLivro = idLivroParaContextMenu.current;
-    const imgLivro = imgLivroParaContextMenu.current;
-    const ttlLivro = ttlLivroParaContextMenu.current;
-    const response = await api.patch(
-      `/Perfil/${idUsuario}/addBookToSeeLater/${idLivro}`,
-      { idLivro, imgLivro, ttlLivro }
-    );
-    console.log(response.data);
-    notifyVerDepois();
+    if (user) {
+      const idLivro = idLivroParaContextMenu.current;
+      const imgLivro = imgLivroParaContextMenu.current;
+      const ttlLivro = ttlLivroParaContextMenu.current;
+      const response = await api.patch(
+        `/Perfil/${idUsuario}/addBookToSeeLater/${idLivro}`,
+        { idLivro, imgLivro, ttlLivro }
+      );
+      console.log(response.data);
+      notifyVerDepois();
+    } else {
+      toast.warning("Necessário fazer Login");
+    }
   };
   // ADICIONAR AO VER DEPOIS
 
@@ -151,7 +145,6 @@ function Books() {
                     id={`${livro.id}`}
                     key={`${livro.id}`}
                     onClick={displayMenu}
-                    // onClick={()=>(displayMenu(livro))}
                   >
                     <BootstrapTooltip
                       title={livro.volumeInfo.title}
@@ -170,7 +163,6 @@ function Books() {
                             src={livro.volumeInfo.imageLinks.thumbnail}
                             alt={livro.id}
                             key={livro.id}
-                            // title={livro.volumeInfo.title}
                             data-id={livro.id}
                             data-src={livro.volumeInfo.imageLinks.thumbnail}
                             data-title={livro.volumeInfo.title}
@@ -182,8 +174,6 @@ function Books() {
                               src={genericCover}
                               alt={livro.id}
                               key={livro.id}
-                              // title={livro.volumeInfo.title}
-                              // data-capa-generica={genericCoverCapa}
                               data-id={livro.id}
                               data-src={genericCover}
                               data-title={livro.volumeInfo.title}
@@ -193,8 +183,6 @@ function Books() {
                             </p>
                           </div>
                         )}
-
-                        {/* </Link> */}
                       </button>
                     </BootstrapTooltip>
                   </div>
@@ -216,8 +204,12 @@ function Books() {
           <Separator />
           <Submenu label="⏬  Mais opções">
             {/* <Item>Reportar um erro 📣📢‼️❗⛔🚫💡💰💣📩✉🔗</Item> */}
-            <Item>💡 Sugerir uma dica </Item>
-            <Item>📢 Reportar um erro </Item>
+            <Item onClick={() => toast.warning(<h2>"Em construção... 🚧"</h2>)}>
+              💡 Sugerir uma dica{" "}
+            </Item>
+            <Item onClick={() => toast.warning(<h2>"Em construção... 🚧"</h2>)}>
+              📢 Reportar um erro{" "}
+            </Item>
           </Submenu>
         </Menu>
         <ToastContainer
@@ -231,7 +223,7 @@ function Books() {
           draggable
           pauseOnHover
           // toastStyle={{color: "white", backgroundColor: "transparent"}}
-          theme="colored"
+          theme="dark"
           // closeButton={<p>Fechar</p>}
         />
       </div>
