@@ -72,7 +72,7 @@ function Book() {
                     className={styles.favAdd_btn}
                     onClick={() => handleAddBookToFavorites(livroCompleto)}
                   >
-                    FAVORITAR ❤️❤️❤️
+                    FAVORIT ❤️
                   </button>
                 </div>
               </div>
