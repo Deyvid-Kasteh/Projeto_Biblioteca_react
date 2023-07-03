@@ -35,8 +35,7 @@ function Book() {
   const handleAddBookToFavorites = async (livroCompleto) => {
     notify();
     if (user) {
-      toast.success("Livro adicionado aos ❤️");
-      const idLivro = livroCompleto.id;
+toast.success("Livro adicionado aos ❤️")      const idLivro = livroCompleto.id;
       const imgLivro = `http://books.google.com/books/content?id=${idLivro}&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api`;
       const ttlLivro = livroCompleto.volumeInfo.title;
 
@@ -45,6 +44,7 @@ function Book() {
         { idLivro, imgLivro, ttlLivro }
       );
       console.log(response.data);
+      notify();
     } else {
       toast.warning("Necessário fazer Login");
     }

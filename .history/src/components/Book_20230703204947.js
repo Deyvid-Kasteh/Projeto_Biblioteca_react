@@ -45,6 +45,7 @@ function Book() {
         { idLivro, imgLivro, ttlLivro }
       );
       console.log(response.data);
+      notify();
     } else {
       toast.warning("Necessário fazer Login");
     }
