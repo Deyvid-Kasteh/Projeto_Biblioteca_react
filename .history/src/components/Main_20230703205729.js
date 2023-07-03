@@ -1,5 +1,6 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import { AuthContext } from "../contexts/auth";
 
 import styles from "./Main.module.css";
 import { BsSearch } from "react-icons/bs";
@@ -8,6 +9,7 @@ import { BsSearch } from "react-icons/bs";
 
 function Main() {
   const [pesquisa, setPesquisa] = useState("Biblioteca");
+  const { pesquisaTeste, setPesquisaTeste } = useContext(AuthContext);
   const navigate = useNavigate();
 
   return (
@@ -19,16 +21,16 @@ function Main() {
           type="text"
           name="input_busca"
           placeholder="Digite o nome do livro"
-          onChange={(e) => setPesquisa(e.target.value)}
+          onChange={(e) => setPesquisaTeste(e.target.value)}
           autoComplete="off"
           onKeyUp={(e) => {
             if (e.key === "Enter") {
-              navigate(`/books/${pesquisa}`);
+              navigate(`/books/${pesquisaTeste}`);
             }
           }}
         />
         <button className={`${styles.btn_busca}`}>
-          <Link to={`/books/${pesquisa}`}>
+          <Link to={`/books/${pesquisaTeste}`}>
             <BsSearch />
           </Link>
         </button>

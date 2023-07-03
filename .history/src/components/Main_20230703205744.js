@@ -1,5 +1,6 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import { AuthContext } from "../contexts/auth";
 
 import styles from "./Main.module.css";
 import { BsSearch } from "react-icons/bs";
@@ -8,6 +9,7 @@ import { BsSearch } from "react-icons/bs";
 
 function Main() {
   const [pesquisa, setPesquisa] = useState("Biblioteca");
+  const { pesquisaTeste, setPesquisaTeste } = useContext(AuthContext);
   const navigate = useNavigate();
 
   return (
