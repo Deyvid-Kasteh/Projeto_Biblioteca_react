@@ -149,6 +149,7 @@ function Books() {
           type="text"
           name="input_busca"
           value={pesquisa}
+          // placeholder={pesquisaTeste}
           onChange={(e) => setPesquisa(e.target.value)}
           autoComplete="off"
           onKeyUp={(e) => {

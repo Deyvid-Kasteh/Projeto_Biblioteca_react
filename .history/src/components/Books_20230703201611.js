@@ -34,6 +34,7 @@ function Books() {
   const idLivroParaContextMenu = useRef();
   const imgLivroParaContextMenu = useRef();
   const ttlLivroParaContextMenu = useRef();
+  const { pesquisaTeste, setPesquisaTeste } = useContext(AuthContext);
 
   const { id } = useParams();
   const { user } = useContext(AuthContext);
@@ -41,10 +42,7 @@ function Books() {
 
   const [pesquisa, setPesquisa] = useState(id);
 
-  const handlePesquisa = () => {
-    navigate(`/books/${pesquisa}`);
-    window.location.reload(true);
-  };
+  
 
   const [resultadosLivros, setResultadosLivros] = useState();
   const [tituloLivroMenuContexto, setTituloLivroMenuContexto] = useState();
@@ -149,6 +147,7 @@ function Books() {
           type="text"
           name="input_busca"
           value={pesquisa}
+          // placeholder={pesquisaTeste}
           onChange={(e) => setPesquisa(e.target.value)}
           autoComplete="off"
           onKeyUp={(e) => {
@@ -160,7 +159,8 @@ function Books() {
         />
         <button
           className={`${styles.btn_busca}`}
-          onClick={() => handlePesquisa()}
+          onClick={() => {navigate(`/books/${pesquisa}`), window.location.reload(true);}
+            }
         >
             <BsSearch />
         </button>

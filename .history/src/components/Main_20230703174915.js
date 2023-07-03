@@ -8,7 +8,7 @@ import { BsSearch } from "react-icons/bs";
 // import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 
 function Main() {
-  // const [pesquisa, setPesquisa] = useState("Biblioteca");
+  const [pesquisa, setPesquisa] = useState("Biblioteca");
   const { pesquisaTeste, setPesquisaTeste } = useContext(AuthContext);
   const navigate = useNavigate();
 
@@ -21,7 +21,7 @@ function Main() {
           type="text"
           name="input_busca"
           placeholder="Digite o nome do livro"
-          onChange={(e) => setPesquisaTeste(e.target.value)}
+          onChange={(e) => setPesquisa(e.target.value)}
           autoComplete="off"
           onKeyUp={(e) => {
             if (e.key === "Enter") {
@@ -30,7 +30,7 @@ function Main() {
           }}
         />
         <button className={`${styles.btn_busca}`}>
-          <Link to={`/books/${pesquisaTeste}`}>
+          <Link to={`/books/${pesquisaTestepesquisaTeste}`}>
             <BsSearch />
           </Link>
         </button>

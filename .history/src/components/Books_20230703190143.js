@@ -34,18 +34,11 @@ function Books() {
   const idLivroParaContextMenu = useRef();
   const imgLivroParaContextMenu = useRef();
   const ttlLivroParaContextMenu = useRef();
+  const { pesquisaTeste, setPesquisaTeste } = useContext(AuthContext);
 
   const { id } = useParams();
   const { user } = useContext(AuthContext);
   const idUsuario = user?.id;
-
-  const [pesquisa, setPesquisa] = useState(id);
-
-  const handlePesquisa = () => {
-    navigate(`/books/${pesquisa}`);
-    window.location.reload(true);
-  };
-
   const [resultadosLivros, setResultadosLivros] = useState();
   const [tituloLivroMenuContexto, setTituloLivroMenuContexto] = useState();
 
@@ -143,26 +136,24 @@ function Books() {
   return (
     <div className={`${styles.Books_Page}`}>
       <Navbar />
-      <div className={`${styles.form}`}>
+      <div>
         <input
           className={`${styles.input_busca}`}
           type="text"
           name="input_busca"
-          value={pesquisa}
-          onChange={(e) => setPesquisa(e.target.value)}
+          placeholder={pesquisaTeste}
+          onChange={(e) => setPesquisaTeste(e.target.value)}
           autoComplete="off"
           onKeyUp={(e) => {
             if (e.key === "Enter") {
-              navigate(`/books/${pesquisa}`);
-              window.location.reload(true);
+              navigate(`/books/${pesquisaTeste}`);
             }
           }}
         />
-        <button
-          className={`${styles.btn_busca}`}
-          onClick={() => handlePesquisa()}
-        >
+        <button className={`${styles.btn_busca}`}>
+          <Link to={`/books/${pesquisaTeste}`}>
             <BsSearch />
+          </Link>
         </button>
       </div>
       <div className={`${styles.books_container}`}>

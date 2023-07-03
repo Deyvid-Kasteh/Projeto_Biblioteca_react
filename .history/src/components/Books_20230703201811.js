@@ -34,6 +34,7 @@ function Books() {
   const idLivroParaContextMenu = useRef();
   const imgLivroParaContextMenu = useRef();
   const ttlLivroParaContextMenu = useRef();
+  const { pesquisaTeste, setPesquisaTeste } = useContext(AuthContext);
 
   const { id } = useParams();
   const { user } = useContext(AuthContext);
@@ -149,6 +150,7 @@ function Books() {
           type="text"
           name="input_busca"
           value={pesquisa}
+          // placeholder={pesquisaTeste}
           onChange={(e) => setPesquisa(e.target.value)}
           autoComplete="off"
           onKeyUp={(e) => {
@@ -160,7 +162,7 @@ function Books() {
         />
         <button
           className={`${styles.btn_busca}`}
-          onClick={() => handlePesquisa()}
+          on
         >
             <BsSearch />
         </button>

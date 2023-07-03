@@ -15,9 +15,6 @@ import { yellow } from "@mui/material/colors";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
-import { BsSearch } from "react-icons/bs";
-
-
 // CRIAÇÃO DE CAIXA DE CONTEXTO
 import {
   Menu,
@@ -38,14 +35,6 @@ function Books() {
   const { id } = useParams();
   const { user } = useContext(AuthContext);
   const idUsuario = user?.id;
-
-  const [pesquisa, setPesquisa] = useState(id);
-
-  const handlePesquisa = () => {
-    navigate(`/books/${pesquisa}`);
-    window.location.reload(true);
-  };
-
   const [resultadosLivros, setResultadosLivros] = useState();
   const [tituloLivroMenuContexto, setTituloLivroMenuContexto] = useState();
 
@@ -143,29 +132,8 @@ function Books() {
   return (
     <div className={`${styles.Books_Page}`}>
       <Navbar />
-      <div className={`${styles.form}`}>
-        <input
-          className={`${styles.input_busca}`}
-          type="text"
-          name="input_busca"
-          value={pesquisa}
-          onChange={(e) => setPesquisa(e.target.value)}
-          autoComplete="off"
-          onKeyUp={(e) => {
-            if (e.key === "Enter") {
-              navigate(`/books/${pesquisa}`);
-              window.location.reload(true);
-            }
-          }}
-        />
-        <button
-          className={`${styles.btn_busca}`}
-          onClick={() => handlePesquisa()}
-        >
-            <BsSearch />
-        </button>
-      </div>
       <div className={`${styles.books_container}`}>
+        <h1>54521</h1>
         {resultadosLivros?.map((livro) => (
           <div key={livro.id}>
             {livro.volumeInfo && (

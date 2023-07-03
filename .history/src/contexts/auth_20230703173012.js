@@ -5,8 +5,7 @@ export const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
-  const [loading, setLoading] = useState(true);
-  const [pesquisaTeste, setPesquisaTeste] = useState("Biblioteca");
+  const [loading, setLoading] = useState(true);teste@teste.comteste@teste.comteste@teste.comteste@teste.comteste@teste.comteste@teste.comteste@teste.comteste@teste.comteste@teste.comteste@teste.comteste@teste.comteste@teste.comteste@teste.comteste@teste.comteste@teste.comteste@teste.comteste@teste.comteste@teste.comteste@teste.comteste@teste.comteste@teste.comteste@teste.comteste@teste.comteste@teste.comteste@teste.com
 
   useEffect(() => {
     const user = localStorage.getItem('user');
@@ -55,9 +54,7 @@ export const AuthProvider = ({ children }) => {
         user,
         loading,
         login,
-        logout,
-        pesquisaTeste,
-        setPesquisaTeste,
+        logout
       }}
     >
       {children}

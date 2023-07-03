@@ -8,7 +8,7 @@ import { BsSearch } from "react-icons/bs";
 // import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 
 function Main() {
-  // const [pesquisa, setPesquisa] = useState("Biblioteca");
+  const [pesquisa, setPesquisa] = useState("Biblioteca");
   const { pesquisaTeste, setPesquisaTeste } = useContext(AuthContext);
   const navigate = useNavigate();
 

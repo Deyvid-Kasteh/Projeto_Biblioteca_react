@@ -56,8 +56,7 @@ export const AuthProvider = ({ children }) => {
         loading,
         login,
         logout,
-        pesquisaTeste,
-        setPesquisaTeste,
+        pesquisaTeste
       }}
     >
       {children}
