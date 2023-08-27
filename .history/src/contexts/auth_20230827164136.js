@@ -30,7 +30,6 @@ export const AuthProvider = ({ children }) => {
     api.defaults.headers.authorization = `Bearer ${response.data.token}`;
 
     setUser(response.data.user);
-      // console.log(response);
     console.log(response.data.token);
 
     console.log("veio pro login");
