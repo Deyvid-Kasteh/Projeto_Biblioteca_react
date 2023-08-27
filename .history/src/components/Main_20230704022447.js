@@ -7,6 +7,8 @@ import { BsSearch } from "react-icons/bs";
 // import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 
 
+// import GoogleMap from '../GoogleMap';
+import loadGMaps from "../testar/teste";
 
 
 function Main() {

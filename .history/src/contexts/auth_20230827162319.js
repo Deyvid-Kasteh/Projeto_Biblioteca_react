@@ -31,7 +31,7 @@ export const AuthProvider = ({ children }) => {
 
     setUser(response.data.user);
     console.log(response);
-        console.log(response.data.token);
+        console.log(response);
 
     console.log("veio pro login");
 

@@ -1,3 +1,5 @@
+import { GoogleBooksLoader, GoogleBooksViewer } from "react-google-books";
+
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 
@@ -5,9 +7,6 @@ import styles from "./Main.module.css";
 import { BsSearch } from "react-icons/bs";
 
 // import ArrowBackIcon from "@mui/icons-material/ArrowBack";
-
-
-
 
 function Main() {
   const [pesquisa, setPesquisa] = useState("Biblioteca");
